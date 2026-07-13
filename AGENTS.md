@@ -13,11 +13,18 @@ A collection of 12 specialized AI agent skills that work as an orchestrated team
 ## Quick Start
 
 ```bash
-# For first use, set up memory:
-mkdir -p ~/.agent-memory/global
-cp -r design-systems/_schema/templates/* ~/.agent-memory/global/
+# 1. Set up memory (one time):
+#    macOS/Linux: bash memory-sync/sync-memory.sh init
+#    Windows:     .\memory-sync\sync-memory.ps1 init
 
-# Then paste CONNECT-PROMPT.md into your AI session
+# 2. (Optional) Connect to remote repo for cross-machine sync:
+#    First create github.com/<you>/agent-memory, then:
+#    .\setup-remote-memory.ps1 https://github.com/<you>/agent-memory.git
+
+# 3. Pull latest memory (start of every session):
+#    bash memory-sync/sync-memory.sh pull
+
+# 4. Open the dashboard or paste CONNECT-PROMPT.md into your AI session
 ```
 
 ---
@@ -65,9 +72,14 @@ cp -r design-systems/_schema/templates/* ~/.agent-memory/global/
 ├── skills/                            ← 12 .skill files (for claude.ai upload)
 │
 ├── dashboard/                         ← Visual customer dashboard (open index.html)
-├── memory-sync/sync-memory.sh         ← Memory persistence script
+├── .github/workflows/deploy-dashboard.yml  ← Auto-deploys to GitHub Pages
+├── index.html                         ← Redirects to dashboard/ (for Pages root)
+├── memory-sync/
+│   ├── sync-memory.sh                 ← Memory persistence script (macOS/Linux)
+│   └── sync-memory.ps1               ← Memory persistence script (Windows)
+├── setup-remote-memory.ps1            ← One-command remote setup (run after creating repo)
 ├── main-cli.sh                        ← CLI entry point
-└── launch-dashboard.ps1               ← Windows dashboard launcher (opens dashboard/)
+└── launch-dashboard.ps1               ← Windows dashboard launcher
 ```
 
 ---
