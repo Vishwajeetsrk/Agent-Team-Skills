@@ -268,6 +268,68 @@ footer {
 }
 .memory-status .status-dot.checked { background: var(--success); }
 .memory-status .status-dot.unchecked { background: var(--muted); }
+
+.web3-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+.web3-product {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  transition: all var(--motion-fast);
+  position: relative;
+  overflow: hidden;
+}
+.web3-product:hover { border-color: var(--accent); box-shadow: var(--elev-raised); }
+.web3-product .product-num {
+  font-size: 48px;
+  font-weight: 700;
+  color: color-mix(in oklab, var(--accent), transparent 85%);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+.web3-product h3 { font-size: 18px; font-weight: 600; margin-bottom: var(--space-1); }
+.web3-product .product-tag {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+.web3-product p { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: var(--space-3); }
+.web3-product .feature-list { list-style: none; padding: 0; margin: 0; }
+.web3-product .feature-list li {
+  font-size: 13px;
+  padding: var(--space-1) 0;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.web3-product .feature-list li::before {
+  content: ">";
+  color: var(--accent);
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+.web3-product .product-cta {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--accent-on);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--motion-fast);
+}
+.web3-product .product-cta:hover { background: var(--accent-hover); }
 </style>
 </head>
 <body>
@@ -278,6 +340,7 @@ footer {
     <div class="nav-links">
       <a href="#agents">Skills</a>
       <a href="#design-systems">Design</a>
+      <a href="#web3-suite">Web3 Suite</a>
       <a href="#prompt-generator">Prompt Generator</a>
       <a href="#quick-start">Quick Start</a>
       <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" class="btn-nav" target="_blank">GitHub &#8599;</a>
@@ -287,14 +350,14 @@ footer {
 
 <section class="hero">
   <div class="container">
-    <h1>12 AI Agents.<br>One <span>command</span>.</h1>
-    <p>A CEO that validates. A builder that ships. A memory that never forgets. One prompt activates the whole team.</p>
+    <h1>18 AI Agents.<br>One <span>command</span>.</h1>
+    <p>A CEO that validates. A builder that ships. Web3 agents for blockchain. A memory that never forgets. One prompt activates the whole team.</p>
     <div class="hero-btns">
       <a href="#prompt-generator" class="btn-primary">Generate Your Prompt</a>
       <a href="#quick-start" class="btn-secondary">Quick Start</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Agent Skills</div></div>
+      <div class="stat"><div class="stat-num">18</div><div class="stat-label">Agent Skills</div></div>
       <div class="stat"><div class="stat-num">10</div><div class="stat-label">Design Systems</div></div>
       <div class="stat"><div class="stat-num">47</div><div class="stat-label">Templates</div></div>
       <div class="stat"><div class="stat-num">1</div><div class="stat-label">CONNECT-PROMPT</div></div>
@@ -302,15 +365,17 @@ footer {
     <div class="flow-diagram">
       <div class="flow-step"><span class="step-agent">ceo-agent</span> validate</div>
       <div class="flow-arrow">&#8594;</div>
+      <div class="flow-step" style="border-color:var(--accent);"><span class="step-agent" style="color:var(--accent);">web3-agent</span> on-chain</div>
+      <div class="flow-arrow">&#8594;</div>
       <div class="flow-step"><span class="step-agent">team-agent</span> plan</div>
       <div class="flow-arrow">&#8594;</div>
       <div class="flow-step"><span class="step-agent">saas-builder</span> build</div>
       <div class="flow-arrow">&#8594;</div>
       <div class="flow-step"><span class="step-agent">design-agent</span> design</div>
       <div class="flow-arrow">&#8594;</div>
-      <div class="flow-step never-skip"><span class="step-agent">test-agent</span> QA</div>
+      <div class="flow-step never-skip"><span class="step-agent">security-agent</span> threat check</div>
       <div class="flow-arrow">&#8594;</div>
-      <div class="flow-step"><span class="step-agent">legal-agent</span> compliance</div>
+      <div class="flow-step never-skip"><span class="step-agent">test-agent</span> QA</div>
       <div class="flow-arrow">&#8594;</div>
       <div class="flow-step"><span class="step-agent">devops-agent</span> deploy</div>
       <div class="flow-arrow">&#8594;</div>
@@ -323,7 +388,7 @@ footer {
   <div class="container">
     <div class="section-header">
       <h2>Your Agent Team</h2>
-      <p>Each agent is a specialized skill file. Load the ones you need, or use all 12 for full coverage.</p>
+      <p>18 agents including 6 Web3 specialists. Load the ones you need, or use all for full coverage.</p>
     </div>
     <div class="agent-grid" id="agentGrid"></div>
   </div>
@@ -336,6 +401,16 @@ footer {
       <p>10 brand-grade design systems with tokens, CSS variables, and component specs. Ready for any AI to use.</p>
     </div>
     <div class="design-system-grid" id="dsGrid"></div>
+  </div>
+</section>
+
+<section id="web3-suite" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Web3 Product Suite</h2>
+      <p>6 AI-powered Web3 products — smart contracts, NFTs, trading, news, security, and on-chain intelligence. Built by agents, ready to deploy.</p>
+    </div>
+    <div class="web3-product-grid" id="web3Grid"></div>
   </div>
 </section>
 
@@ -414,7 +489,13 @@ const agents = [
   { id: 'legal-agent', name: 'Legal Agent', role: 'Compliance', desc: 'Privacy policies, Terms of Service, GDPR/DPDP compliance. Generates standard legal docs for any project.', icon: '&#128214;' },
   { id: 'seo-agent', name: 'SEO Agent', role: 'Search Optimization', desc: 'Keyword strategy, on-page SEO, technical SEO. Meta tags, structured data, sitemap generation.', icon: '&#128270;' },
   { id: 'devops-agent', name: 'DevOps Agent', role: 'CI/CD & Deploy', desc: 'CI/CD pipelines, deployment, rollback plans, monitoring setup, incident response runbooks.', icon: '&#128640;' },
-  { id: 'memory-agent', name: 'Memory Agent', role: 'Persistence & Learning', desc: 'Cross-project memory. Logs mistakes, decisions, patterns. Git-backed sync ensures nothing is lost.', icon: '&#128218;' }
+  { id: 'memory-agent', name: 'Memory Agent', role: 'Persistence & Learning', desc: 'Cross-project memory. Logs mistakes, decisions, patterns. Git-backed sync ensures nothing is lost.', icon: '&#128218;' },
+  { id: 'web3-agent', name: 'Web3 Agent', role: 'On-Chain Intelligence', desc: 'Token research, on-chain analysis, live market data, DeFi evaluation, and blockchain intelligence.', icon: '&#9889;' },
+  { id: 'smart-contract-agent', name: 'Smart Contract Agent', role: 'Solidity Gen & Audit', desc: 'Generate, audit, deploy, and gas-optimize Solidity contracts. Catch exploits before they ship.', icon: '&#128220;' },
+  { id: 'nft-agent', name: 'NFT Agent', role: 'Generative Art & Minting', desc: 'AI image generation, on-chain minting, collection deployment across 20+ networks.', icon: '&#127912;' },
+  { id: 'trading-agent', name: 'Trading Agent', role: 'Technical Analysis', desc: 'Chart patterns, indicators, strategy development, backtesting, and market regime detection.', icon: '&#128200;' },
+  { id: 'crypto-news-agent', name: 'Crypto News Agent', role: 'Automated News', desc: 'Trend scanning, short-form article generation, competitive intelligence, daily roundups.', icon: '&#128240;' },
+  { id: 'security-agent', name: 'Security Agent', role: 'Web3 Threat Detection', desc: 'Phishing detection, contract risk scoring, transaction simulation, wallet security assessment.', icon: '&#128737;' }
 ];
 
 const designSystems = [
@@ -444,6 +525,32 @@ designSystems.forEach(ds => {
   card.className = 'ds-card';
   card.innerHTML = `<div class="ds-swatch" style="background:${ds.color};${ds.color === '#ffffff' ? 'border-color:#ddd;' : ''}"></div><h4>${ds.name}</h4><p>${ds.desc}</p>`;
   dsGrid.appendChild(card);
+});
+
+const web3Products = [
+  { num: '01', name: 'Web3 AI Chatbot', tag: 'ON-CHAIN INTELLIGENCE', desc: 'Ask any question about blockchain and crypto. Reliable on-chain data, live market analysis, and DeFi research.', features: ['Access to live crypto data', 'On-chain transaction analysis', 'Token and project research', 'Market analysis & trends'], cta: 'Try Web3 Agent', agent: 'web3-agent' },
+  { num: '02', name: 'AI News Auto-Model', tag: 'AUTOMATED CURATION', desc: 'Scans the Web3 ecosystem every 60 minutes. Generates short articles on trending topics — fully automated.', features: ['AI-generated news summaries', 'Trending narrative detection', 'Competitive intelligence', 'Daily roundup emails'], cta: 'Try News Agent', agent: 'crypto-news-agent' },
+  { num: '03', name: 'Smart Contract Generator & Auditor', tag: 'SOLIDITY SECURITY', desc: 'Generate or audit any Solidity contract. Describe what you want or paste code — AI handles the rest.', features: ['AI smart contract generation', 'Solidity security audit', 'Gas optimization', 'Exploit detection'], cta: 'Try Smart Contract Agent', agent: 'smart-contract-agent' },
+  { num: '04', name: 'AI NFT Generator', tag: 'GENERATIVE ART', desc: 'Create NFTs from text prompts. AI generates artwork, deploys on-chain in 30-60 seconds across 20+ networks.', features: ['Text-to-image AI generation', 'On-chain minting', 'Trait matrix generation', 'Cross-chain deployment'], cta: 'Try NFT Agent', agent: 'nft-agent' },
+  { num: '05', name: 'AI Trading Assistant', tag: 'TECHNICAL ANALYSIS', desc: 'Chart pattern detection, technical indicators, price prediction, and strategy development for crypto markets.', features: ['Chart pattern recognition', 'RSI, MACD, Bollinger analysis', 'Strategy backtesting', 'Market regime detection'], cta: 'Try Trading Agent', agent: 'trading-agent' },
+  { num: '06', name: 'CryptoGuard Security', tag: 'WEB3 ANTIVIRUS', desc: 'Elevate Web3 security with AI-powered threat detection. Phishing blocker, contract risk scanner, transaction simulator.', features: ['Phishing site detection', 'Smart contract risk scoring', 'Transaction simulation', 'Wallet security audit'], cta: 'Try Security Agent', agent: 'security-agent' }
+];
+
+const web3Grid = document.getElementById('web3Grid');
+web3Products.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'web3-product';
+  card.innerHTML = `
+    <div class="product-num">${p.num}</div>
+    <div class="product-tag">${p.tag}</div>
+    <h3>${p.name}</h3>
+    <p>${p.desc}</p>
+    <ul class="feature-list">
+      ${p.features.map(f => `<li>${f}</li>`).join('')}
+    </ul>
+    <a href="#" class="product-cta" onclick="document.getElementById('prompt-generator').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.querySelectorAll('#agentCheckboxes input').forEach(cb => { if(cb.value==='${p.agent}') { cb.checked=true; cb.parentElement.classList.add('selected'); } }); generatePrompt(); }, 100); return false;">${p.cta} &rarr;</a>
+  `;
+  web3Grid.appendChild(card);
 });
 
 const checkboxGrid = document.getElementById('agentCheckboxes');

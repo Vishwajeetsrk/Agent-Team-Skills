@@ -6,7 +6,7 @@ Read this file first before doing anything in this repository. This is the singl
 
 ## What This Is
 
-A collection of 12 specialized AI agent skills that work as an orchestrated team. Each skill is a markdown file that tells the AI how to approach a specific domain. The memory system ensures knowledge persists across all projects.
+A collection of 18 specialized AI agent skills that work as an orchestrated team — including 6 Web3 agents for blockchain, smart contracts, NFTs, trading, news, and security. Each skill is a markdown file that tells the AI how to approach a specific domain. The memory system ensures knowledge persists across all projects.
 
 ---
 
@@ -40,7 +40,7 @@ A collection of 12 specialized AI agent skills that work as an orchestrated team
 ├── CONNECT-PROMPT.md                  ← Universal entry prompt (paste this)
 ├── DESIGN-CONNECT-PROMPT.md           ← Design-specific creative prompt
 │
-├── .claude/skills/                    ← 12 Agent Skills (for Claude Code / any AI)
+├── .claude/skills/                    ← 18 Agent Skills (for Claude Code / any AI)
 │   ├── ceo-agent/SKILL.md             ←   Validates ideas, makes go/no-go calls
 │   ├── team-agent/SKILL.md            ←   Task breakdown, project coordination
 │   ├── saas-builder/SKILL.md          ←   Golden Flow build: PRD -> architecture -> UI
@@ -52,10 +52,17 @@ A collection of 12 specialized AI agent skills that work as an orchestrated team
 │   ├── legal-agent/SKILL.md           ←   Privacy policy, ToS, compliance
 │   ├── seo-agent/SKILL.md             ←   Keyword strategy, SEO
 │   ├── devops-agent/SKILL.md          ←   CI/CD, deploy, monitoring
-│   └── memory-agent/                  ←   Cross-project memory system
-│       ├── SKILL.md
-│       ├── templates/                 ←   Memory templates
-│       └── scripts/sync-memory.sh     ←   Memory sync script
+│   ├── memory-agent/                  ←   Cross-project memory system
+│   │   ├── SKILL.md
+│   │   ├── templates/                 ←   Memory templates
+│   │   └── scripts/sync-memory.sh     ←   Memory sync script
+│   │
+│   ├── web3-agent/SKILL.md            ←   On-chain intelligence & crypto research
+│   ├── smart-contract-agent/SKILL.md  ←   Solidity gen, audit, deploy
+│   ├── nft-agent/SKILL.md             ←   Generative art & on-chain minting
+│   ├── trading-agent/SKILL.md         ←   Technical analysis & chart patterns
+│   ├── crypto-news-agent/SKILL.md     ←   Automated news & trend scanning
+│   └── security-agent/SKILL.md        ←   Web3 phishing, risk scoring, CryptoGuard
 │
 ├── design-systems/                    ← 10 Brand design systems
 │   ├── default/                       ←   Neutral modern starter
@@ -122,8 +129,11 @@ Every project follows this order:
 
 ```
 idea → ceo-agent (validate) → research-resources (market check)
+→ [web3-agent if blockchain/crypto] → [smart-contract-agent if contracts needed]
+→ [nft-agent if NFT surface] → [trading-agent if DeFi/trading]
 → team-agent (plan) → saas-builder (PRD -> architecture -> security -> UI)
 → [ai-agent/ml-agent if needed] → [design-agent for brand tokens]
+→ [crypto-news-agent if news/content] → [security-agent for Web3 threat check]
 → test-agent (QA) → legal-agent (compliance) → seo-agent (launch SEO)
 → devops-agent (deploy) → memory-agent (log learnings)
 ```

@@ -1,6 +1,6 @@
 # Agent Team Skills — Vishwajeet's AI Agent Team
 
-> 12 specialized AI skills that work as one team — CEO validates, specialists build, memory prevents repeat mistakes.
+> 18 specialized AI skills that work as one team — CEO validates, specialists build, Web3 agents handle blockchain, memory prevents repeat mistakes.
 
 Works with **Claude Code**, **claude.ai**, **Antigravity**, **Open Code**, and any AI that supports skill/instruction files.
 
@@ -22,6 +22,12 @@ Works with **Claude Code**, **claude.ai**, **Antigravity**, **Open Code**, and a
 | **seo-agent** | Keyword strategy, on-page & technical SEO |
 | **devops-agent** | CI/CD, deploy, rollback, monitoring, incident response |
 | **memory-agent** | Cross-project memory — prevents repeat mistakes forever |
+| **web3-agent** | On-chain intelligence, token research, live market data |
+| **smart-contract-agent** | Solidity gen/audit, exploit detection, gas optimization |
+| **nft-agent** | AI image generation, on-chain minting, 20+ networks |
+| **trading-agent** | Chart patterns, technical analysis, strategy backtesting |
+| **crypto-news-agent** | Automated news curation every 60 min |
+| **security-agent** | Phishing detection, contract risk scoring, CryptoGuard |
 
 ---
 
@@ -31,16 +37,22 @@ Works with **Claude Code**, **claude.ai**, **Antigravity**, **Open Code**, and a
 idea
   |
   v
-ceo-agent          — validate, go/no-go, route
+ceo-agent              — validate, go/no-go, route
   |
   v
-research-resources — market check (if needed)
+research-resources     — market check (if needed)
   |
   v
-team-agent         — task breakdown, PROJECT_STATE
+web3-agent             — on-chain intelligence (if crypto)
+smart-contract-agent   — contract gen/audit (if needed)
+nft-agent              — NFT creation (if NFT surface)
+trading-agent          — technical analysis (if DeFi)
   |
   v
-saas-builder       — PRD -> architecture -> security -> UI
+team-agent             — task breakdown, PROJECT_STATE
+  |
+  v
+saas-builder           — PRD -> architecture -> security -> UI
   |        |
   |        v
   |   ai-agent / ml-agent (if AI/ML surface)
@@ -49,22 +61,26 @@ saas-builder       — PRD -> architecture -> security -> UI
   |   design-agent (brand tokens before UI build)
   |
   v
-test-agent         — independent security/QA sign-off
+crypto-news-agent      — news/content (if needed)
+security-agent         — Web3 threat check (never skip for crypto)
   |
   v
-legal-agent        — privacy/ToS/compliance
+test-agent             — independent security/QA sign-off
   |
   v
-seo-agent          — launch SEO
+legal-agent            — privacy/ToS/compliance
   |
   v
-devops-agent       — CI/CD, deploy, rollback, monitoring
+seo-agent              — launch SEO
   |
   v
-memory-agent       — log what was learned, close the loop
+devops-agent           — CI/CD, deploy, rollback, monitoring
+  |
+  v
+memory-agent           — log what was learned, close the loop
 ```
 
-Every project runs through this flow. **test-agent and memory-agent are never skipped.**
+Every project runs through this flow. **test-agent, security-agent, and memory-agent are never skipped.**
 
 ---
 
@@ -113,10 +129,14 @@ Paste `CONNECT-PROMPT.md` at the start of your session.
 
 ### Option 3: Visual Dashboard
 Open `dashboard/index.html` in your browser or run `.\launch-dashboard.ps1` (Windows):
-- Browse all 12 agent skills
+- Browse all 18 agent skills with role descriptions
 - Preview 10 design systems with swatches
+- Browse the Web3 Product Suite (6 products with feature lists)
 - Generate a custom CONNECT-PROMPT tailored to your project
 - Quick-start guide with copy-paste commands
+
+### Option 4: Hosted Dashboard (when deployed)
+Visit `https://vishwajeetsrk.github.io/Agent-Team-Skills` — no clone needed.
 
 ### Option 4: Any AI (Antigravity, Open Code, etc.)
 
