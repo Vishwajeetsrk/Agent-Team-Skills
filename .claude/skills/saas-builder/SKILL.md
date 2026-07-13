@@ -37,7 +37,7 @@ Schema design rules:
 
 ## Phase 4 — UI / design system
 
-Pick the system that fits the product's positioning from the 10 design systems shipped in `design-systems/<brand>/`. Each includes `DESIGN.md`, `design-tokens.json`, and `tokens.css`:
+Pick the system that fits the product's positioning from the 30 design systems shipped in `design-systems/<brand>/`. Each includes `DESIGN.md`, `design-tokens.json`, and `tokens.css`:
 
 - **neobrutalism** — bold, high-contrast, playful edtech (Learnify AI mascot-driven UI)
 - **glassmorphism** — layered, modern SaaS dashboards

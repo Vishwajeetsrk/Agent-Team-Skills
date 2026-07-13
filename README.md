@@ -1,6 +1,6 @@
 # Agent Team Skills — Vishwajeet's AI Agent Team
 
-> 18 specialized AI skills that work as one team — CEO validates, specialists build, Web3 agents handle blockchain, memory prevents repeat mistakes.
+> 19 specialized AI skills that work as one team — CEO validates, specialists build, Web3 agents handle blockchain, memory prevents repeat mistakes.
 
 Works with **Claude Code**, **claude.ai**, **Antigravity**, **Open Code**, and any AI that supports skill/instruction files.
 
@@ -130,9 +130,10 @@ Paste `CONNECT-PROMPT.md` at the start of your session.
 
 ### Option 3: Visual Dashboard
 Open `dashboard/index.html` in your browser or run `.\launch-dashboard.ps1` (Windows):
-- Browse all 18 agent skills with role descriptions
-- Preview 10 design systems with swatches
+- Browse all 19 agent skills with role descriptions
+- Preview 30 design systems with color swatches
 - Browse the Web3 Product Suite (6 products with feature lists)
+- Browse 46 built project templates with live iframe preview
 - Generate a custom CONNECT-PROMPT tailored to your project
 - Quick-start guide with copy-paste commands
 
@@ -149,8 +150,8 @@ Visit `https://vishwajeetsrk.github.io/Agent-Team-Skills` — no clone needed.
 
 ## Design Systems Included
 
-20 brand-grade design systems at `design-systems/<brand>/`:
-`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase` · `apple` · `openai` · `github` · `shopify` · `spotify` · `notion` · `discord` · `framer` · `cursor` · `figma`
+30 brand-grade design systems at `design-systems/<brand>/`:
+`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase` · `apple` · `openai` · `github` · `shopify` · `spotify` · `notion` · `discord` · `framer` · `cursor` · `figma` · `airbnb` · `coinbase` · `duolingo` · `hashicorp` · `nike` · `nvidia` · `perplexity` · `slack` · `tesla` · `zapier`
 
 Each contains `DESIGN.md` (brand spec), `design-tokens.json`, and `tokens.css` (CSS variables). Any AI can use these to maintain brand consistency across renders.
 
@@ -178,9 +179,9 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full system design.
 
 ---
 
-## Reference Projects
+## Built Project Templates
 
-47 landing page templates available at `C:\Users\vishw\Music\Learnify AI\Projects\` — structural inspiration for the design-agent.
+46 production-ready Vite + React templates at `projects/templates-built/` — from Web3 dashboards to SaaS landing pages. Browse them live in the dashboard or open the directory directly.
 
 ## Project Showcase
 

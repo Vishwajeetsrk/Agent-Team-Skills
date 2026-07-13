@@ -75,7 +75,7 @@ Apply free-for.dev as the first-pass reference for any free-tier infra/hosting n
 
 ## Design Systems Reference
 
-10 brand-grade design systems available at `design-systems/<brand>/`:
+30 brand-grade design systems available at `design-systems/<brand>/`:
 - **default** — Neutral modern starter
 - **linear-app** — Dark-mode-first productivity (reference DESIGN.md + tokens.css)
 - **neobrutalism** — Bold, high-contrast

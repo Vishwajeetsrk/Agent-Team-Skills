@@ -6,7 +6,7 @@ Read this file first before doing anything in this repository. This is the singl
 
 ## What This Is
 
-A collection of 18 specialized AI agent skills that work as an orchestrated team — including 6 Web3 agents for blockchain, smart contracts, NFTs, trading, news, and security. Each skill is a markdown file that tells the AI how to approach a specific domain. The memory system ensures knowledge persists across all projects.
+A collection of 19 specialized AI agent skills that work as an orchestrated team — including 6 Web3 agents for blockchain, smart contracts, NFTs, trading, news, and security. Each skill is a markdown file that tells the AI how to approach a specific domain. The memory system ensures knowledge persists across all projects.
 
 ---
 
@@ -68,7 +68,7 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 ├── projects/                          ← Example projects built by the agent team
 │   └── learnify-ai/                   ←   Full landing page with 7Q framework
 │
-├── design-systems/                    ← 20 Brand design systems
+├── design-systems/                    ← 30 Brand design systems
 │   ├── default/                       ←   Neutral modern starter
 │   ├── linear-app/                    ←   Dark-mode-first productivity
 │   ├── neobrutalism/                  ←   Bold, high-contrast
@@ -88,7 +88,18 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 │   ├── discord/                       ←   Discord design
 │   ├── framer/                        ←   Framer design
 │   ├── cursor/                        ←   Cursor IDE design
-│   └── figma/                         ←   Figma design
+│   ├── figma/                         ←   Figma design
+│   |
+│   ├── airbnb/                        ←   Travel/hospitality
+│   ├── coinbase/                      ←   Web3/crypto
+│   ├── duolingo/                      ←   Gamified education
+│   ├── hashicorp/                     ←   DevOps/infrastructure
+│   ├── nike/                          ←   Sportswear/retail
+│   ├── nvidia/                        ←   GPU/AI
+│   ├── perplexity/                    ←   AI search
+│   ├── slack/                         ←   Workplace communication
+│   ├── tesla/                         ←   Automotive/energy
+│   └── zapier/                        ←   Automation
 │
 ├── skills/                            ← 12 .skill files (for claude.ai upload)
 │
@@ -127,7 +138,7 @@ cp -r .claude/skills/memory-agent/templates/* ~/.agent-memory/global/
 ### Option C: Visual Dashboard
 Open `dashboard/index.html` in any browser or run `.\launch-dashboard.ps1` (Windows) to:
 - Browse all 12 agents with descriptions
-- Preview 10 design systems
+- Preview 30 design systems
 - Generate a custom CONNECT-PROMPT with selected agents
 - Follow the quick-start guide
 
@@ -177,7 +188,7 @@ bash memory-sync/sync-memory.sh push   # End of session
 
 ## Design Systems
 
-10 brand design systems available at `design-systems/<brand>/`. Each contains:
+30 brand design systems available at `design-systems/<brand>/`. Each contains:
 - `DESIGN.md` — Complete brand spec (color, typography, spacing, components)
 - `design-tokens.json` — Structured CSS tokens
 - `tokens.css` — CSS variables ready to use
