@@ -182,6 +182,10 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full system design.
 
 47 landing page templates available at `C:\Users\vishw\Music\Learnify AI\Projects\` — structural inspiration for the design-agent.
 
+## Project Showcase
+
+See `projects/learnify-ai/` for a real landing page built using the 7-question conversion framework — open in your browser.
+
 ---
 
 ## License

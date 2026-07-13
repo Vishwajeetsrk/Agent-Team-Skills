@@ -65,6 +65,9 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 │   ├── security-agent/SKILL.md        ←   Web3 phishing, risk scoring, CryptoGuard
 │   └── landing-page-agent/SKILL.md    ←   7-question conversion framework for pages
 │
+├── projects/                          ← Example projects built by the agent team
+│   └── learnify-ai/                   ←   Full landing page with 7Q framework
+│
 ├── design-systems/                    ← 20 Brand design systems
 │   ├── default/                       ←   Neutral modern starter
 │   ├── linear-app/                    ←   Dark-mode-first productivity
