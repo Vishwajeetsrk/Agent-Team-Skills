@@ -1,59 +1,41 @@
-# launch-dashboard.ps1 — Quick Dashboard Launcher
-# Opens a simple visual interface for agent team management
-
-Write-Host "=== Agent Team Dashboard ===" -ForegroundColor Cyan
-Write-Host "" 
+# launch-dashboard.ps1 — Agent Team Dashboard
+# Opens the visual web dashboard in your default browser
 
 $repoPath = Split-Path -Parent $MyInvocation.MyCommand.Path
-$skillCount = (Get-ChildItem -Path "$repoPath\.claude\skills" -Directory).Count
+$dashboardPath = Join-Path $repoPath "dashboard" "index.html"
+
+if (-not (Test-Path $dashboardPath)) {
+    Write-Host "Dashboard not found at: $dashboardPath" -ForegroundColor Red
+    Write-Host "Make sure the dashboard/index.html file exists." -ForegroundColor Yellow
+    exit 1
+}
+
+$dashboardUri = "file://" + $dashboardPath.Replace("\", "/")
+Write-Host "=== Agent Team Dashboard ===" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Opening: $dashboardUri" -ForegroundColor Green
+Write-Host ""
+
+try {
+    Start-Process $dashboardPath
+    Write-Host "Dashboard opened in your browser." -ForegroundColor Green
+}
+catch {
+    Write-Host "Could not open browser automatically." -ForegroundColor Red
+    Write-Host "Open this file manually:" -ForegroundColor Yellow
+    Write-Host "  $dashboardPath"
+}
+
+Write-Host ""
+Write-Host "Quick Memory Check:" -ForegroundColor Cyan
 $memoryPath = "$env:USERPROFILE\.agent-memory\global"
-
-Write-Host "Skills Available: $skillCount" -ForegroundColor Green
-Write-Host "Memory Status: " -NoNewline
-
 if (Test-Path $memoryPath) {
-    $logCount = (Get-ChildItem -Path $memoryPath -File).Count
-    Write-Host "$logCount log files active" -ForegroundColor Green
+    $fileCount = (Get-ChildItem -Path $memoryPath -File).Count
+    Write-Host "  Memory: $fileCount log files active at ~\.agent-memory\global\" -ForegroundColor Green
 } else {
-    Write-Host "Not configured — run SETUP.md first" -ForegroundColor Yellow
+    Write-Host "  Memory: Not configured yet." -ForegroundColor Yellow
+    Write-Host "  Run: bash memory-sync/sync-memory.sh pull" -ForegroundColor Yellow
 }
-
 Write-Host ""
-Write-Host "Quick Actions:" -ForegroundColor Cyan
-Write-Host "  [1] Initialize New Project"
-Write-Host "  [2] Pull Memory Sync"
-Write-Host "  [3] Push Memory Sync"
-Write-Host "  [4] Show Skill List"
-Write-Host "  [5] Exit"
-Write-Host ""
-
-$choice = Read-Host "Select an option (1-5)"
-
-switch ($choice) {
-    "1" {
-        $project = Read-Host "Project name"
-        & "$repoPath\main-cli.sh" setup $project
-    }
-    "2" {
-        & "$repoPath\memory-sync\sync-memory.sh" pull
-    }
-    "3" {
-        $msg = Read-Host "Commit message (optional)"
-        if ($msg) { & "$repoPath\memory-sync\sync-memory.sh" push $msg }
-        else { & "$repoPath\memory-sync\sync-memory.sh" push }
-    }
-    "4" {
-        Write-Host ""
-        Write-Host "=== Available Skills ===" -ForegroundColor Cyan
-        Get-ChildItem -Path "$repoPath\.claude\skills" -Directory | Select-Object Name
-    }
-    "5" {
-        Write-Host "Goodbye!" -ForegroundColor Green
-        exit 0
-    }
-    default {
-        Write-Host "Invalid choice" -ForegroundColor Red
-    }
-}
-
-Read-Host "Press Enter to exit"
+Write-Host "Press any key to exit..."
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

@@ -64,9 +64,10 @@ cp -r design-systems/_schema/templates/* ~/.agent-memory/global/
 │
 ├── skills/                            ← 12 .skill files (for claude.ai upload)
 │
+├── dashboard/                         ← Visual customer dashboard (open index.html)
 ├── memory-sync/sync-memory.sh         ← Memory persistence script
 ├── main-cli.sh                        ← CLI entry point
-└── launch-dashboard.ps1               ← Windows dashboard launcher
+└── launch-dashboard.ps1               ← Windows dashboard launcher (opens dashboard/)
 ```
 
 ---
@@ -90,7 +91,14 @@ cp -r .claude/skills/memory-agent/templates/* ~/.agent-memory/global/
 3. Reference design systems from `design-systems/<brand>/DESIGN.md`
 4. Set up memory sync for persistence
 
-### Option C: claude.ai Web
+### Option C: Visual Dashboard
+Open `dashboard/index.html` in any browser or run `.\launch-dashboard.ps1` (Windows) to:
+- Browse all 12 agents with descriptions
+- Preview 10 design systems
+- Generate a custom CONNECT-PROMPT with selected agents
+- Follow the quick-start guide
+
+### Option D: claude.ai Web
 1. Upload `.skill` files from `skills/` folder to your profile
 2. Paste `CONNECT-PROMPT.md` at conversation start
 

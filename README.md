@@ -111,7 +111,14 @@ Paste `CONNECT-PROMPT.md` at the start of your session.
 1. Add individual `.skill` files from `skills/` folder to your profile
 2. Paste `CONNECT-PROMPT.md` into the conversation
 
-### Option 3: Any AI (Antigravity, Open Code, etc.)
+### Option 3: Visual Dashboard
+Open `dashboard/index.html` in your browser or run `.\launch-dashboard.ps1` (Windows):
+- Browse all 12 agent skills
+- Preview 10 design systems with swatches
+- Generate a custom CONNECT-PROMPT tailored to your project
+- Quick-start guide with copy-paste commands
+
+### Option 4: Any AI (Antigravity, Open Code, etc.)
 
 1. Upload `CONNECT-PROMPT.md` as system instructions
 2. Load individual skill files from `skills/` directory
