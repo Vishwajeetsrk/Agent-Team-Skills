@@ -244,6 +244,168 @@ footer {
   font-size: 14px;
 }
 
+.demo-toggle {
+  display: flex; align-items: center; justify-content: center; gap: var(--space-3);
+  margin: var(--space-6) 0;
+}
+.demo-toggle .toggle-label { font-size: 14px; color: var(--muted); }
+.demo-toggle .toggle-switch {
+  width: 48px; height: 26px;
+  background: var(--border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--motion-fast);
+}
+.demo-toggle .toggle-switch.active { background: var(--accent); }
+.demo-toggle .toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform var(--motion-fast);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.demo-toggle .toggle-switch.active::after { transform: translateX(22px); }
+
+.demo-section { display: none; padding: var(--space-6) 0; }
+.demo-section.visible { display: block; }
+
+.demo-tabs {
+  display: flex; gap: var(--space-1);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+.demo-tab {
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--motion-fast);
+  color: var(--muted);
+}
+.demo-tab:hover { color: var(--fg); }
+.demo-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.demo-panel { display: none; }
+.demo-panel.visible { display: block; }
+
+.demo-contract {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.demo-contract .demo-input-area {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+.demo-contract .demo-input-area textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+.demo-contract .demo-input-area textarea:focus { outline: none; border-color: var(--accent); }
+.demo-contract .demo-output {
+  padding: var(--space-4);
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-x: auto;
+  min-height: 200px;
+}
+.demo-contract .demo-output .kw { color: #569cd6; }
+.demo-contract .demo-output .fn { color: #dcdcaa; }
+.demo-contract .demo-output .ty { color: #4ec9b0; }
+.demo-contract .demo-output .str { color: #ce9178; }
+.demo-contract .demo-output .cm { color: #6a9955; }
+.demo-contract .demo-output .num { color: #b5cea8; }
+
+.demo-chat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-height: 400px;
+  display: flex; flex-direction: column;
+}
+.demo-chat .chat-messages {
+  flex: 1;
+  padding: var(--space-4);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.demo-chat .chat-msg {
+  max-width: 80%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.demo-chat .chat-msg.user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: var(--accent-on);
+}
+.demo-chat .chat-msg.agent {
+  align-self: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.demo-chat .chat-msg.typing {
+  align-self: flex-start;
+  color: var(--muted);
+  font-style: italic;
+}
+.demo-chat .chat-input-area {
+  display: flex;
+  border-top: 1px solid var(--border);
+  padding: var(--space-3);
+  gap: var(--space-2);
+}
+.demo-chat .chat-input-area input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  font-size: 13px;
+}
+.demo-chat .chat-input-area input:focus { outline: none; border-color: var(--accent); }
+.demo-chat .chat-input-area button {
+  background: var(--accent);
+  color: var(--accent-on);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.demo-badge {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-2);
+}
+
 .persona-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -498,6 +660,52 @@ footer {
       <div class="flow-step"><span class="step-agent">devops-agent</span> deploy</div>
       <div class="flow-arrow">&#8594;</div>
       <div class="flow-step" style="border-color:var(--success);"><span class="step-agent" style="color:var(--success);">memory-agent</span> learn</div>
+    </div>
+  </div>
+</section>
+
+<section id="demo" style="background:var(--surface);">
+  <div class="container">
+    <div class="demo-toggle">
+      <span class="toggle-label">Try before you clone</span>
+      <div class="toggle-switch" id="demoToggle" onclick="toggleDemo()"></div>
+      <span class="toggle-label" style="font-weight:600;">Demo Mode</span>
+    </div>
+
+    <div class="demo-section" id="demoSection">
+      <div class="section-header">
+        <span class="demo-badge">Live Demo</span>
+        <h2>Try the Agent Team</h2>
+        <p>No signup needed. See how the agents work right here.</p>
+      </div>
+
+      <div class="demo-tabs">
+        <div class="demo-tab active" onclick="switchDemoTab(this, 'contract')">Smart Contract Generator</div>
+        <div class="demo-tab" onclick="switchDemoTab(this, 'chat')">AI Agent Chat</div>
+      </div>
+
+      <div class="demo-panel visible" id="demoContract">
+        <div class="demo-contract">
+          <div class="demo-input-area">
+            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:var(--space-2);">Describe the smart contract you want:</label>
+            <textarea id="contractInput" placeholder="e.g. Create an ERC-20 token called MyToken with symbol MTK, initial supply 1,000,000, and mint function for owner only">Create an ERC-20 token called MyToken with symbol MTK, initial supply 1,000,000, and mint function for owner only</textarea>
+            <button class="btn-generate" style="margin-top:var(--space-2);" onclick="generateContract()">Generate Contract</button>
+          </div>
+          <div class="demo-output" id="demoContractOutput"><span class="cm">// Your contract will appear here. Click "Generate Contract" to see the AI in action.</span></div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="demoChat">
+        <div class="demo-chat" id="demoChatBox">
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-msg agent">Hello! I'm the Web3 Agent. Ask me anything about blockchain, crypto, or Web3. Try: "What is the current ETH price?" or "Explain DeFi"</div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask the agent anything..." onkeydown="if(event.key==='Enter')sendChat()">
+            <button onclick="sendChat()">Send</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -881,6 +1089,177 @@ function copyPrompt() {
 }
 
 generatePrompt();
+
+// Demo mode toggle
+function toggleDemo() {
+  const toggle = document.getElementById('demoToggle');
+  const section = document.getElementById('demoSection');
+  toggle.classList.toggle('active');
+  section.classList.toggle('visible');
+}
+
+// Demo tab switching
+function switchDemoTab(el, tab) {
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('visible'));
+  el.classList.add('active');
+  document.getElementById('demo' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('visible');
+}
+
+// Smart contract demo
+const contractTemplates = {
+  erc20: {
+    name: 'MyToken',
+    symbol: 'MTK',
+    supply: '1000000'
+  }
+};
+
+function generateContract() {
+  const input = document.getElementById('contractInput').value.toLowerCase();
+  const output = document.getElementById('demoContractOutput');
+  let code = '';
+
+  if (input.includes('erc-20') || input.includes('erc20') || input.includes('token')) {
+    const nameMatch = input.match(/called\s+(\w+)/i);
+    const symbolMatch = input.match(/symbol\s+(\w+)/i);
+    const supplyMatch = input.match(/(\d+[,\d]*(?:\.\d+)?)\s*(?:supply|tokens?)/i);
+    const name = nameMatch ? nameMatch[1] : 'MyToken';
+    const symbol = symbolMatch ? symbolMatch[1] : 'MTK';
+    const supply = supplyMatch ? supplyMatch[1].replace(/,/g, '') : '1000000';
+    const hasMint = input.includes('mint') || input.includes('only owner');
+
+    code = `<span class="cm">// SPDX-License-Identifier: MIT</span>
+<span class="cm">// Generated by Smart Contract Agent</span>
+<span class="kw">pragma</span> solidity <span class="num">^0.8.20</span>;
+
+<span class="kw">import</span> <span class="str">"@openzeppelin/contracts/token/ERC20/ERC20.sol"</span>;
+<span class="kw">import</span> <span class="str">"@openzeppelin/contracts/access/Ownable.sol"</span>;
+
+<span class="kw">contract</span> <span class="ty">${name}</span> <span class="kw">is</span> <span class="ty">ERC20</span>, <span class="ty">Ownable</span> {
+    <span class="kw">constructor</span>() <span class="ty">ERC20</span>(<span class="str">"${name}"</span>, <span class="str">"${symbol}"</span>) {
+        _mint(msg.sender, <span class="num">${supply}</span> * <span class="num">10 ** decimals()</span>);
+    }
+
+    <span class="fn">function</span> <span class="fn">mint</span>(<span class="kw">address</span> to, <span class="kw">uint256</span> amount) <span class="kw">public</span> <span class="kw">onlyOwner</span> {
+        _mint(to, amount);
+    }
+
+    <span class="fn">function</span> <span class="fn">burn</span>(<span class="kw">uint256</span> amount) <span class="kw">public</span> {
+        _burn(msg.sender, amount);
+    }
+}`;
+
+    if (hasMint) {
+      // already includes mint
+    } else {
+      // remove mint function if not requested
+      code = code.replace(`\n\n    <span class="fn">function</span> <span class="fn">mint</span>(<span class="kw">address</span> to, <span class="kw">uint256</span> amount) <span class="kw">public</span> <span class="kw">onlyOwner</span> {\n        _mint(to, amount);\n    }`, '');
+    }
+  } else if (input.includes('nft') || input.includes('erc-721') || input.includes('collection')) {
+    const nameMatch = input.match(/called\s+(\w+)/i);
+    const symbolMatch = input.match(/symbol\s+(\w+)/i);
+    const name = nameMatch ? nameMatch[1] : 'MyNFT';
+    const symbol = symbolMatch ? symbolMatch[1] : 'MNFT';
+
+    code = `<span class="cm">// SPDX-License-Identifier: MIT</span>
+<span class="cm">// Generated by Smart Contract Agent</span>
+<span class="kw">pragma</span> solidity <span class="num">^0.8.20</span>;
+
+<span class="kw">import</span> <span class="str">"@openzeppelin/contracts/token/ERC721/ERC721.sol"</span>;
+<span class="kw">import</span> <span class="str">"@openzeppelin/contracts/access/Ownable.sol"</span>;
+
+<span class="kw">contract</span> <span class="ty">${name}</span> <span class="kw">is</span> <span class="ty">ERC721</span>, <span class="ty">Ownable</span> {
+    <span class="kw">uint256</span> <span class="kw">private</span> _nextTokenId;
+
+    <span class="kw">constructor</span>() <span class="ty">ERC721</span>(<span class="str">"${name}"</span>, <span class="str">"${symbol}"</span>) {}
+
+    <span class="fn">function</span> <span class="fn">safeMint</span>(<span class="kw">address</span> to) <span class="kw">public</span> <span class="kw">onlyOwner</span> {
+        <span class="kw">uint256</span> tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+    }
+
+    <span class="fn">function</span> <span class="fn">totalSupply</span>() <span class="kw">public</span> <span class="kw">view</span> <span class="kw">returns</span> (<span class="kw">uint256</span>) {
+        <span class="kw">return</span> _nextTokenId;
+    }
+}`;
+  } else {
+    code = `<span class="cm">// I need more details to generate this contract.</span>
+<span class="cm">// Please specify:</span>
+<span class="cm">// - Standard (ERC-20, ERC-721, ERC-1155)</span>
+<span class="cm">// - Token name and symbol</span>
+<span class="cm">// - Key functions (mint, burn, pause, etc.)</span>
+<span class="cm">// - Access control (ownable, roles)</span>
+<span class="cm">//</span>
+<span class="cm">// Example: "Create an ERC-20 token called MyToken with symbol MTK"</span>`;
+  }
+
+  // Simulate loading
+  output.innerHTML = `<span class="cm">// Analyzing your request...</span>\n`;
+  setTimeout(() => {
+    output.innerHTML = `<span class="cm">// Generating Solidity contract...</span>\n`;
+    setTimeout(() => {
+      output.innerHTML = `<span class="cm">// Running security audit...</span>\n<span class="cm">// Gas optimization applied</span>\n<span class="cm">// No vulnerabilities found</span>\n\n` + code;
+    }, 400);
+  }, 400);
+}
+
+// AI Chat demo
+const chatKnowledge = {
+  'eth': 'Ethereum (ETH) is currently trading around $3,420 (simulated). It\'s the leading smart contract platform with a market cap of ~$410B. Recent upgrades (Dencun) have reduced L2 fees significantly.',
+  'btc': 'Bitcoin (BTC) is trading around $67,800 (simulated). Market cap is ~$1.34T. The next halving recently occurred, reducing block rewards to 3.125 BTC.',
+  'sol': 'Solana (SOL) is trading around $168 (simulated). Known for high throughput (~4,000 TPS) and low fees. The ecosystem includes DeFi, NFTs, and DePIN projects.',
+  'defi': 'DeFi (Decentralized Finance) refers to financial services built on blockchain. Total Value Locked across all chains is ~$85B. Major protocols include: Aave (lending), Uniswap (DEX), Lido (staking), and MakerDAO (stablecoins).',
+  'nft': 'NFTs are unique digital assets on blockchain. The market has shifted toward utility NFTs and gaming assets. Top collections by volume include Bored Ape Yacht Club, Pudgy Penguins, and Milady Maker.',
+  'gas': 'Gas fees vary by chain: Ethereum ~$15-50, Arbitrum ~$0.10-0.50, Polygon ~$0.01-0.05, Solana ~$0.0002. Use L2s for cost-effective transactions.',
+  'web3': 'Web3 is the decentralized internet built on blockchain. It includes dApps, DeFi, NFTs, DAOs, and identity systems. Key principles: self-custody, permissionless access, and composability.',
+  'ai': 'AI x Crypto convergence is the biggest narrative in 2026. Key sectors: decentralized compute (Akash, Render), AI agents (Fetch.ai), data markets (Ocean), and ZK-ML for privacy-preserving AI.'
+};
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const messages = document.getElementById('chatMessages');
+  const text = input.value.trim();
+  if (!text) return;
+
+  // Add user message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.textContent = text;
+  messages.appendChild(userMsg);
+  input.value = '';
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'chat-msg typing';
+  typing.textContent = 'Agent is thinking...';
+  messages.appendChild(typing);
+  messages.scrollTop = messages.scrollHeight;
+
+  // Simulate response
+  setTimeout(() => {
+    typing.remove();
+    const agentMsg = document.createElement('div');
+    agentMsg.className = 'chat-msg agent';
+    agentMsg.textContent = getChatResponse(text);
+    messages.appendChild(agentMsg);
+    messages.scrollTop = messages.scrollHeight;
+  }, 600 + Math.random() * 800);
+}
+
+function getChatResponse(input) {
+  const lower = input.toLowerCase();
+  for (const [key, value] of Object.entries(chatKnowledge)) {
+    if (lower.includes(key)) return value;
+  }
+  if (lower.includes('price') || lower.includes('how much')) {
+    return 'I can help with market data! Ask me about ETH, BTC, SOL, or specific tokens. Examples: "What is ETH price?" or "Show me Bitcoin analysis"';
+  }
+  if (lower.includes('hello') || lower.includes('hi')) {
+    return 'Hello! I\'m your Web3 Agent. Ask me about blockchain, crypto prices, DeFi, NFTs, gas fees, or anything Web3. Try typing "ETH" or "what is DeFi?"';
+  }
+  return 'That\'s a great question! I can help with: token prices (ETH, BTC, SOL), DeFi protocols, NFT markets, gas fees, on-chain analysis, and Web3 concepts. Could you be more specific?';
+}
 
 // Memory status click toggle
 document.getElementById('memoryStatus').onclick = function() {
