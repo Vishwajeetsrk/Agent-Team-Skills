@@ -276,13 +276,74 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
 .modal .mh .mo{font-size:12px;color:var(--muted);display:flex;gap:var(--s3)}
 
 /* Responsive */
+@media(max-width:1024px){
+  .hbg .orb:nth-child(1){width:400px;height:400px}.hbg .orb:nth-child(2){width:280px;height:280px}.hbg .orb:nth-child(3){width:200px;height:200px}
+  .hst{gap:var(--s5)}.hst .sn{font-size:24px}
+}
 @media(max-width:768px){
+  .c{padding:0 var(--s4)}
+  section{padding:var(--s12) 0}
   .nl a:not(.btn-nav):not(.tt-wrap){display:none}.nm{display:block}
   .nl.op a:not(.btn-nav):not(.tt-wrap){display:block}
-  .nl.op{position:absolute;top:var(--nv);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:var(--s3);flex-direction:column;gap:2px}
+  .nl.op{position:absolute;top:var(--nv);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:var(--s3);flex-direction:column;gap:2px;box-shadow:var(--sh-lg)}
   .nl.op a{display:block!important;padding:var(--s2) var(--s3)}
-  .hero h1{font-size:32px}.hero p{font-size:16px}.hst{gap:var(--s6)}.fw .fl{display:none}.fd{flex-direction:column}.fa{transform:rotate(90deg)}.ps{grid-template-columns:1fr}
+  nav .logo .lg-t .lg-top{display:none}
+  nav .logo .lg-t .lg-bot{font-size:15px}
+  nav .logo{gap:var(--s2)}
+  .hero{min-height:auto;padding:var(--s12) 0 var(--s8)}.hero h1{font-size:28px}.hero p{font-size:15px;max-width:100%}
+  .hst{gap:var(--s4);margin-top:var(--s8)}.hst .sn{font-size:20px}.hst .sl{font-size:11px}
+  .hbg .orb:nth-child(1){width:280px;height:280px;top:-15%;left:-20%}.hbg .orb:nth-child(2){width:200px;height:200px;bottom:-5%;right:-10%}.hbg .orb:nth-child(3){display:none}
+  .fw .fl{display:none}.fd{flex-direction:column}.fa{transform:rotate(90deg)}
+  .fs{font-size:12px;padding:var(--s1) var(--s3);white-space:nowrap}
+  .ps{grid-template-columns:1fr}.ps .bx{padding:var(--s4)}
   .sg{grid-template-columns:1fr}
+  .ag{grid-template-columns:1fr}
+  .w3g{grid-template-columns:1fr}
+  .pg{padding:var(--s5)}.pg h3{font-size:18px}.pgg{grid-template-columns:1fr 1fr}
+  .pg textarea{height:150px}
+  .cb{padding:var(--s6)}.cb h2{font-size:24px}
+  .qg{grid-template-columns:1fr}
+  .tb{gap:var(--s5);padding:var(--s6) 0}.tb .tn{font-size:26px}
+  .tg{grid-template-columns:1fr}
+  .prg{grid-template-columns:1fr 1fr}
+  .sc-stats{grid-template-columns:repeat(3,1fr)}.sc h3{font-size:20px}
+  .dtb{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .dtb::-webkit-scrollbar{display:none}
+  .dtb button{font-size:12px;padding:var(--s1) var(--s3);white-space:nowrap}
+  .modal .mw{max-width:100%;height:100vh;border-radius:0}.modal .mh{padding:var(--s3)}
+  .modal{padding:0}
+  .tg2{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .dsg{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .hst .st:nth-child(3){display:none}
+  .sc-more{font-size:12px;flex-wrap:wrap}
+  .sf-body{aspect-ratio:3/4}
+  footer{font-size:12px;padding:var(--s6) 0}
+}
+@media(max-width:480px){
+  .c{padding:0 12px}
+  section{padding:var(--s8) 0}
+  .hero{padding:var(--s8) 0 var(--s6)}.hero h1{font-size:24px}.hero p{font-size:14px}
+  .sh h2{font-size:22px}.sh p{font-size:14px}
+  .hst{gap:var(--s3)}.hst .sn{font-size:18px}.hst .sl{font-size:10px}
+  .hst .st:nth-child(4){display:none}
+  .bg a{padding:var(--s2) var(--s5);font-size:14px;flex:1}
+  .ac{padding:var(--s4)}
+  .pgg{grid-template-columns:1fr}
+  .pg textarea{height:120px}
+  .pg2{grid-template-columns:1fr}
+  .prg{grid-template-columns:1fr}
+  .sc-stats{grid-template-columns:repeat(3,1fr)}
+  .sf-body{aspect-ratio:1/1}
+  .sc-actions{flex-direction:column}.sc-actions a{justify-content:center}
+  nav .in{padding:0 var(--s4)}
+  nav .logo .lg-t .lg-bot{font-size:14px}
+  nav .logo .lg-icon{width:28px;height:28px}
+  nav .logo .lg-icon svg{width:16px;height:16px}
+  .nl .btn-nav{padding:var(--s2) var(--s3);font-size:13px}
+  .tg2{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .tc2 .td{height:60px}
+  .modal .mh{margin-top:env(safe-area-inset-top)}
+  .bg2,.bc{width:100%}.bc{margin-left:0;margin-top:var(--s2)}
 }
 </style>
 </head>
