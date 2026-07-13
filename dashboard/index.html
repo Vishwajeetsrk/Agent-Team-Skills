@@ -365,25 +365,33 @@ footer {
       <div class="qs-card">
         <div class="qs-num">1</div>
         <h4>Clone the repo</h4>
-        <p><code>git clone https://github.com/Vishwajeetsrk/Agent-Team-Skills.git</code></p>
+        <p><code>git clone https://github.com/Vishwajeetsrk/Agent-Team-Skills.git</code><br>or <code>gh repo clone Vishwajeetsrk/Agent-Team-Skills</code></p>
       </div>
       <div class="qs-card">
         <div class="qs-num">2</div>
         <h4>Set up memory</h4>
-        <p><code>bash memory-sync/sync-memory.sh pull</code></p>
+        <p>macOS/Linux: <code>bash memory-sync/sync-memory.sh init</code><br>
+        Windows: <code>.\memory-sync\sync-memory.ps1 init</code></p>
       </div>
       <div class="qs-card">
         <div class="qs-num">3</div>
         <h4>Start your AI session</h4>
         <p>Paste the generated prompt into Claude Code, claude.ai, Antigravity, or Open Code.</p>
+      <p style="margin-top:var(--space-2);font-size:13px;color:var(--muted);">
+        <strong>Pro tip:</strong> Run <code>sync-memory.ps1 pull</code> at the start and <code>push</code> at the end of every session.
+      </p>
       </div>
     </div>
     <div class="memory-status" id="memoryStatus">
       <div class="status-card">
         <div class="status-dot unchecked"></div>
-        <span>Memory: <strong>not checked</strong> — run <code>sync-memory.sh pull</code> to verify</span>
+        <span id="memoryStatusText">Checking memory status...</span>
       </div>
     </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2);">
+      Windows: <code>.\memory-sync\sync-memory.ps1 init</code> &middot;
+      macOS/Linux: <code>bash memory-sync/sync-memory.sh init</code>
+    </p>
   </div>
 </section>
 
@@ -507,6 +515,17 @@ function copyPrompt() {
 }
 
 generatePrompt();
+
+// Memory status click toggle
+document.getElementById('memoryStatus').onclick = function() {
+  const dot = this.querySelector('.status-dot');
+  const text = document.getElementById('memoryStatusText');
+  const isUnchecked = dot.classList.contains('unchecked');
+  dot.className = 'status-dot ' + (isUnchecked ? 'checked' : 'unchecked');
+  text.innerHTML = isUnchecked
+    ? '<strong>Memory verified</strong> (click to toggle)'
+    : '<strong>Memory unchecked</strong> (click to verify)';
+};
 </script>
 
 </body>
