@@ -28,6 +28,7 @@ Works with **Claude Code**, **claude.ai**, **Antigravity**, **Open Code**, and a
 | **trading-agent** | Chart patterns, technical analysis, strategy backtesting |
 | **crypto-news-agent** | Automated news curation every 60 min |
 | **security-agent** | Phishing detection, contract risk scoring, CryptoGuard |
+| **landing-page-agent** | 7-question conversion framework for landing pages |
 
 ---
 

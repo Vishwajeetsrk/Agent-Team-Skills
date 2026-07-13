@@ -40,7 +40,7 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 ├── CONNECT-PROMPT.md                  ← Universal entry prompt (paste this)
 ├── DESIGN-CONNECT-PROMPT.md           ← Design-specific creative prompt
 │
-├── .claude/skills/                    ← 18 Agent Skills (for Claude Code / any AI)
+├── .claude/skills/                    ← 19 Agent Skills (for Claude Code / any AI)
 │   ├── ceo-agent/SKILL.md             ←   Validates ideas, makes go/no-go calls
 │   ├── team-agent/SKILL.md            ←   Task breakdown, project coordination
 │   ├── saas-builder/SKILL.md          ←   Golden Flow build: PRD -> architecture -> UI
@@ -62,7 +62,8 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 │   ├── nft-agent/SKILL.md             ←   Generative art & on-chain minting
 │   ├── trading-agent/SKILL.md         ←   Technical analysis & chart patterns
 │   ├── crypto-news-agent/SKILL.md     ←   Automated news & trend scanning
-│   └── security-agent/SKILL.md        ←   Web3 phishing, risk scoring, CryptoGuard
+│   ├── security-agent/SKILL.md        ←   Web3 phishing, risk scoring, CryptoGuard
+│   └── landing-page-agent/SKILL.md    ←   7-question conversion framework for pages
 │
 ├── design-systems/                    ← 10 Brand design systems
 │   ├── default/                       ←   Neutral modern starter

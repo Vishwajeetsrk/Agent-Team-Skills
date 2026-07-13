@@ -630,14 +630,14 @@ footer {
 
 <section class="hero">
   <div class="container">
-    <h1>18 AI Agents.<br>One <span>command</span>.</h1>
+    <h1>19 AI Agents.<br>One <span>command</span>.</h1>
     <p>A CEO that validates. A builder that ships. Web3 agents for blockchain. A memory that never forgets. One prompt activates the whole team.</p>
     <div class="hero-btns">
       <a href="#prompt-generator" class="btn-primary">Generate Your Prompt</a>
       <a href="#quick-start" class="btn-secondary">Quick Start</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">18</div><div class="stat-label">Agent Skills</div></div>
+      <div class="stat"><div class="stat-num">19</div><div class="stat-label">Agent Skills</div></div>
       <div class="stat"><div class="stat-num">10</div><div class="stat-label">Design Systems</div></div>
       <div class="stat"><div class="stat-num">47</div><div class="stat-label">Templates</div></div>
       <div class="stat"><div class="stat-num">1</div><div class="stat-label">CONNECT-PROMPT</div></div>
@@ -682,6 +682,7 @@ footer {
       <div class="demo-tabs">
         <div class="demo-tab active" onclick="switchDemoTab(this, 'contract')">Smart Contract Generator</div>
         <div class="demo-tab" onclick="switchDemoTab(this, 'chat')">AI Agent Chat</div>
+        <div class="demo-tab" onclick="switchDemoTab(this, 'landing')">Landing Page Builder</div>
       </div>
 
       <div class="demo-panel visible" id="demoContract">
@@ -692,6 +693,17 @@ footer {
             <button class="btn-generate" style="margin-top:var(--space-2);" onclick="generateContract()">Generate Contract</button>
           </div>
           <div class="demo-output" id="demoContractOutput"><span class="cm">// Your contract will appear here. Click "Generate Contract" to see the AI in action.</span></div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="demoLanding">
+        <div class="demo-contract">
+          <div class="demo-input-area">
+            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:var(--space-2);">Describe your product or project:</label>
+            <textarea id="landingInput" placeholder="e.g. Learnify AI is an AI-powered learning platform that helps students learn skills, build portfolios, create ATS resumes, and get job ready" style="min-height:60px;">Learnify AI is an AI-powered learning platform that helps students learn skills, build portfolios, create ATS resumes, and get job ready</textarea>
+            <button class="btn-generate" style="margin-top:var(--space-2);" onclick="generateLandingPage()">Generate Landing Page Blueprint</button>
+          </div>
+          <div class="demo-output" id="demoLandingOutput"><span class="cm">// Enter your product description and click "Generate" to see the 7-question framework in action.</span></div>
         </div>
       </div>
 
@@ -776,7 +788,7 @@ footer {
   <div class="container">
     <div class="section-header">
       <h2>Your Agent Team</h2>
-      <p>18 agents including 6 Web3 specialists. Load the ones you need, or use all for full coverage.</p>
+      <p>19 agents including Web3 and conversion specialists. Load the ones you need, or use all for full coverage.</p>
     </div>
     <div class="agent-grid" id="agentGrid"></div>
   </div>
@@ -809,7 +821,7 @@ footer {
       <p>Built for production, tested across tools, backed by results.</p>
     </div>
     <div class="trust-bar">
-      <div class="trust-item"><div class="trust-num">18</div><div class="trust-label">Specialist Agents</div></div>
+      <div class="trust-item"><div class="trust-num">19</div><div class="trust-label">Specialist Agents</div></div>
       <div class="trust-item"><div class="trust-num">10</div><div class="trust-label">Design Systems</div></div>
       <div class="trust-item"><div class="trust-num">4+</div><div class="trust-label">AI Tools Supported</div></div>
       <div class="trust-item"><div class="trust-num">100%</div><div class="trust-label">Open Source</div></div>
@@ -962,7 +974,8 @@ const agents = [
   { id: 'nft-agent', name: 'NFT Agent', role: 'Generative Art & Minting', desc: 'AI image generation, on-chain minting, collection deployment across 20+ networks.', icon: '&#127912;' },
   { id: 'trading-agent', name: 'Trading Agent', role: 'Technical Analysis', desc: 'Chart patterns, indicators, strategy development, backtesting, and market regime detection.', icon: '&#128200;' },
   { id: 'crypto-news-agent', name: 'Crypto News Agent', role: 'Automated News', desc: 'Trend scanning, short-form article generation, competitive intelligence, daily roundups.', icon: '&#128240;' },
-  { id: 'security-agent', name: 'Security Agent', role: 'Web3 Threat Detection', desc: 'Phishing detection, contract risk scoring, transaction simulation, wallet security assessment.', icon: '&#128737;' }
+  { id: 'security-agent', name: 'Security Agent', role: 'Web3 Threat Detection', desc: 'Phishing detection, contract risk scoring, transaction simulation, wallet security assessment.', icon: '&#128737;' },
+  { id: 'landing-page-agent', name: 'Landing Page Agent', role: 'Conversion Framework', desc: 'Designs landing pages using the 7-question framework: hero, audience, problem, trust, services, proof, CTA.', icon: '&#128196;' }
 ];
 
 const designSystems = [
@@ -1202,6 +1215,101 @@ function generateContract() {
       output.innerHTML = `<span class="cm">// Running security audit...</span>\n<span class="cm">// Gas optimization applied</span>\n<span class="cm">// No vulnerabilities found</span>\n\n` + code;
     }, 400);
   }, 400);
+}
+
+// Landing page builder demo
+function generateLandingPage() {
+  const input = document.getElementById('landingInput').value.trim();
+  const output = document.getElementById('demoLandingOutput');
+  if (!input) { output.innerHTML = `<span class="cm">// Please describe your product first.</span>`; return; }
+
+  const nameMatch = input.match(/(\w+)\s+is/i);
+  const productName = nameMatch ? nameMatch[1] : 'Your Product';
+
+  const features = [];
+  if (input.match(/learn|skill|cours|educat|teach|train/i)) features.push('AI Learning Paths');
+  if (input.match(/resume|cv|ats|job|career|hire|recruit/i)) features.push('ATS Resume Builder');
+  if (input.match(/portfolio|showcase|project|build/i)) features.push('Portfolio Generator');
+  if (input.match(/interview|mock|practice|coach/i)) features.push('AI Interview Coach');
+  if (input.match(/ai|artificial|intelligence|smart|auto/i)) features.push('AI-Powered Assistant');
+  if (input.match(/blockchain|crypto|web3|token|nft|contract|defi/i)) features.push('Web3 Integration');
+  if (input.match(/design|ui|ux|creative|brand/i)) features.push('Design System Generator');
+  if (input.match(/market|seo|content|social/i)) features.push('SEO & Content Tools');
+  if (features.length === 0) features.push('Core Platform', 'User Dashboard', 'Analytics');
+
+  const personas = [];
+  if (input.match(/student|learner|educat/i)) personas.push({ icon: '👨‍🎓', name: 'Students', desc: 'Learn skills and build proof of work' });
+  if (input.match(/develop|coder|engineer|programmer|dev/i)) personas.push({ icon: '💻', name: 'Developers', desc: 'Ship faster with AI-powered workflows' });
+  if (input.match(/designer|creative/i)) personas.push({ icon: '🎨', name: 'Designers', desc: 'Generate brand systems in minutes' });
+  if (input.match(/founder|startup|entrepreneur/i)) personas.push({ icon: '🚀', name: 'Founders', desc: 'Validate and build at startup speed' });
+  if (input.match(/agency|freelancer/i)) personas.push({ icon: '🏢', name: 'Agencies', desc: 'Scale delivery across clients' });
+  if (input.match(/career|job|fresher|graduate/i)) personas.push({ icon: '💼', name: 'Job Seekers', desc: 'Get hired faster with AI-optimized applications' });
+  if (personas.length === 0) personas.push(
+    { icon: '👨‍🎓', name: 'Beginners', desc: 'Start from zero knowledge' },
+    { icon: '💼', name: 'Professionals', desc: 'Level up existing skills' },
+    { icon: '🚀', name: 'Teams', desc: 'Collaborate and ship together' }
+  );
+
+  const problems = [
+    'Starting every project from scratch with no shared knowledge',
+    'Spending hours on repetitive setup and configuration',
+    'No standard process — quality and speed vary every time',
+    'Mistakes repeat across projects with no memory system',
+    'Multiple AI tools require different prompts and workflows'
+  ];
+  const solutions = [
+    'One system with persistent memory across all sessions',
+    'AI handles boilerplate so you focus on what matters',
+    'Standard Golden Flow ensures consistent quality',
+    'Mistakes logged once, prevented across every project',
+    'Works across Claude Code, claude.ai, Antigravity, Open Code'
+  ];
+
+  const code = `<span class="cm">// Landing Page Blueprint: ${productName}</span>
+<span class="cm">// Generated by Landing Page Agent using 7-Question Framework</span>
+
+<span class="cm">// ─── SECTION 1: HERO ───</span>
+<span class="kw">H1:</span> <span class="str">"${input.substring(0, 60)}${input.length > 60 ? '...' : ''}"</span>
+<span class="kw">Sub:</span> <span class="str">"The all-in-one platform that does the heavy lifting so you can focus on what matters"</span>
+<span class="kw">CTA:</span> <span class="str">"Get Started Free"</span>
+
+<span class="cm">// ─── SECTION 2: AUDIENCE ───</span>
+<span class="kw">Personas:</span>
+${personas.map(p => `  ${p.icon} <span class="ty">${p.name}</span> — ${p.desc}`).join('\n')}
+
+<span class="cm">// ─── SECTION 3: PROBLEM vs SOLUTION ───</span>
+<span class="kw">Problems:</span>
+${problems.map(p => `  ✗ <span class="fn">${p}</span>`).join('\n')}
+<span class="kw">Solutions:</span>
+${solutions.map(s => `  ✓ <span class="fn">${s}</span>`).join('\n')}
+
+<span class="cm">// ─── SECTION 4: TRUST ───</span>
+<span class="kw">Metrics:</span> <span class="num">10,000+</span> Users · <span class="num">5,000+</span> Projects · <span class="num">99.9%</span> Uptime · Open Source
+<span class="kw">Testimonials:</span> 3 customer stories with measurable results
+
+<span class="cm">// ─── SECTION 5: SERVICES ───</span>
+<span class="kw">Features:</span>
+${features.map(f => `  ▶ <span class="fn">${f}</span>`).join('\n')}
+
+<span class="cm">// ─── SECTION 6: PROOF ───</span>
+<span class="kw">Before:</span> Hours of manual work, scattered tools, no memory
+<span class="kw">After:</span> <span class="num">15-min</span> setup, one prompt, persistent learning
+
+<span class="cm">// ─── SECTION 7: CTA ───</span>
+<span class="kw">Primary:</span> <span class="str">"Start Building →"</span>
+<span class="kw">Secondary:</span> <span class="str">"Watch Demo"</span> · <span class="str">"View GitHub"</span>
+<span class="kw">Objection handlers:</span> No credit card · Free to start · 5-min setup`;
+
+  output.innerHTML = `<span class="cm">// Analyzing your product...</span>\n`;
+  setTimeout(() => {
+    output.innerHTML = `<span class="cm">// Applying 7-question conversion framework...</span>\n`;
+    setTimeout(() => {
+      output.innerHTML = `<span class="cm">// Generating personas, problem-solution, and feature set...</span>\n`;
+      setTimeout(() => {
+        output.innerHTML = `<span class="cm">// Complete. Here's your landing page blueprint:</span>\n\n` + code;
+      }, 300);
+    }, 300);
+  }, 300);
 }
 
 // AI Chat demo
