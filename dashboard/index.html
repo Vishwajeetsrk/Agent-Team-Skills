@@ -665,7 +665,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
   </div>
 </section>
 
-<footer><div class="c"><p>Agent Team Skills &mdash; Built by Vishwajeet &middot; <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" style="color:var(--accent);text-decoration:none">GitHub</a></p></div></footer>
+<footer><div class="c"><p>Agent Team Skills &mdash; Built by Vishwajeet &middot; <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" style="color:var(--accent);text-decoration:none">GitHub</a> &middot; <a href="about.html" style="color:var(--meta);text-decoration:none">About</a> &middot; <a href="legal/privacy.html" style="color:var(--meta);text-decoration:none">Privacy</a> &middot; <a href="legal/terms.html" style="color:var(--meta);text-decoration:none">Terms</a> &middot; <a href="legal/cookies.html" style="color:var(--meta);text-decoration:none">Cookies</a></p></div></footer>
 
 <!-- Template Viewer Modal -->
 <div class="modal" id="tmplModal">
@@ -761,7 +761,7 @@ templates.forEach(t => {
 
 // Template modal
 function openTemplate(name,label){
-  const path = `templates-built/${name}/index.html`;
+  const path = `../projects/templates-built/${name}/index.html`;
   document.getElementById('modalTitle').textContent = label;
   document.getElementById('modalPath').textContent = name;
   document.getElementById('modalIframe').src = path;
