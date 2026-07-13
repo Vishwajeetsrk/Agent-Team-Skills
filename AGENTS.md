@@ -65,7 +65,7 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 │   ├── security-agent/SKILL.md        ←   Web3 phishing, risk scoring, CryptoGuard
 │   └── landing-page-agent/SKILL.md    ←   7-question conversion framework for pages
 │
-├── design-systems/                    ← 10 Brand design systems
+├── design-systems/                    ← 20 Brand design systems
 │   ├── default/                       ←   Neutral modern starter
 │   ├── linear-app/                    ←   Dark-mode-first productivity
 │   ├── neobrutalism/                  ←   Bold, high-contrast
@@ -75,7 +75,17 @@ A collection of 18 specialized AI agent skills that work as an orchestrated team
 │   ├── vercel/                        ←   Developer tools
 │   ├── claude/                        ←   AI-centric
 │   ├── shadcn/                        ←   Component-based
-│   └── supabase/                      ←   Open-source SaaS
+│   ├── supabase/                      ←   Open-source SaaS
+│   ├── apple/                         ←   Apple design language
+│   ├── openai/                        ←   OpenAI brand
+│   ├── github/                        ←   GitHub design
+│   ├── shopify/                       ←   Shopify design
+│   ├── spotify/                       ←   Spotify design
+│   ├── notion/                        ←   Notion style
+│   ├── discord/                       ←   Discord design
+│   ├── framer/                        ←   Framer design
+│   ├── cursor/                        ←   Cursor IDE design
+│   └── figma/                         ←   Figma design
 │
 ├── skills/                            ← 12 .skill files (for claude.ai upload)
 │

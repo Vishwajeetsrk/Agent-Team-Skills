@@ -149,8 +149,8 @@ Visit `https://vishwajeetsrk.github.io/Agent-Team-Skills` — no clone needed.
 
 ## Design Systems Included
 
-10 brand-grade design systems at `design-systems/<brand>/`:
-`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase`
+20 brand-grade design systems at `design-systems/<brand>/`:
+`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase` · `apple` · `openai` · `github` · `shopify` · `spotify` · `notion` · `discord` · `framer` · `cursor` · `figma`
 
 Each contains `DESIGN.md` (brand spec), `design-tokens.json`, and `tokens.css` (CSS variables). Any AI can use these to maintain brand consistency across renders.
 
