@@ -3,30 +3,30 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Agent Team — Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-:root{--bg:#f6f6f7;--surface:#fff;--sf2:#eeeef0;--fg:#18181b;--muted:#71717a;--meta:#a1a1aa;--border:#e4e4e7;--accent:#4f46e5;--a-on:#fff;--a-hov:#4338ca;--a-sub:rgba(79,70,229,.08);--a-glow:rgba(79,70,229,.15);--a2:#818cf8;--ok:#059669;--err:#dc2626;--fd:'Space Grotesk',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-p:999px;--e-o:cubic-bezier(.16,1,.3,1);--e-s:cubic-bezier(.34,1.56,.64,1);--sh-sm:0 1px 2px rgba(0,0,0,.04);--sh-md:0 4px 12px rgba(0,0,0,.06);--sh-lg:0 8px 30px rgba(0,0,0,.08);--c:1200px;--nv:64px}
-.dark{--bg:#0a0a0b;--surface:#141416;--sf2:#1c1c20;--fg:#f4f4f5;--muted:#a1a1aa;--meta:#71717a;--border:rgba(255,255,255,.08);--accent:#6366f1;--a-hov:#818cf8;--a-sub:rgba(99,102,241,.12);--a-glow:rgba(99,102,241,.2);--sh-md:0 4px 12px rgba(0,0,0,.3);--sh-lg:0 8px 30px rgba(0,0,0,.4)}
+:root{--bg:#07080a;--surface:#0b0c0f;--sf2:#0f1013;--fg:#ffffff;--muted:#9c9c9d;--meta:#6b7280;--border:rgba(255,255,255,.05);--accent:#ff6b4a;--a-on:#fff;--a-hov:#ff2f3a;--a-sub:rgba(255,111,74,.08);--a-glow:rgba(255,111,74,.15);--a2:#ffb347;--ok:#059669;--err:#dc2626;--fd:'Inter',system-ui,-apple-system,sans-serif;--fb:'Inter',system-ui,-apple-system,sans-serif;--fm:'JetBrains Mono',monospace;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-p:999px;--e-o:cubic-bezier(.16,1,.3,1);--e-s:cubic-bezier(.34,1.56,.64,1);--sh-sm:0 1px 2px rgba(0,0,0,.2);--sh-md:0 4px 12px rgba(0,0,0,.3);--sh-lg:0 8px 30px rgba(0,0,0,.4);--c:1200px;--nv:64px}
+.dark{--bg:#07080a;--surface:#0b0c0f;--sf2:#0f1013;--fg:#ffffff;--muted:#9c9c9d;--meta:#6b7280;--border:rgba(255,255,255,.05);--accent:#ff6b4a;--a-hov:#ff2f3a;--a-sub:rgba(255,111,74,.08);--a-glow:rgba(255,111,74,.15);--a2:#ffb347;--ok:#059669;--err:#dc2626;--sh-md:0 4px 12px rgba(0,0,0,.3);--sh-lg:0 8px 30px rgba(0,0,0,.4)}
 body{font-family:var(--fb);background:var(--bg);color:var(--fg);line-height:1.5;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;overflow-x:hidden}
 h1,h2,h3,h4,h5,.fd{font-family:var(--fd)}code,.fm{font-family:var(--fm)}a{color:inherit}.c{max-width:var(--c);margin:0 auto;padding:0 var(--s6)}
 
 /* Nav */
-nav{position:sticky;top:0;z-index:100;background:rgba(246,246,247,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .3s}.dark nav{background:rgba(10,10,11,.75)}
-nav::before{content:'';position:absolute;inset:0;border-bottom:1px solid transparent;pointer-events:none;mask:linear-gradient(90deg,transparent,rgba(99,102,241,.12),transparent);-webkit-mask:linear-gradient(90deg,transparent,rgba(99,102,241,.12),transparent)}
-nav .in{display:flex;align-items:center;justify-content:space-between;height:var(--nv);max-width:var(--c);margin:0 auto;padding:0 var(--s6)}
-nav .logo{font-family:var(--fd);font-weight:700;font-size:18px;display:flex;align-items:center;gap:var(--s3);letter-spacing:-.02em;text-decoration:none;position:relative}
-nav .logo .lg-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--a2));display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease;box-shadow:0 2px 8px var(--a-glow)}
-nav .logo:hover .lg-icon{transform:scale(1.08) rotate(-8deg);box-shadow:0 4px 16px var(--a-glow)}
-nav .logo .lg-icon svg{width:18px;height:18px;color:#fff;display:block}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;padding:20px 16px 0;pointer-events:none}
+nav .in{display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(11,12,15,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--r-p);padding:10px 24px;pointer-events:auto;box-shadow:0 8px 32px rgba(0,0,0,.3);position:relative;max-width:var(--c);width:100%}
+nav .in::before{content:'';position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.04),transparent 50%);pointer-events:none}
+nav .logo{font-family:var(--fd);font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;letter-spacing:-.02em;text-decoration:none;position:relative;color:var(--fg)}
+nav .logo .lg-icon{width:20px;height:20px;background:linear-gradient(135deg,var(--accent),var(--a2));clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);flex-shrink:0;animation:none;box-shadow:none!important;display:flex;align-items:center;justify-content:center}
+nav .logo .lg-icon svg{display:none}
+nav .logo:hover .lg-icon{transform:rotate(45deg) scale(1.08)}
 nav .logo .lg-t{display:flex;flex-direction:column;line-height:1.15}
-nav .logo .lg-t .lg-top{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-nav .logo .lg-t .lg-bot{font-size:17px;font-weight:700;letter-spacing:-.03em;color:var(--fg)}
+nav .logo .lg-t .lg-top{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+nav .logo .lg-t .lg-bot{font-size:15px;font-weight:700;letter-spacing:-.03em;color:var(--fg)}
 nav .logo .lg-t .lg-bot span{color:var(--accent)}
-@keyframes lgP{0%,100%{box-shadow:0 2px 8px var(--a-glow)}50%{box-shadow:0 2px 16px var(--a-glow),0 0 24px var(--a-glow)}}
-nav .logo .lg-icon{animation:lgP 3s ease-in-out infinite}
 .nl{display:flex;gap:2px;align-items:center}
 .nl a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:var(--s2) var(--s3);border-radius:var(--r-sm);transition:all .15s}
 .nl a:hover{color:var(--fg);background:var(--a-sub)}.nl .btn-nav{background:var(--accent);color:var(--a-on);padding:var(--s2) var(--s4);font-weight:600}
@@ -37,10 +37,10 @@ nav .logo .lg-icon{animation:lgP 3s ease-in-out infinite}
 /* Hero */
 .hero{padding:var(--s16) 0 var(--s12);text-align:center;position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center}
 .hbg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hbg .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3}
-.hbg .orb:nth-child(1){width:600px;height:600px;background:var(--a-glow);top:-20%;left:-10%;animation:hf 8s ease-in-out infinite}
-.hbg .orb:nth-child(2){width:400px;height:400px;background:rgba(129,140,248,.15);bottom:-10%;right:-5%;animation:hf 10s ease-in-out infinite 2s}
-.hbg .orb:nth-child(3){width:300px;height:300px;background:rgba(79,70,229,.1);top:30%;right:15%;animation:hf 12s ease-in-out infinite 4s}
+.hbg .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.35;will-change:transform}
+.hbg .orb:nth-child(1){width:600px;height:600px;background:linear-gradient(135deg,#ff2f3a,#ff6b4a,#ffb347);top:-20%;left:-10%;animation:hf 8s ease-in-out infinite}
+.hbg .orb:nth-child(2){width:400px;height:400px;background:linear-gradient(225deg,#ff6b4a,#ffb347);bottom:-10%;right:-5%;animation:hf 10s ease-in-out infinite 2s}
+.hbg .orb:nth-child(3){width:300px;height:300px;background:linear-gradient(180deg,#ffb347,#ff2f3a);top:30%;right:15%;animation:hf 12s ease-in-out infinite 4s}
 @keyframes hf{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
 .hero .c{position:relative;z-index:1}
 .hero h1{font-size:clamp(36px,6vw,72px);font-weight:700;line-height:1.06;letter-spacing:-.03em;margin-bottom:var(--s4)}
@@ -104,12 +104,36 @@ section{padding:var(--s16) 0}.sh{text-align:center;margin-bottom:var(--s8)}
 
 /* QS */
 .qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--s4)}
-.qc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s5);transition:all .3s var(--e-o)}.qc:hover{border-color:var(--accent);box-shadow:var(--sh-md);transform:translateY(-2px)}
+.qc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s5);transition:all .3s var(--e-o);position:relative;overflow:hidden}
+.qc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--a2),transparent);opacity:0;transition:opacity .4s}
+.qc:hover{border-color:rgba(255,111,74,.2);box-shadow:var(--sh-lg);transform:translateY(-3px)}
+.qc:hover::before{opacity:1}
 .qc .qn{width:36px;height:36px;border-radius:var(--r-p);background:linear-gradient(135deg,var(--accent),var(--a2));color:var(--a-on);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;margin-bottom:var(--s3)}
 .qc h4{font-size:16px;font-weight:600;margin-bottom:var(--s2)}
 .qc p{font-size:14px;color:var(--muted);line-height:1.5}
 .qc code{font-family:var(--fm);font-size:12px;background:var(--sf2);padding:2px 6px;border-radius:4px;color:var(--accent);word-break:break-all}
-footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;color:var(--meta);font-size:14px}
+/* VANTIX CARD ACCENTS */
+.ac::before{height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--a2),transparent)!important}
+.w3c::before{height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--a2),transparent)!important}
+.ac:hover,.w3c:hover{border-color:rgba(255,111,74,.2)!important}
+.dsc:hover{border-color:rgba(255,111,74,.2)!important}
+.tc2:hover{border-color:rgba(255,111,74,.2)!important}
+.pc:hover{border-color:rgba(255,111,74,.2)!important}
+.sc-tag:hover{background:var(--a-sub)!important;border-color:var(--accent)!important}
+.sc-badge{background:linear-gradient(135deg,var(--accent),var(--a2))!important}
+/* FOOTER 3D */
+.ft-w{position:relative;z-index:1;background:var(--surface);border-top:1px solid var(--border);overflow:hidden}
+.ft-w .ft-3d{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:800px}
+.ft-w .ft-3d .grid{position:absolute;top:-20%;left:-50%;width:200%;height:200%;background-image:linear-gradient(rgba(255,111,74,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,111,74,.05) 1px,transparent 1px);background-size:36px 36px;transform:rotateX(75deg);animation:gMove 8s linear infinite;mask-image:radial-gradient(ellipse at center,black 15%,transparent 75%)}
+@keyframes gMove{0%{transform:rotateX(75deg) translateY(0)}100%{transform:rotateX(75deg) translateY(36px)}}
+.ft-w .ft-gl{position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,111,74,.3),transparent);filter:blur(2px)}
+.ft-w .in{position:relative;z-index:2;padding:var(--s8) var(--s6);text-align:center}
+.ft-w .in p{font-size:13px;color:var(--meta);line-height:1.6}
+.ft-w .in a{text-decoration:none;transition:color .2s}
+.ft-w .in a:hover{color:var(--accent)}
+.ft-w .in .sc{display:flex;gap:12px;justify-content:center;margin-top:var(--s4)}
+.ft-w .in .sc a{color:var(--meta);transition:color .2s,transform .2s;display:inline-flex}
+.ft-w .in .sc a:hover{color:var(--accent);transform:scale(1.15)}
 
 /* ─── DEMO ─── */
 .dt{display:flex;align-items:center;justify-content:center;gap:var(--s3);margin:var(--s6) 0}
@@ -283,14 +307,17 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
 @media(max-width:768px){
   .c{padding:0 var(--s4)}
   section{padding:var(--s12) 0}
+  nav{padding:12px 10px 0}
+  nav .in{padding:8px 16px;margin:0}
   .nl a:not(.btn-nav):not(.tt-wrap){display:none}.nm{display:block}
   .nl.op a:not(.btn-nav):not(.tt-wrap){display:block}
-  .nl.op{position:absolute;top:var(--nv);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:var(--s3);flex-direction:column;gap:2px;box-shadow:var(--sh-lg)}
+  .nl.op{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:var(--s3);flex-direction:column;gap:2px;box-shadow:0 8px 40px rgba(0,0,0,.5);margin-top:8px}
   .nl.op a{display:block!important;padding:var(--s2) var(--s3)}
   nav .logo .lg-t .lg-top{display:none}
-  nav .logo .lg-t .lg-bot{font-size:15px}
-  nav .logo{gap:var(--s2)}
-  .hero{min-height:auto;padding:var(--s12) 0 var(--s8)}.hero h1{font-size:28px}.hero p{font-size:15px;max-width:100%}
+  nav .logo .lg-t .lg-bot{font-size:14px}
+  nav .logo{gap:8px}
+  nav .in{padding:8px 14px}
+  .hero{min-height:auto;padding:var(--s12) 0 var(--s8);padding-top:100px}.hero h1{font-size:28px}.hero p{font-size:15px;max-width:100%}
   .hst{gap:var(--s4);margin-top:var(--s8)}.hst .sn{font-size:20px}.hst .sl{font-size:11px}
   .hbg .orb:nth-child(1){width:280px;height:280px;top:-15%;left:-20%}.hbg .orb:nth-child(2){width:200px;height:200px;bottom:-5%;right:-10%}.hbg .orb:nth-child(3){display:none}
   .fw .fl{display:none}.fd{flex-direction:column}.fa{transform:rotate(90deg)}
@@ -317,12 +344,13 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
   .hst .st:nth-child(3){display:none}
   .sc-more{font-size:12px;flex-wrap:wrap}
   .sf-body{aspect-ratio:3/4}
-  footer{font-size:12px;padding:var(--s6) 0}
 }
 @media(max-width:480px){
   .c{padding:0 12px}
   section{padding:var(--s8) 0}
-  .hero{padding:var(--s8) 0 var(--s6)}.hero h1{font-size:24px}.hero p{font-size:14px}
+  nav{padding:10px 6px 0}
+  nav .in{padding:6px 12px}
+  .hero{padding:var(--s8) 0 var(--s6);padding-top:80px}.hero h1{font-size:24px}.hero p{font-size:14px}
   .sh h2{font-size:22px}.sh p{font-size:14px}
   .hst{gap:var(--s3)}.hst .sn{font-size:18px}.hst .sl{font-size:10px}
   .hst .st:nth-child(4){display:none}
@@ -354,12 +382,13 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
 <nav><div class="in">
   <div class="logo">
     <div class="lg-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="12" r="5.5"/>
-        <circle cx="15" cy="12" r="5.5"/>
-        <line x1="9" y1="12" x2="15" y2="12"/>
-        <path d="M9 8.5a5.5 5.5 0 0 1 6 0"/>
-        <path d="M9 15.5a5.5 5.5 0 0 0 6 0"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="7" r="3" fill="white"/>
+        <circle cx="6.5" cy="18" r="3" fill="white"/>
+        <circle cx="17.5" cy="18" r="3" fill="white"/>
+        <line x1="12" y1="10" x2="6.5" y2="15"/>
+        <line x1="12" y1="10" x2="17.5" y2="15"/>
+        <line x1="6.5" y1="18" x2="17.5" y2="18"/>
       </svg>
     </div>
     <div class="lg-t">
@@ -368,7 +397,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
     </div>
   </div>
   <div class="nl" id="nl">
-    <a href="#team">Team</a><a href="#web3">Web3</a><a href="#templates">Templates</a><a href="#showcase">Showcase</a><a href="#prompt-gen">Get Started</a>
+    <a href="../index.html">Home</a><a href="#team">Team</a><a href="#web3">Web3</a><a href="#templates">Templates</a><a href="#showcase">Showcase</a><a href="#prompt-gen">Get Started</a>
     <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" class="btn-nav" target="_blank">GitHub &#8599;</a>
     <span class="tt-wrap" style="display:inline-flex;align-items:center"><div class="tt" id="tt" onclick="tT()"></div></span>
   </div>
@@ -376,7 +405,14 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
 </div></nav>
 
 <section class="hero">
-  <div class="hbg"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+  <div class="hbg">
+    <svg class="grain" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5">
+      <filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="3" stitchTiles="stitch"/></filter>
+      <rect width="100%" height="100%" filter="url(#g)" opacity=".035"/>
+    </svg>
+    <div class="vignette" style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,var(--bg) 85%)"></div>
+    <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+  </div>
   <div class="c">
     <div class="hsv"><object data="illustrations/AI_Spark_Interactive_Assistant.svg" type="image/svg+xml" style="width:100%;height:auto">AI</object></div>
     <h1>19 AI Agents.<br>One <span class="hl">command</span>.</h1>
@@ -388,7 +424,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
     <div class="hst">
       <div class="st"><div class="sn">19</div><div class="sl">Agent Skills</div></div>
       <div class="st"><div class="sn">46</div><div class="sl">Live Templates</div></div>
-      <div class="st"><div class="sn">30</div><div class="sl">Design Systems</div></div>
+      <div class="st"><div class="sn">90</div><div class="sl">Design Systems</div></div>
       <div class="st"><div class="sn">34</div><div class="sl">SVG Assets</div></div>
     </div>
     <div class="fw"><div class="fl"></div>
@@ -511,7 +547,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
 <section id="team" class="rv">
   <div class="c">
     <div class="sh">
-      <div class="sill"><object data="illustrations/data.svg" type="image/svg+xml" style="width:100%;height:auto">Data</object></div>
+      <div class="sill"><object data="illustrations/AI_Spark_Interactive_Assistant.svg" type="image/svg+xml" style="width:100%;height:auto">Agent Team</object></div>
       <h2>Your Agent Team</h2><p>19 agents including Web3 and conversion specialists.</p>
     </div>
     <div class="ag" id="aGrid"></div>
@@ -522,7 +558,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
   <div class="c">
     <div class="sh">
       <div class="sill"><object data="illustrations/Magic_Crystal_Book.svg" type="image/svg+xml" style="width:100%;height:auto">Design</object></div>
-      <h2>Design Systems</h2><p>30 brand-grade design systems with tokens, CSS variables, and component specs.</p>
+      <h2>Design Systems</h2><p>150 brand-grade design systems with tokens, CSS variables, and component specs.</p>
     </div>
     <div class="dsg" id="dGrid"></div>
   </div>
@@ -558,7 +594,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
     <div class="tb">
       <div class="ti"><div class="tn">19</div><div class="tl">Specialist Agents</div></div>
       <div class="ti"><div class="tn">46</div><div class="tl">Live Templates</div></div>
-      <div class="ti"><div class="tn">20</div><div class="tl">Design Systems</div></div>
+      <div class="ti"><div class="tn">90</div><div class="tl">Design Systems</div></div>
       <div class="ti"><div class="tn">100%</div><div class="tl">Open Source</div></div>
     </div>
     <div class="tg">
@@ -665,7 +701,21 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
   </div>
 </section>
 
-<footer><div class="c"><p>Agent Team Skills &mdash; Built by Vishwajeet &middot; <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" style="color:var(--accent);text-decoration:none">GitHub</a> &middot; <a href="about.html" style="color:var(--meta);text-decoration:none">About</a> &middot; <a href="legal/privacy.html" style="color:var(--meta);text-decoration:none">Privacy</a> &middot; <a href="legal/terms.html" style="color:var(--meta);text-decoration:none">Terms</a> &middot; <a href="legal/cookies.html" style="color:var(--meta);text-decoration:none">Cookies</a></p></div></footer>
+<footer class="ft-w">
+  <div class="ft-3d"><div class="grid"></div></div>
+  <div class="ft-gl"></div>
+  <div class="in">
+    <p>Agent Team Skills &mdash; Built by <a href="https://github.com/Vishwajeetsrk" style="color:var(--fg)">Vishwajeet</a> &middot; <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" style="color:var(--accent)">GitHub</a> &middot; <a href="about.html" style="color:var(--meta)">About</a> &middot; <a href="legal/privacy.html" style="color:var(--meta)">Privacy</a> &middot; <a href="legal/terms.html" style="color:var(--meta)">Terms</a> &middot; <a href="legal/cookies.html" style="color:var(--meta)">Cookies</a></p>
+    <div class="sc">
+      <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+      </a>
+      <a href="about.html" aria-label="Profile">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
 
 <!-- Template Viewer Modal -->
 <div class="modal" id="tmplModal">
@@ -689,7 +739,7 @@ const agents = [
    sv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'},
   {id:'research-resources',name:'Research Agent',role:'Market & Tech Research',desc:'Market analysis, competitor research, technology evaluation. Maintains 500+ free tool directory.',
    sv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>'},
-  {id:'design-agent',name:'Design Agent',role:'Brand & Creative',desc:'Brand identity, component design, 3D, motion, video. References 30 design systems and 46 templates.',
+  {id:'design-agent',name:'Design Agent',role:'Brand & Creative',desc:'Brand identity, component design, 3D, motion, video. References 150 design systems and 46 templates.',
    sv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="4.5"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M13.5 11v8"/><path d="M6 15l4.5-4.5"/><path d="M18 15l-4.5-4.5"/></svg>'},
   {id:'ai-agent',name:'AI Agent',role:'LLM Integration',desc:'LLM integration, prompt engineering, AI safety guardrails. Handles API selection and rate limiting.',
    sv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2"/><path d="M12 16v2"/><path d="M6 12H4"/><path d="M20 12h-2"/><path d="m15 9-6 6"/><path d="M9 9l2 3 1-2 2 3 1-2"/></svg>'},
@@ -733,7 +783,14 @@ const ds = [
   {n:'Apple',d:'Apple design',c:'#f5f5f7'},{n:'OpenAI',d:'AI brand',c:'#10a37f'},{n:'GitHub',d:'Dev platform',c:'#24292f'},{n:'Shopify',d:'Commerce',c:'#95bf47'},
   {n:'Spotify',d:'Music',c:'#1db954'},{n:'Notion',d:'Productivity',c:'#fff'},{n:'Discord',d:'Chat',c:'#5865f2'},{n:'Framer',d:'Design tool',c:'#0055ff'},
   {n:'Cursor',d:'AI editor',c:'#1a1a2e'},{n:'Figma',d:'Design platform',c:'#1e1e1e'},
-  {n:'Airbnb',d:'Travel',c:'#ff5a5f'},{n:'Coinbase',d:'Crypto',c:'#0052ff'},{n:'Duolingo',d:'Gamified',c:'#58cc02'},{n:'HashiCorp',d:'DevOps',c:'#000'},{n:'Nike',d:'Sportswear',c:'#000'},{n:'NVIDIA',d:'GPU/AI',c:'#76b900'},{n:'Perplexity',d:'AI search',c:'#1a1a2e'},{n:'Slack',d:'Workplace',c:'#4a154b'},{n:'Tesla',d:'Automotive',c:'#e82127'},{n:'Zapier',d:'Automation',c:'#ff4a00'}
+  {n:'Airbnb',d:'Travel',c:'#ff5a5f'},{n:'Coinbase',d:'Crypto',c:'#0052ff'},{n:'Duolingo',d:'Gamified',c:'#58cc02'},{n:'HashiCorp',d:'DevOps',c:'#000'},{n:'Nike',d:'Sportswear',c:'#000'},{n:'NVIDIA',d:'GPU/AI',c:'#76b900'},{n:'Perplexity',d:'AI search',c:'#1a1a2e'},{n:'Slack',d:'Workplace',c:'#4a154b'},{n:'Tesla',d:'Automotive',c:'#e82127'},{n:'Zapier',d:'Automation',c:'#ff4a00'},
+  {n:'Meta',d:'Social',c:'#1877F2'},{n:'Uber',d:'Transport',c:'#000'},{n:'IBM',d:'Enterprise',c:'#0062FF'},{n:'Starbucks',d:'Coffee',c:'#006241'},{n:'Pinterest',d:'Visual discovery',c:'#E60023'},{n:'Canva',d:'Design platform',c:'#00C4CC'},{n:'Miro',d:'Collaboration',c:'#FFD02F'},{n:'Sentry',d:'Monitoring',c:'#FB4226'},{n:'Intercom',d:'Customer comms',c:'#6AFDEF'},{n:'MongoDB',d:'Database',c:'#47A248'},
+  {n:'PostHog',d:'Product analytics',c:'#000'},{n:'Sanity',d:'Content platform',c:'#F03E2F'},{n:'Resend',d:'Email',c:'#000'},{n:'ElevenLabs',d:'Voice AI',c:'#000'},{n:'Mistral AI',d:'LLM platform',c:'#FF5A00'},{n:'Hugging Face',d:'ML community',c:'#FFD21E'},{n:'Replicate',d:'Cloud ML',c:'#000'},{n:'Warp',d:'Terminal',c:'#01B4FF'},{n:'Loom',d:'Video messaging',c:'#625DF5'},{n:'Raycast',d:'Productivity',c:'#FF6363'},
+  {n:'Binance',d:'Crypto exchange',c:'#F0B90B'},{n:'Kraken',d:'Crypto exchange',c:'#5741D9'},{n:'Revolut',d:'Fintech',c:'#0075EB'},{n:'Mastercard',d:'Payments',c:'#EB001B'},{n:'BMW',d:'Automotive',c:'#0066B1'},{n:'PlayStation',d:'Gaming',c:'#003791'},{n:'Superhuman',d:'Email client',c:'#1a1a2e'},{n:'Expo',d:'React Native',c:'#000'},{n:'Webflow',d:'Web builder',c:'#4353FF'},{n:'ClickHouse',d:'Analytics DB',c:'#FFCC01'},
+  {n:'Airtable',d:'No-code DB',c:'#000'},{n:'Bento',d:'Grid design',c:'#1a1a2e'},{n:'Brutalism',d:'Raw aesthetic',c:'#FFD700'},{n:'Bugatti',d:'Hypercar',c:'#002448'},{n:'Claymorphism',d:'Soft 3D',c:'#d4c5b5'},{n:'Clean',d:'Minimal white',c:'#fff'},{n:'Cohere',d:'AI platform',c:'#39594D'},{n:'Colorful',d:'Vibrant',c:'#ff6b6b'},{n:'Contemporary',d:'Modern neutral',c:'#e8e8e8'},{n:'Corporate',d:'Enterprise',c:'#003366'},
+  {n:'Cosmic',d:'Space theme',c:'#0a0a2e'},{n:'Creative',d:'Artistic',c:'#ff3366'},{n:'Editorial',d:'Magazine',c:'#1a1a1a'},{n:'Elegant',d:'Sophisticated',c:'#2c2c2c'},{n:'Enterprise',d:'B2B SaaS',c:'#1e3a5f'},{n:'Expressive',d:'Bold voice',c:'#7c3aed'},{n:'Ferrari',d:'Luxury auto',c:'#FF2800'},{n:'Flat',d:'2D simple',c:'#3498db'},{n:'Friendly',d:'Warm tone',c:'#ff9ff3'},{n:'Futuristic',d:'Sci-fi',c:'#00d2ff'},
+  {n:'Lamborghini',d:'Supercar',c:'#F5A623'},{n:'Luxury',d:'Premium',c:'#1a1a1a'},{n:'Material',d:'Google style',c:'#6200ee'},{n:'Modern',d:'Clean current',c:'#f5f5f5'},{n:'Neon',d:'Cyberpunk',c:'#00ff41'},{n:'Ollama',d:'Local AI',c:'#000'},{n:'Paper',d:'Print style',c:'#fafaf5'},{n:'Premium',d:'High-end',c:'#1a1a2e'},{n:'Professional',d:'Business',c:'#2c3e50'},{n:'RunwayML',d:'AI video',c:'#000'},
+{n:'Agentic',d:'Autonomous agent',c:'#1a1a2e'},{n:'Ant',d:'Design system',c:'#1677ff'},{n:'Application',d:'App UI',c:'#1a1a1a'},{n:'Arc',d:'Browser',c:'#000'},{n:'Artistic',d:'Creative',c:'#e91e63'},{n:'Atelier Zero',d:'Minimal',c:'#f5f5f5'},{n:'BMW M',d:'Performance auto',c:'#0066b1'},{n:'Bold',d:'Heavy contrast',c:'#000'},{n:'Cafe',d:'Coffee shop',c:'#8B4513'},{n:'Cal',d:'Calendar',c:'#000'},{n:'Cisco',d:'Enterprise network',c:'#1BA0D7'},{n:'Clay',d:'Soft 3D',c:'#d4c5b5'},{n:'Composio',d:'Tool platform',c:'#000'},{n:'Dashboard',d:'Admin UI',c:'#1a1a2e'},{n:'Dithered',d:'Retro pixels',c:'#2d2d2d'},{n:'Doodle',d:'Playful sketch',c:'#fff'},{n:'Dramatic',d:'Cinematic',c:'#0a0a0a'},{n:'Energetic',d:'High impact',c:'#ff4500'},{n:'Fantasy',d:'Mythical',c:'#2d1b69'},{n:'Gradient',d:'Color flow',c:'linear-gradient(135deg,#667eea,#764ba2)'},{n:'HUD',d:'Heads-up display',c:'#00ff41'},{n:'Kami',d:'AI tools',c:'#000'},{n:'Levels',d:'Health data',c:'#000'},{n:'Lingo',d:'Language app',c:'#000'},{n:'Lovable',d:'Friendly UI',c:'#ff6b9d'},{n:'Minimax',d:'AI video',c:'#000'},{n:'Mintlify',d:'Docs platform',c:'#0d0d0d'},{n:'Mission Control',d:'Space ops',c:'#0a0a2e'},{n:'Mono',d:'Single font',c:'#1a1a1a'},{n:'Neumorphism',d:'Soft UI',c:'#e0e5ec'},{n:'OpenCode AI',d:'AI coding',c:'#000'},{n:'Pacman',d:'Retro game',c:'#000'},{n:'Perspective',d:'Depth 3D',c:'#1a1a2e'},{n:'Publication',d:'Editorial',c:'#fafafa'},{n:'Refined',d:'Polished',c:'#1c1c1e'},{n:'Renault',d:'Automotive',c:'#FFD200'},{n:'Retro',d:'Vintage tech',c:'#ff6b35'},{n:'Simple',d:'Minimal bare',c:'#fff'},{n:'Skeumorphism',d:'Realistic 3D',c:'#d4c5b5'},{n:'Sleek',d:'Streamlined',c:'#1a1a1a'},{n:'SpaceX',d:'Aerospace',c:'#000'},{n:'Spacious',d:'Breathing room',c:'#f8f9fa'},{n:'Storytelling',d:'Narrative',c:'#1a1a2e'},{n:'Tetris',d:'Block game',c:'#000'},{n:'The Verge',d:'Tech media',c:'#000'},{n:'Together AI',d:'AI cloud',c:'#000'},{n:'Totality Festival',d:'Event brand',c:'#000'},{n:'Trading Terminal',d:'Finance UI',c:'#0d1117'},{n:'Urdu',d:'Urdu script',c:'#1a1a1a'},{n:'Vibrant',d:'Bold color',c:'#ff006e'},{n:'Vintage',d:'Retro classic',c:'#d4a574'},{n:'Vodafone',d:'Telecom',c:'#E60000'},{n:'Voltagent',d:'AI agent',c:'#000'},{n:'Warm Editorial',d:'Cozy text',c:'#f5f0e8'},{n:'Webex',d:'Video conferencing',c:'#000'},{n:'WeChat',d:'Social',c:'#07C160'},{n:'Wired',d:'Tech magazine',c:'#000'},{n:'Wise',d:'Fintech',c:'#00D9A4'},{n:'X AI',d:'AI research',c:'#000'},{n:'Xiaohongshu',d:'Social commerce',c:'#FF2442'}
 ];
 const templates = ['acreage-nike','asme','aurora-signup','auto-machines','axion-studio','baby-track-automation','bionova','brandly','cinematic-cloud','cinematic-stream','cognitra','datacore','designpro','ecovolta','equilibrium','foundation-epoch','gsap-pill-nav','guardnet','halo-usd','jack-3d-creator','linkflow','lumina','max-reed','metricx-studio','micro-organized','mindloop','power-ai','pureflow-one','reposit-solar','rivr-defi','securify','stellar-ai','stretch-beauty','targo-logistics','terra-geo','toonhub','transform-data','ui-rocket','unleash-scroll-hero','vaultshield','velorah','velorix','viralmedia-ai','wanderful','web3-eos','zenith-realty'];
 
@@ -818,7 +875,7 @@ __AGENTS__
 - Sync: bash memory-sync/sync-memory.sh pull / push
 
 ## Design Systems
-20 brand design systems at design-systems/<brand>/. Reference before any UI work.
+150 brand design systems at design-systems/<brand>/. Reference before any UI work.
 ---
 Tell me what you're working on, and start as ceo-agent.`;
 

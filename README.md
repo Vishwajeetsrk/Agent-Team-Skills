@@ -1,27 +1,15 @@
 <div align="center">
-  <table>
-    <tr>
-      <td width="80" valign="middle">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="9" cy="12" r="5.5"/>
-          <circle cx="15" cy="12" r="5.5"/>
-          <line x1="9" y1="12" x2="15" y2="12"/>
-          <path d="M9 8.5a5.5 5.5 0 0 1 6 0"/>
-          <path d="M9 15.5a5.5 5.5 0 0 0 6 0"/>
-        </svg>
-      </td>
-      <td align="left">
-        <h1>Agent Team Skills</h1>
-        <p><strong>19 specialized AI agents</strong> — CEO validates, specialists build, Web3 agents handle blockchain, memory prevents repeat mistakes.</p>
-      </td>
-    </tr>
-  </table>
+  <img src="dashboard/favicon.svg" width="72" height="72" alt="Agent Team Skills Logo">
+  <h1>Agent Team Skills</h1>
+  <p><strong>19 specialized AI agents</strong> — CEO validates, specialists build, Web3 agents handle blockchain, memory prevents repeat mistakes.</p>
+  <br>
   <p>
     <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills"><img src="https://img.shields.io/github/last-commit/Vishwajeetsrk/Agent-Team-Skills?color=4f46e5&label=Updated&logo=github" alt="Last Commit"></a>
     <a href="#"><img src="https://img.shields.io/badge/agents-19-4f46e5" alt="19 Agents"></a>
-    <a href="#"><img src="https://img.shields.io/badge/design%20systems-30-818cf8" alt="30 Design Systems"></a>
+    <a href="#"><img src="https://img.shields.io/badge/design%20systems-150-818cf8" alt="150 Design Systems"></a>
     <a href="#"><img src="https://img.shields.io/badge/templates-46-6366f1" alt="46 Templates"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-10b981" alt="MIT License"></a>
+    <a href="SECURITY.md"><img src="https://img.shields.io/badge/security-policy-6366f1" alt="Security Policy"></a>
   </p>
   <p>
     Works with <strong>Claude Code</strong> · <strong>claude.ai</strong> · <strong>Antigravity</strong> · <strong>Open Code</strong> · <strong>Any AI</strong>
@@ -41,7 +29,7 @@
 | **team-agent** | Task breakdown, handoff coordination, PROJECT_STATE tracking |
 | **saas-builder** | Golden Flow: PRD → architecture → security → UI → deploy |
 | **research-resources** | Market analysis, competitor research, 500+ free tool directory |
-| **design-agent** | Brand identity, components, 3D, motion, video, 30 design systems |
+| **design-agent** | Brand identity, components, 3D, motion, video, 150 design systems |
 | **ai-agent** | LLM integration, prompt engineering, AI safety guardrails |
 | **ml-agent** | Classical ML: model selection, data pipelines, evaluation |
 | **test-agent** | Independent security & QA review — **never skipped** |
@@ -162,7 +150,7 @@ Paste `CONNECT-PROMPT.md` at the start of your session.
 Open [`dashboard/index.html`](dashboard/index.html) or run `.\launch-dashboard.ps1` (Windows):
 
 - Browse 19 agents with role descriptions and SVG icons
-- Preview 30 brand design systems with color swatches
+- Preview 150 brand design systems with color swatches
 - Browse 46 built project templates with live iframe preview
 - Web3 Product Suite — 6 products with feature lists
 - Generate a custom CONNECT-PROMPT tailored to your project
@@ -181,7 +169,7 @@ Open [`dashboard/index.html`](dashboard/index.html) or run `.\launch-dashboard.p
 ```
 Agent-Team-Skills/
 ├── .claude/skills/          19 agent skill definitions
-├── design-systems/          30 brand-grade design systems
+├── design-systems/          150 brand-grade design systems
 ├── projects/                Learnify AI + 46 built templates
 ├── dashboard/               Visual dashboard (open index.html)
 ├── skills/                  12 .skill files (for claude.ai)
@@ -195,9 +183,9 @@ Agent-Team-Skills/
 
 ## Design Systems
 
-30 brand-grade systems at [`design-systems/`](design-systems/):
+150 brand-grade systems at [`design-systems/`](design-systems/):
 
-`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase` · `apple` · `openai` · `github` · `shopify` · `spotify` · `notion` · `discord` · `framer` · `cursor` · `figma` · `airbnb` · `coinbase` · `duolingo` · `hashicorp` · `nike` · `nvidia` · `perplexity` · `slack` · `tesla` · `zapier`
+`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase` · `apple` · `openai` · `github` · `shopify` · `spotify` · `notion` · `discord` · `framer` · `cursor` · `figma` · `airbnb` · `coinbase` · `duolingo` · `hashicorp` · `nike` · `nvidia` · `perplexity` · `slack` · `tesla` · `zapier` · `meta` · `uber` · `ibm` · `starbucks` · `pinterest` · `canva` · `miro` · `sentry` · `intercom` · `mongodb` · `posthog` · `sanity` · `resend` · `elevenlabs` · `mistral-ai` · `huggingface` · `replicate` · `warp` · `loom` · `raycast` · `binance` · `kraken` · `revolut` · `mastercard` · `bmw` · `playstation` · `superhuman` · `expo` · `webflow` · `clickhouse` · `agentic` · `ant` · `application` · `arc` · `artistic` · `atelier-zero` · `bmw-m` · `bold` · `cafe` · `cal` · `cisco` · `clay` · `composio` · `dashboard` · `dithered` · `doodle` · `dramatic` · `energetic` · `fantasy` · `gradient` · `hud` · `kami` · `levels` · `lingo` · `lovable` · `minimax` · `mintlify` · `mission-control` · `mono` · `neumorphism` · `opencode-ai` · `pacman` · `perspective` · `publication` · `refined` · `renault` · `retro` · `simple` · `skeumorphism` · `sleek` · `spacex` · `spacious` · `storytelling` · `tetris` · `theverge` · `together-ai` · `totality-festival` · `trading-terminal` · `urdu` · `vibrant` · `vintage` · `vodafone` · `voltagent` · `warm-editorial` · `webex` · `wechat` · `wired` · `wise` · `x-ai` · `xiaohongshu`
 
 Each contains `DESIGN.md`, `design-tokens.json`, and `tokens.css` — ready for any AI to maintain brand consistency.
 
@@ -216,12 +204,45 @@ Browse live previews in the [dashboard](dashboard/index.html).
 
 ## Links
 
-- [Live Dashboard](https://vishwajeetsrk.github.io/Agent-Team-Skills) (when deployed)
+- [Live Dashboard](https://vishwajeetsrk.github.io/Agent-Team-Skills)
 - [About This Project](dashboard/about.html)
 - [Privacy Policy](dashboard/legal/privacy.html)
 - [Terms of Service](dashboard/legal/terms.html)
 - [Cookie Policy](dashboard/legal/cookies.html)
 - [GitHub Repository](https://github.com/Vishwajeetsrk/Agent-Team-Skills)
+
+---
+
+## Contributing
+
+Contributions are welcome! This project is designed to grow with the community:
+
+- **Add a new design system** — Drop a new brand directory into `design-systems/` following the existing structure (DESIGN.md, tokens.css, design-tokens.json)
+- **Improve an agent skill** — Edit SKILL.md files in `.claude/skills/<agent>/` with better prompts, workflows, or edge case handling
+- **Fix a bug or add a feature** — Open a PR against the `main` branch
+- **Add more templates** — Submit built Vite + React templates to `projects/templates-built/`
+
+Before contributing, please read [`AGENTS.md`](AGENTS.md) to understand the system architecture. All skill files must follow the existing markdown conventions and never skip the memory protocol.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+## Security Policy
+
+This project takes security seriously. If you discover a vulnerability:
+
+- **DO NOT** open a public issue
+- Email the maintainer directly or open a [draft security advisory](https://github.com/Vishwajeetsrk/Agent-Team-Skills/security/advisories/new)
+- You can also use the security tab on GitHub for responsible disclosure
+
+We will respond within 48 hours and coordinate disclosure after a fix is deployed. See [SECURITY.md](SECURITY.md) for the full policy.
+
+Key security practices in this project:
+- The **test-agent** performs independent security & QA review before every deploy
+- The **security-agent** handles Web3-specific threat detection (phishing, risk scoring, contract exploits)
+- Memory files contain project learnings — never commit secrets or credentials to memory
+- All design systems are for visual reference only; do not embed API keys in tokens or components
 
 ---
 

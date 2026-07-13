@@ -68,7 +68,7 @@ A collection of 19 specialized AI agent skills that work as an orchestrated team
 ├── projects/                          ← Example projects built by the agent team
 │   └── learnify-ai/                   ←   Full landing page with 7Q framework
 │
-├── design-systems/                    ← 30 Brand design systems
+├── design-systems/                    ← 90 Brand design systems
 │   ├── default/                       ←   Neutral modern starter
 │   ├── linear-app/                    ←   Dark-mode-first productivity
 │   ├── neobrutalism/                  ←   Bold, high-contrast
@@ -89,7 +89,7 @@ A collection of 19 specialized AI agent skills that work as an orchestrated team
 │   ├── framer/                        ←   Framer design
 │   ├── cursor/                        ←   Cursor IDE design
 │   ├── figma/                         ←   Figma design
-│   |
+│   │
 │   ├── airbnb/                        ←   Travel/hospitality
 │   ├── coinbase/                      ←   Web3/crypto
 │   ├── duolingo/                      ←   Gamified education
@@ -99,7 +99,38 @@ A collection of 19 specialized AI agent skills that work as an orchestrated team
 │   ├── perplexity/                    ←   AI search
 │   ├── slack/                         ←   Workplace communication
 │   ├── tesla/                         ←   Automotive/energy
-│   └── zapier/                        ←   Automation
+│   ├── zapier/                        ←   Automation
+│   │
+│   ├── meta/                          ←   Social
+│   ├── uber/                          ←   Transport
+│   ├── ibm/                           ←   Enterprise
+│   ├── starbucks/                     ←   Coffee
+│   ├── pinterest/                     ←   Visual discovery
+│   ├── canva/                         ←   Design platform
+│   ├── miro/                          ←   Collaboration
+│   ├── sentry/                        ←   Monitoring
+│   ├── intercom/                      ←   Customer comms
+│   ├── mongodb/                       ←   Database
+│   ├── posthog/                       ←   Product analytics
+│   ├── sanity/                        ←   Content platform
+│   ├── resend/                        ←   Email
+│   ├── elevenlabs/                    ←   Voice AI
+│   ├── mistral-ai/                    ←   LLM platform
+│   ├── huggingface/                   ←   ML community
+│   ├── replicate/                     ←   Cloud ML
+│   ├── warp/                          ←   Terminal
+│   ├── loom/                          ←   Video messaging
+│   ├── raycast/                       ←   Productivity
+│   ├── binance/                       ←   Crypto exchange
+│   ├── kraken/                        ←   Crypto exchange
+│   ├── revolut/                       ←   Fintech
+│   ├── mastercard/                    ←   Payments
+│   ├── bmw/                           ←   Automotive
+│   ├── playstation/                   ←   Gaming
+│   ├── superhuman/                    ←   Email client
+│   ├── expo/                          ←   React Native
+│   ├── webflow/                       ←   Web builder
+│   └── clickhouse/                    ←   Analytics DB
 │
 ├── skills/                            ← 12 .skill files (for claude.ai upload)
 │
@@ -137,7 +168,7 @@ cp -r .claude/skills/memory-agent/templates/* ~/.agent-memory/global/
 
 ### Option C: Visual Dashboard
 Open `dashboard/index.html` in any browser or run `.\launch-dashboard.ps1` (Windows) to:
-- Browse all 12 agents with descriptions
+- Browse all 19 agents with descriptions
 - Preview 30 design systems
 - Generate a custom CONNECT-PROMPT with selected agents
 - Follow the quick-start guide
