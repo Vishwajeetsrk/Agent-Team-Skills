@@ -5,634 +5,302 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agent Team Skills — Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
 :root {
-  --bg: #fafafa;
+  --bg: #f7f7f8;
   --surface: #ffffff;
-  --fg: #111111;
-  --fg-2: #111111;
-  --muted: #6b6b6b;
-  --meta: #6b6b6b;
-  --border: #e5e5e5;
-  --border-soft: #e5e5e5;
-  --accent: #2f6feb;
+  --surface-2: #f0f0f2;
+  --fg: #18181b;
+  --muted: #71717a;
+  --meta: #a1a1aa;
+  --border: #e4e4e7;
+  --border-soft: #f0f0f2;
+  --accent: #4f46e5;
   --accent-on: #ffffff;
-  --accent-hover: #2555c4;
-  --accent-active: #1f47a3;
-  --success: #17a34a;
-  --warn: #eab308;
+  --accent-hover: #4338ca;
+  --accent-subtle: rgba(79,70,229,0.08);
+  --accent-glow: rgba(79,70,229,0.15);
+  --success: #059669;
+  --success-bg: rgba(5,150,105,0.08);
+  --warn: #d97706;
   --danger: #dc2626;
-  --font-display: 'Inter', -apple-system, system-ui, sans-serif;
-  --font-body: 'Inter', -apple-system, system-ui, sans-serif;
+  --danger-bg: rgba(220,38,38,0.08);
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-12: 48px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-pill: 9999px;
-  --elev-raised: 0 2px 8px rgba(0,0,0,0.08);
-  --container-max: 1200px;
-  --motion-fast: 150ms;
-  --motion-base: 200ms;
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;--radius-pill:9999px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  --shadow-xl: 0 20px 60px -12px rgba(0,0,0,0.1);
+  --container: 1200px;
+  --nav-h: 64px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--fg);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
+.dark{--bg:#0a0a0b;--surface:#141416;--surface-2:#1c1c20;--fg:#f4f4f5;--muted:#a1a1aa;--meta:#71717a;--border:rgba(255,255,255,0.08);--border-soft:rgba(255,255,255,0.04);--accent: #6366f1;--accent-hover:#818cf8;--accent-subtle:rgba(99,102,241,0.12);--accent-glow:rgba(99,102,241,0.2);--shadow-sm: 0 1px 2px rgba(0,0,0,0.2);--shadow-md: 0 4px 12px rgba(0,0,0,0.3);--shadow-lg: 0 8px 30px rgba(0,0,0,0.4);--shadow-xl: 0 20px 60px -12px rgba(0,0,0,0.5)}
 
-.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-6); }
+body{font-family:var(--font-body);background:var(--bg);color:var(--fg);line-height:1.5;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+h1,h2,h3,h4,h5,h6,.font-display{font-family:var(--font-display)}
+code,.mono{font-family:var(--font-mono)}
+a{color:inherit}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--space-6)}
 
-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0;
-}
-nav .logo { font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: var(--space-2); }
-nav .logo span { color: var(--accent); }
-nav .nav-links { display: flex; gap: var(--space-5); align-items: center; }
-nav .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color var(--motion-fast); }
-nav .nav-links a:hover { color: var(--fg); }
-nav .nav-links .btn-nav { background: var(--accent); color: var(--accent-on); padding: var(--space-2) var(--space-4); border-radius: var(--radius-sm); font-weight: 500; font-size: 14px; text-decoration: none; }
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:100;background:rgba(247,247,248,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.dark nav{background:rgba(10,10,11,0.85)}
+nav .nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);max-width:var(--container);margin:0 auto;padding:0 var(--space-6)}
+nav .logo{font-family:var(--font-display);font-weight:700;font-size:18px;display:flex;align-items:center;gap:var(--space-2);letter-spacing:-.02em}
+nav .logo span{color:var(--accent)}
+nav .nav-links{display:flex;gap:var(--space-1);align-items:center}
+nav .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:var(--space-2) var(--space-3);border-radius:var(--radius-sm);transition:all .15s}
+nav .nav-links a:hover{color:var(--fg);background:var(--accent-subtle)}
+nav .nav-links .btn-nav{background:var(--accent);color:var(--accent-on);padding:var(--space-2) var(--space-4);font-weight:600}
+nav .nav-links .btn-nav:hover{background:var(--accent-hover);color:var(--accent-on)}
+.nav-mobile-toggle{display:none;background:none;border:none;color:var(--fg);font-size:24px;cursor:pointer;padding:var(--space-2)}
 
-.hero {
-  padding: 80px 0 64px;
-  text-align: center;
-}
-.hero h1 { font-size: 56px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: var(--space-4); }
-.hero h1 span { color: var(--accent); }
-.hero p { font-size: 20px; color: var(--muted); max-width: 640px; margin: 0 auto var(--space-8); }
-.hero .hero-btns { display: flex; gap: var(--space-3); justify-content: center; }
-.hero .hero-btns a { padding: var(--space-3) var(--space-6); border-radius: var(--radius-sm); font-weight: 500; font-size: 15px; text-decoration: none; transition: all var(--motion-fast) var(--ease-standard); }
-.hero .hero-btns .btn-primary { background: var(--accent); color: var(--accent-on); }
-.hero .hero-btns .btn-primary:hover { background: var(--accent-hover); }
-.hero .hero-btns .btn-secondary { background: var(--surface); color: var(--fg); border: 1px solid var(--border); }
-.hero .hero-btns .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+/* ─── THEME TOGGLE ─── */
+.theme-toggle{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-pill);width:44px;height:26px;cursor:pointer;position:relative;transition:all .2s;flex-shrink:0;margin-left:var(--space-2)}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--accent);transition:transform .25s var(--ease-spring)}
+.theme-toggle.dark::after{transform:translateX(18px)}
 
-.hero-stats { display: flex; justify-content: center; gap: var(--space-12); margin-top: var(--space-12); }
-.hero-stats .stat { text-align: center; }
-.hero-stats .stat-num { font-size: 32px; font-weight: 700; color: var(--fg); }
-.hero-stats .stat-label { font-size: 14px; color: var(--muted); margin-top: var(--space-1); }
+/* ─── HERO ─── */
+.hero{padding:var(--space-16) 0 var(--space-12);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:50%;translate:-50% 0;width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow),transparent 70%);pointer-events:none;opacity:.5}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:700;line-height:1.08;letter-spacing:-.03em;margin-bottom:var(--space-4);position:relative}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),#818cf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:580px;margin:0 auto var(--space-8);position:relative}
+.hero-btns{display:flex;gap:var(--space-3);justify-content:center;position:relative;flex-wrap:wrap}
+.hero-btns a{padding:var(--space-3) var(--space-6);border-radius:var(--radius-sm);font-weight:600;font-size:15px;text-decoration:none;transition:all .2s var(--ease-out)}
+.hero-btns .btn-primary{background:var(--accent);color:var(--accent-on);box-shadow:0 4px 14px var(--accent-glow)}
+.hero-btns .btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 24px var(--accent-glow)}
+.hero-btns .btn-secondary{background:var(--surface);color:var(--fg);border:1px solid var(--border)}
+.hero-btns .btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow-md)}
 
-section { padding: 64px 0; }
-.section-header { text-align: center; margin-bottom: var(--space-8); }
-.section-header h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--space-2); }
-.section-header p { color: var(--muted); font-size: 16px; max-width: 560px; margin: 0 auto; }
+/* ─── HERO STATS ─── */
+.hero-stats{display:flex;justify-content:center;gap:var(--space-10);margin-top:var(--space-12);flex-wrap:wrap}
+.hero-stats .stat{text-align:center}
+.hero-stats .stat-num{font-size:28px;font-weight:700;font-family:var(--font-display);background:linear-gradient(135deg,var(--fg),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-stats .stat-label{font-size:13px;color:var(--meta);margin-top:2px}
 
-.flow-diagram {
-  display: flex; align-items: center; justify-content: center;
-  flex-wrap: wrap; gap: var(--space-2);
-  padding: var(--space-8) 0;
-}
-.flow-step {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-3) var(--space-4);
-  font-size: 13px;
-  font-weight: 500;
-  transition: all var(--motion-fast);
-}
-.flow-step:hover { border-color: var(--accent); box-shadow: var(--elev-raised); }
-.flow-step .step-agent { color: var(--accent); }
-.flow-step.never-skip { border-color: var(--danger); }
-.flow-step.never-skip .step-agent { color: var(--danger); }
-.flow-arrow { color: var(--border); font-size: 18px; user-select: none; }
+/* ─── FLOW ─── */
+.flow-diagram{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:var(--space-2);padding:var(--space-8) 0;position:relative}
+.flow-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-pill);padding:var(--space-2) var(--space-4);font-size:13px;font-weight:500;transition:all .2s;white-space:nowrap}
+.flow-step:hover{border-color:var(--accent);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.flow-step .step-agent{color:var(--accent)}.flow-step.never-skip{border-color:var(--danger)}.flow-step.never-skip .step-agent{color:var(--danger)}
+.flow-arrow{color:var(--meta);font-size:16px;user-select:none;font-weight:300}
 
-.agent-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-4);
-}
-.agent-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  transition: all var(--motion-fast) var(--ease-standard);
-  cursor: default;
-}
-.agent-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--elev-raised);
-}
-.agent-card .card-icon {
-  width: 40px; height: 40px;
-  border-radius: var(--radius-sm);
-  background: color-mix(in oklab, var(--accent), transparent 90%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  margin-bottom: var(--space-3);
-  color: var(--accent);
-}
-.agent-card h3 { font-size: 16px; font-weight: 600; margin-bottom: var(--space-1); }
-.agent-card .agent-role { font-size: 12px; color: var(--accent); font-weight: 500; margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.05em; }
-.agent-card p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+/* ─── SECTIONS ─── */
+section{padding:var(--space-16) 0}.section-header{text-align:center;margin-bottom:var(--space-8)}
+.section-header h2{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:var(--space-2)}
+.section-header p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto}
 
-.design-system-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-4);
-}
-.ds-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  text-align: center;
-  transition: all var(--motion-fast);
-}
-.ds-card:hover { border-color: var(--accent); box-shadow: var(--elev-raised); }
-.ds-card .ds-swatch {
-  width: 48px; height: 48px;
-  border-radius: var(--radius-sm);
-  margin: 0 auto var(--space-3);
-  border: 1px solid var(--border);
-}
-.ds-card h4 { font-size: 15px; font-weight: 600; }
-.ds-card p { font-size: 13px; color: var(--muted); margin-top: var(--space-1); }
+/* ─── AGENT GRID ─── */
+.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-4)}
+.agent-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);transition:all .25s var(--ease-out);cursor:default}
+.agent-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.agent-card .card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:var(--space-3);color:var(--accent)}
+.agent-card h3{font-size:16px;font-weight:600;margin-bottom:2px}
+.agent-card .agent-role{font-size:11px;color:var(--accent);font-weight:600;margin-bottom:var(--space-2);text-transform:uppercase;letter-spacing:.06em}
+.agent-card p{font-size:14px;color:var(--muted);line-height:1.5}
 
-.prompt-generator {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-}
-.prompt-generator h3 { font-size: 20px; margin-bottom: var(--space-4); }
-.prompt-generator .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-2); margin-bottom: var(--space-5); }
-.prompt-generator .checkbox-grid label { display: flex; align-items: center; gap: var(--space-2); font-size: 14px; cursor: pointer; padding: var(--space-2) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: all var(--motion-fast); }
-.prompt-generator .checkbox-grid label:hover { border-color: var(--accent); }
-.prompt-generator .checkbox-grid label.selected { border-color: var(--accent); background: color-mix(in oklab, var(--accent), transparent 95%); }
-.prompt-generator .checkbox-grid input { accent-color: var(--accent); }
-.prompt-generator textarea {
-  width: 100%; height: 200px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-4);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  line-height: 1.6;
-  resize: vertical;
-  background: var(--bg);
-  color: var(--fg);
-}
-.prompt-generator textarea:focus { outline: none; border-color: var(--accent); box-shadow: var(--focus-ring); }
-.btn-generate {
-  background: var(--accent); color: var(--accent-on);
-  padding: var(--space-3) var(--space-6);
-  border: none; border-radius: var(--radius-sm);
-  font-weight: 500; font-size: 15px;
-  cursor: pointer;
-  transition: background var(--motion-fast);
-  margin-bottom: var(--space-4);
-}
-.btn-generate:hover { background: var(--accent-hover); }
-.btn-copy {
-  background: transparent; color: var(--accent);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--accent); border-radius: var(--radius-sm);
-  font-weight: 500; font-size: 13px;
-  cursor: pointer;
-  transition: all var(--motion-fast);
-  margin-left: var(--space-2);
-}
-.btn-copy:hover { background: var(--accent); color: var(--accent-on); }
+/* ─── DESIGN SYSTEM GRID ─── */
+.design-system-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--space-3)}
+.ds-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center;transition:all .2s}
+.ds-card:hover{border-color:var(--accent);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.ds-card .ds-swatch{width:40px;height:40px;border-radius:var(--radius-sm);margin:0 auto var(--space-2);border:1px solid var(--border)}
+.ds-card h4{font-size:14px;font-weight:600}.ds-card p{font-size:12px;color:var(--muted);margin-top:2px}
 
-.quick-start {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-4);
-}
-.qs-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  counter-increment: qs;
-}
-.qs-card .qs-num {
-  width: 32px; height: 32px;
-  border-radius: var(--radius-pill);
-  background: var(--accent); color: var(--accent-on);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 600;
-  margin-bottom: var(--space-3);
-}
-.qs-card h4 { font-size: 16px; font-weight: 600; margin-bottom: var(--space-2); }
-.qs-card p { font-size: 14px; color: var(--muted); line-height: 1.5; }
-.qs-card code { font-family: var(--font-mono); font-size: 12px; background: var(--bg); padding: 1px 4px; border-radius: 3px; }
+/* ─── PROMPT GENERATOR ─── */
+.prompt-generator{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:var(--space-8)}
+.prompt-generator h3{font-size:20px;margin-bottom:var(--space-4)}
+.checkbox-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-2);margin-bottom:var(--space-5)}
+.checkbox-grid label{display:flex;align-items:center;gap:var(--space-2);font-size:14px;cursor:pointer;padding:var(--space-2) var(--space-3);border:1px solid var(--border);border-radius:var(--radius-sm);transition:all .15s}
+.checkbox-grid label:hover{border-color:var(--accent)}
+.checkbox-grid label.selected{border-color:var(--accent);background:var(--accent-subtle)}
+.checkbox-grid input{accent-color:var(--accent)}
+.prompt-generator textarea{width:100%;height:200px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:var(--space-4);font-family:var(--font-mono);font-size:13px;line-height:1.6;resize:vertical;background:var(--bg);color:var(--fg)}
+.prompt-generator textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-subtle)}
+.btn-generate{background:var(--accent);color:var(--accent-on);padding:var(--space-3) var(--space-6);border:none;border-radius:var(--radius-sm);font-weight:600;font-size:15px;cursor:pointer;transition:all .2s;margin-bottom:var(--space-4)}
+.btn-generate:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:0 4px 12px var(--accent-glow)}
+.btn-copy{background:transparent;color:var(--accent);padding:var(--space-2) var(--space-4);border:1px solid var(--accent);border-radius:var(--radius-sm);font-weight:500;font-size:13px;cursor:pointer;transition:all .2s;margin-left:var(--space-2)}
+.btn-copy:hover{background:var(--accent);color:var(--accent-on)}
 
-footer {
-  padding: var(--space-8) 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--muted);
-  font-size: 14px;
-}
+/* ─── QUICK START ─── */
+.quick-start{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-4)}
+.qs-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);position:relative}
+.qs-card .qs-num{width:32px;height:32px;border-radius:var(--radius-pill);background:var(--accent);color:var(--accent-on);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-bottom:var(--space-3)}
+.qs-card h4{font-size:16px;font-weight:600;margin-bottom:var(--space-2)}
+.qs-card p{font-size:14px;color:var(--muted);line-height:1.5}
+.qs-card code{font-family:var(--font-mono);font-size:12px;background:var(--surface-2);padding:2px 6px;border-radius:4px;color:var(--accent);word-break:break-all}
 
-.demo-toggle {
-  display: flex; align-items: center; justify-content: center; gap: var(--space-3);
-  margin: var(--space-6) 0;
-}
-.demo-toggle .toggle-label { font-size: 14px; color: var(--muted); }
-.demo-toggle .toggle-switch {
-  width: 48px; height: 26px;
-  background: var(--border);
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  position: relative;
-  transition: background var(--motion-fast);
-}
-.demo-toggle .toggle-switch.active { background: var(--accent); }
-.demo-toggle .toggle-switch::after {
-  content: '';
-  position: absolute;
-  top: 3px; left: 3px;
-  width: 20px; height: 20px;
-  background: white;
-  border-radius: 50%;
-  transition: transform var(--motion-fast);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-.demo-toggle .toggle-switch.active::after { transform: translateX(22px); }
+/* ─── FOOTER ─── */
+footer{padding:var(--space-8) 0;border-top:1px solid var(--border);text-align:center;color:var(--meta);font-size:14px}
 
-.demo-section { display: none; padding: var(--space-6) 0; }
-.demo-section.visible { display: block; }
+/* ─── DEMO ─── */
+.demo-toggle{display:flex;align-items:center;justify-content:center;gap:var(--space-3);margin:var(--space-6) 0}
+.demo-toggle .toggle-label{font-size:14px;color:var(--muted)}
+.demo-toggle .toggle-switch{width:48px;height:26px;background:var(--border);border-radius:var(--radius-pill);cursor:pointer;position:relative;transition:background .2s}
+.demo-toggle .toggle-switch.active{background:var(--accent)}
+.demo-toggle .toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:white;border-radius:50%;transition:transform .25s var(--ease-spring);box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.demo-toggle .toggle-switch.active::after{transform:translateX(22px)}
 
-.demo-tabs {
-  display: flex; gap: var(--space-1);
-  margin-bottom: var(--space-4);
-  border-bottom: 1px solid var(--border);
-}
-.demo-tab {
-  padding: var(--space-2) var(--space-4);
-  font-size: 13px; font-weight: 500;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all var(--motion-fast);
-  color: var(--muted);
-}
-.demo-tab:hover { color: var(--fg); }
-.demo-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.demo-section{display:none;padding:var(--space-8) 0}
+.demo-section.visible{display:block;animation:fadeIn .3s var(--ease-out)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-.demo-panel { display: none; }
-.demo-panel.visible { display: block; }
+.demo-tabs{display:flex;gap:2px;margin-bottom:var(--space-5);background:var(--surface-2);border-radius:var(--radius-sm);padding:3px;width:fit-content}
+.demo-tab{padding:var(--space-2) var(--space-4);font-size:13px;font-weight:500;cursor:pointer;border-radius:calc(var(--radius-sm) - 2px);transition:all .2s;color:var(--muted);border:none;background:transparent}
+.demo-tab:hover{color:var(--fg)}
+.demo-tab.active{background:var(--surface);color:var(--fg);box-shadow:var(--shadow-sm)}
 
-.demo-contract {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-.demo-contract .demo-input-area {
-  padding: var(--space-4);
-  border-bottom: 1px solid var(--border);
-}
-.demo-contract .demo-input-area textarea {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-3);
-  font-family: var(--font-body);
-  font-size: 14px;
-  resize: vertical;
-  min-height: 80px;
-}
-.demo-contract .demo-input-area textarea:focus { outline: none; border-color: var(--accent); }
-.demo-contract .demo-output {
-  padding: var(--space-4);
-  background: #1e1e1e;
-  color: #d4d4d4;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.6;
-  overflow-x: auto;
-  min-height: 200px;
-}
-.demo-contract .demo-output .kw { color: #569cd6; }
-.demo-contract .demo-output .fn { color: #dcdcaa; }
-.demo-contract .demo-output .ty { color: #4ec9b0; }
-.demo-contract .demo-output .str { color: #ce9178; }
-.demo-contract .demo-output .cm { color: #6a9955; }
-.demo-contract .demo-output .num { color: #b5cea8; }
+.demo-panel{display:none}.demo-panel.visible{display:block;animation:fadeIn .25s var(--ease-out)}
 
-.demo-chat {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  min-height: 400px;
-  display: flex; flex-direction: column;
-}
-.demo-chat .chat-messages {
-  flex: 1;
-  padding: var(--space-4);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-.demo-chat .chat-msg {
-  max-width: 80%;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  line-height: 1.5;
-}
-.demo-chat .chat-msg.user {
-  align-self: flex-end;
-  background: var(--accent);
-  color: var(--accent-on);
-}
-.demo-chat .chat-msg.agent {
-  align-self: flex-start;
-  background: var(--bg);
-  border: 1px solid var(--border);
-}
-.demo-chat .chat-msg.typing {
-  align-self: flex-start;
-  color: var(--muted);
-  font-style: italic;
-}
-.demo-chat .chat-input-area {
-  display: flex;
-  border-top: 1px solid var(--border);
-  padding: var(--space-3);
-  gap: var(--space-2);
-}
-.demo-chat .chat-input-area input {
-  flex: 1;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-3);
-  font-size: 13px;
-}
-.demo-chat .chat-input-area input:focus { outline: none; border-color: var(--accent); }
-.demo-chat .chat-input-area button {
-  background: var(--accent);
-  color: var(--accent-on);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-4);
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-}
+.demo-contract{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.demo-contract .demo-input-area{padding:var(--space-5);border-bottom:1px solid var(--border)}
+.demo-contract .demo-input-area textarea{width:100%;border:1px solid var(--border);border-radius:var(--radius-sm);padding:var(--space-3);font-family:var(--font-body);font-size:14px;resize:vertical;min-height:80px;background:var(--bg);color:var(--fg)}
+.demo-contract .demo-input-area textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-subtle)}
+.demo-output{padding:var(--space-4);background:#1a1a1e;color:#d4d4d4;font-family:var(--font-mono);font-size:12px;line-height:1.7;overflow-x:auto;min-height:200px;white-space:pre-wrap;tab-size:2}
+.demo-output .kw{color:#818cf8}.demo-output .fn{color:#fde68a}.demo-output .ty{color:#6ee7b7}.demo-output .str{color:#fca5a5}.demo-output .cm{color:#6b7280}.demo-output .num{color:#93c5fd}.demo-output .err{color:#fca5a5}
+.demo-output .loading{display:inline-block;width:8px;height:16px;background:var(--accent);animation:blink .8s step-end infinite;margin-left:4px;vertical-align:middle}
+@keyframes blink{50%{opacity:0}}
 
-.demo-badge {
-  display: inline-block;
-  background: var(--success);
-  color: white;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-  margin-bottom: var(--space-2);
-}
+.demo-chat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;min-height:420px;display:flex;flex-direction:column}
+.chat-messages{flex:1;padding:var(--space-4);overflow-y:auto;display:flex;flex-direction:column;gap:var(--space-3);max-height:350px}
+.chat-msg{max-width:82%;padding:var(--space-2) var(--space-3);border-radius:var(--radius-sm);font-size:14px;line-height:1.5;animation:fadeIn .2s var(--ease-out)}
+.chat-msg.user{align-self:flex-end;background:var(--accent);color:var(--accent-on)}
+.chat-msg.agent{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);color:var(--fg)}
+.chat-msg.typing{align-self:flex-start;color:var(--meta);font-style:italic;font-size:13px}
+.chat-suggestions{display:flex;gap:var(--space-2);padding:var(--space-2) var(--space-4);flex-wrap:wrap;border-top:1px solid var(--border)}
+.chat-suggestion{font-size:12px;padding:4px 10px;background:var(--accent-subtle);color:var(--accent);border:1px solid var(--border);border-radius:var(--radius-pill);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chat-suggestion:hover{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
+.chat-input-area{display:flex;border-top:1px solid var(--border);padding:var(--space-3);gap:var(--space-2)}
+.chat-input-area input{flex:1;border:1px solid var(--border);border-radius:var(--radius-sm);padding:var(--space-2) var(--space-3);font-size:14px;background:var(--bg);color:var(--fg)}
+.chat-input-area input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-subtle)}
+.chat-input-area button{background:var(--accent);color:var(--accent-on);border:none;border-radius:var(--radius-sm);padding:var(--space-2) var(--space-5);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.chat-input-area button:hover{background:var(--accent-hover)}
 
-.persona-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-4);
-}
-.persona-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  text-align: center;
-  transition: all var(--motion-fast);
-}
-.persona-card:hover { border-color: var(--accent); box-shadow: var(--elev-raised); }
-.persona-card .persona-icon { font-size: 32px; margin-bottom: var(--space-2); }
-.persona-card h4 { font-size: 15px; font-weight: 600; }
-.persona-card p { font-size: 13px; color: var(--muted); margin-top: var(--space-1); }
+.demo-badge{display:inline-block;background:var(--accent-subtle);color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:var(--radius-pill);margin-bottom:var(--space-2);border:1px solid var(--accent)}
 
-.problem-solution {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  align-items: center;
-}
-.problem-solution .problem-box, .problem-solution .solution-box {
-  padding: var(--space-6);
-  border-radius: var(--radius-lg);
-}
-.problem-solution .problem-box { background: color-mix(in oklab, var(--danger), transparent 92%); border: 1px solid color-mix(in oklab, var(--danger), transparent 70%); }
-.problem-solution .problem-box h3 { color: var(--danger); }
-.problem-solution .solution-box { background: color-mix(in oklab, var(--success), transparent 92%); border: 1px solid color-mix(in oklab, var(--success), transparent 70%); }
-.problem-solution .solution-box h3 { color: var(--success); }
-.problem-solution h3 { font-size: 20px; margin-bottom: var(--space-3); }
-.problem-solution ul { list-style: none; padding: 0; }
-.problem-solution ul li { padding: var(--space-1) 0; font-size: 14px; display: flex; align-items: center; gap: var(--space-2); }
-.problem-solution ul li::before { font-weight: 600; }
-.problem-solution .problem-box ul li::before { content: "✗"; color: var(--danger); }
-.problem-solution .solution-box ul li::before { content: "✓"; color: var(--success); }
-@media (max-width: 768px) { .problem-solution { grid-template-columns: 1fr; } }
+/* ─── PERSONA GRID ─── */
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-4)}
+.persona-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);text-align:center;transition:all .2s}
+.persona-card:hover{border-color:var(--accent);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.persona-card .persona-icon{font-size:28px;margin-bottom:var(--space-2)}
+.persona-card h4{font-size:15px;font-weight:600}.persona-card p{font-size:13px;color:var(--muted);margin-top:var(--space-1)}
 
-.trust-bar {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  padding: var(--space-8) 0;
-}
-.trust-bar .trust-item { text-align: center; }
-.trust-bar .trust-num { font-size: 36px; font-weight: 700; color: var(--accent); }
-.trust-bar .trust-label { font-size: 14px; color: var(--muted); }
+/* ─── PROBLEM/SOLUTION ─── */
+.problem-solution{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:stretch}
+.problem-solution .box{padding:var(--space-6);border-radius:var(--radius-lg)}
+.problem-solution .problem-box{background:var(--danger-bg);border:1px solid color-mix(in oklab,var(--danger),transparent 75%)}
+.problem-solution .problem-box h3{color:var(--danger)}
+.problem-solution .solution-box{background:var(--success-bg);border:1px solid color-mix(in oklab,var(--success),transparent 75%)}
+.problem-solution .solution-box h3{color:var(--success)}
+.problem-solution h3{font-size:18px;margin-bottom:var(--space-3)}
+.problem-solution ul{list-style:none;padding:0}
+.problem-solution ul li{padding:var(--space-1) 0;font-size:14px;display:flex;align-items:center;gap:var(--space-2);color:var(--muted)}
+.problem-solution .problem-box ul li::before{content:"✗";color:var(--danger);font-weight:600}
+.problem-solution .solution-box ul li::before{content:"✓";color:var(--success);font-weight:600}
 
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-4);
-  margin-top: var(--space-6);
-}
-.testimonial-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-}
-.testimonial-card .quote { font-size: 14px; color: var(--muted); line-height: 1.6; font-style: italic; margin-bottom: var(--space-3); }
-.testimonial-card .author { font-size: 13px; font-weight: 600; }
-.testimonial-card .author-title { font-size: 12px; color: var(--muted); }
+/* ─── TRUST ─── */
+.trust-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-8);padding:var(--space-8) 0}
+.trust-bar .trust-item{text-align:center}
+.trust-bar .trust-num{font-size:32px;font-weight:700;font-family:var(--font-display);background:linear-gradient(135deg,var(--accent),#818cf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.trust-bar .trust-label{font-size:13px;color:var(--meta)}
 
-.proof-showcase {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-4);
-}
-.proof-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  text-align: center;
-}
-.proof-card .proof-before, .proof-card .proof-after {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-.proof-card .proof-before { color: var(--danger); }
-.proof-card .proof-after { color: var(--success); margin-top: var(--space-2); }
-.proof-card .proof-value { font-size: 28px; font-weight: 700; }
-.proof-card .proof-before .proof-value { color: var(--muted); text-decoration: line-through; }
-.proof-card .proof-after .proof-value { color: var(--fg); }
-.proof-card .proof-arrow { font-size: 24px; color: var(--accent); margin: var(--space-1) 0; }
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-4);margin-top:var(--space-6)}
+.testimonial-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5)}
+.testimonial-card .quote{font-size:14px;color:var(--muted);line-height:1.6;font-style:italic;margin-bottom:var(--space-3)}
+.testimonial-card .author{font-size:13px;font-weight:600}.testimonial-card .author-title{font-size:12px;color:var(--meta)}
 
-.showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); align-items: start; }
-.showcase-iframe-wrap { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 9/12; position: relative; background: var(--bg); }
-.showcase-iframe-wrap iframe { position: absolute; top: 0; left: 0; width: 166.66%; height: 166.66%; border: none; transform: scale(0.6); transform-origin: top left; }
-.showcase-iframe-wrap .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 12px; background: linear-gradient(transparent, rgba(0,0,0,0.6)); color: white; font-size: 12px; display: flex; justify-content: space-between; }
-.showcase-iframe-wrap .overlay a { color: white; text-decoration: none; font-weight: 500; }
-@media (max-width: 768px) { .showcase-grid { grid-template-columns: 1fr; } }
+/* ─── PROOF ─── */
+.proof-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--space-4)}
+.proof-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);text-align:center}
+.proof-card .proof-before,.proof-card .proof-after{font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.proof-card .proof-before{color:var(--danger)}.proof-card .proof-after{color:var(--success);margin-top:var(--space-2)}
+.proof-card .proof-value{font-size:28px;font-weight:700;font-family:var(--font-display)}
+.proof-card .proof-before .proof-value{color:var(--meta);text-decoration:line-through}
+.proof-card .proof-after .proof-value{color:var(--fg)}
+.proof-card .proof-arrow{font-size:20px;color:var(--accent);margin:var(--space-1) 0}
 
-.featured-on {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-6);
-  padding: var(--space-6) 0;
-  opacity: 0.5;
-  font-size: 14px;
-  color: var(--muted);
-  font-weight: 500;
-}
+/* ─── SHOWCASE ─── */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);align-items:start}
+.showcase-iframe-wrap{border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;aspect-ratio:9/12;position:relative;background:var(--bg)}
+.showcase-iframe-wrap iframe{position:absolute;top:0;left:0;width:166.66%;height:166.66%;border:none;transform:scale(.6);transform-origin:top left}
+.showcase-iframe-wrap .overlay{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.65));color:white;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.showcase-iframe-wrap .overlay a{color:white;text-decoration:none;font-weight:600}
+@media(max-width:768px){.showcase-grid{grid-template-columns:1fr}}
 
-.cta-big {
-  text-align: center;
-  padding: var(--space-8);
-  background: var(--surface);
-  border: 2px solid var(--accent);
-  border-radius: var(--radius-lg);
-}
-.cta-big h2 { font-size: 28px; margin-bottom: var(--space-3); }
-.cta-big p { color: var(--muted); margin-bottom: var(--space-5); max-width: 480px; margin-left: auto; margin-right: auto; }
-.cta-big .cta-group { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
-.cta-big .cta-group a { padding: var(--space-3) var(--space-6); border-radius: var(--radius-sm); font-weight: 500; font-size: 15px; text-decoration: none; }
+/* ─── FEATURED ON ─── */
+.featured-on{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-5);padding:var(--space-6) 0;opacity:.5;font-size:13px;color:var(--meta);font-weight:500}
 
-@media (max-width: 768px) {
-  .hero h1 { font-size: 32px; }
-  .hero p { font-size: 16px; }
-  .hero-stats { flex-wrap: wrap; gap: var(--space-6); }
-  .flow-diagram { flex-direction: column; }
-  .flow-arrow { transform: rotate(90deg); }
-  nav .nav-links a:not(.btn-nav) { display: none; }
-}
+/* ─── CTA ─── */
+.cta-big{text-align:center;padding:var(--space-8);background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius-xl)}
+.cta-big h2{font-size:28px;margin-bottom:var(--space-3)}.cta-big p{color:var(--muted);margin-bottom:var(--space-5);max-width:480px;margin-left:auto;margin-right:auto}
+.cta-big .cta-group{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap}
+.cta-big .cta-group a{padding:var(--space-3) var(--space-6);border-radius:var(--radius-sm);font-weight:600;font-size:15px;text-decoration:none;transition:all .2s}
 
-.memory-status { margin-top: var(--space-5); }
-.memory-status .status-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-4);
-  display: flex; align-items: center; gap: var(--space-3);
-  font-size: 14px;
-}
-.memory-status .status-dot {
-  width: 10px; height: 10px;
-  border-radius: var(--radius-pill);
-}
-.memory-status .status-dot.checked { background: var(--success); }
-.memory-status .status-dot.unchecked { background: var(--muted); }
+/* ─── WEB3 PRODUCT ─── */
+.web3-product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-4)}
+.web3-product{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-6);transition:all .25s var(--ease-out);position:relative;overflow:hidden}
+.web3-product:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.web3-product::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#818cf8)}
+.web3-product .product-num{font-size:42px;font-weight:700;color:var(--accent-subtle);line-height:1;margin-bottom:var(--space-2);font-family:var(--font-display)}
+.web3-product h3{font-size:18px;font-weight:600;margin-bottom:2px}
+.web3-product .product-tag{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--accent);margin-bottom:var(--space-2)}
+.web3-product p{font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:var(--space-3)}
+.web3-product .feature-list{list-style:none;padding:0;margin:0}
+.web3-product .feature-list li{font-size:13px;padding:var(--space-1) 0;color:var(--fg);display:flex;align-items:center;gap:var(--space-2)}
+.web3-product .feature-list li::before{content:">";color:var(--accent);font-weight:600;font-family:var(--font-mono)}
+.web3-product .product-cta{display:inline-block;margin-top:var(--space-3);padding:var(--space-2) var(--space-4);background:var(--accent);color:var(--accent-on);border-radius:var(--radius-sm);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+.web3-product .product-cta:hover{background:var(--accent-hover);transform:translateY(-1px)}
 
-.web3-product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-4);
+/* ─── MEMORY STATUS ─── */
+.memory-status{margin-top:var(--space-5)}
+.memory-status .status-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:var(--space-4);display:flex;align-items:center;gap:var(--space-3);font-size:14px;cursor:pointer;transition:all .15s}
+.memory-status .status-card:hover{border-color:var(--accent)}
+.memory-status .status-dot{width:10px;height:10px;border-radius:var(--radius-pill)}
+.memory-status .status-dot.checked{background:var(--success)}
+.memory-status .status-dot.unchecked{background:var(--meta)}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .nav-links a:not(.btn-nav):not(.theme-toggle-wrap){display:none}
+  .nav-mobile-toggle{display:block}
+  .nav-links.open a:not(.btn-nav):not(.theme-toggle-wrap){display:block}
+  .nav-links{flex-wrap:wrap}
+  .nav-links.open{position:absolute;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:var(--space-3);flex-direction:column;gap:2px}
+  .nav-links.open a{display:block !important;padding:var(--space-2) var(--space-3)}
+  .hero h1{font-size:32px}.hero p{font-size:16px}
+  .hero-stats{gap:var(--space-6)}
+  .flow-diagram{flex-direction:column}.flow-arrow{transform:rotate(90deg)}
+  .problem-solution{grid-template-columns:1fr}
 }
-.web3-product {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  transition: all var(--motion-fast);
-  position: relative;
-  overflow: hidden;
-}
-.web3-product:hover { border-color: var(--accent); box-shadow: var(--elev-raised); }
-.web3-product .product-num {
-  font-size: 48px;
-  font-weight: 700;
-  color: color-mix(in oklab, var(--accent), transparent 85%);
-  line-height: 1;
-  margin-bottom: var(--space-2);
-}
-.web3-product h3 { font-size: 18px; font-weight: 600; margin-bottom: var(--space-1); }
-.web3-product .product-tag {
-  display: inline-block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  color: var(--accent);
-  margin-bottom: var(--space-2);
-}
-.web3-product p { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: var(--space-3); }
-.web3-product .feature-list { list-style: none; padding: 0; margin: 0; }
-.web3-product .feature-list li {
-  font-size: 13px;
-  padding: var(--space-1) 0;
-  color: var(--fg);
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-.web3-product .feature-list li::before {
-  content: ">";
-  color: var(--accent);
-  font-weight: 600;
-  font-family: var(--font-mono);
-}
-.web3-product .product-cta {
-  display: inline-block;
-  margin-top: var(--space-3);
-  padding: var(--space-2) var(--space-4);
-  background: var(--accent);
-  color: var(--accent-on);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background var(--motion-fast);
-}
-.web3-product .product-cta:hover { background: var(--accent-hover); }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 var(--space-6);">
+  <div class="nav-inner">
     <div class="logo">&#9670; Agent <span>Team</span></div>
-    <div class="nav-links">
-      <a href="#agents">Skills</a>
-      <a href="#who-its-for">Who</a>
+    <div class="nav-links" id="navLinks">
       <a href="#agents">Team</a>
       <a href="#web3-suite">Web3</a>
-      <a href="#proof">Results</a>
       <a href="#showcase">Showcase</a>
       <a href="#prompt-generator">Get Started</a>
-      <a href="#quick-start">Quick Start</a>
       <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" class="btn-nav" target="_blank">GitHub &#8599;</a>
+      <span class="theme-toggle-wrap" style="display:inline-flex;align-items:center"><div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme"></div></span>
     </div>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">&#9776;</button>
   </div>
 </nav>
 
@@ -642,7 +310,7 @@ footer {
     <p>A CEO that validates. A builder that ships. Web3 agents for blockchain. A memory that never forgets. One prompt activates the whole team.</p>
     <div class="hero-btns">
       <a href="#prompt-generator" class="btn-primary">Generate Your Prompt</a>
-      <a href="#quick-start" class="btn-secondary">Quick Start</a>
+      <a href="#demo" class="btn-secondary" onclick="document.querySelector('.demo-toggle .toggle-switch').classList.contains('active')||toggleDemo();return true">Try Live Demo</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="stat-num">19</div><div class="stat-label">Agent Skills</div></div>
@@ -653,7 +321,7 @@ footer {
     <div class="flow-diagram">
       <div class="flow-step"><span class="step-agent">ceo-agent</span> validate</div>
       <div class="flow-arrow">&#8594;</div>
-      <div class="flow-step" style="border-color:var(--accent);"><span class="step-agent" style="color:var(--accent);">web3-agent</span> on-chain</div>
+      <div class="flow-step" style="border-color:var(--accent)"><span class="step-agent" style="color:var(--accent)">web3-agent</span> on-chain</div>
       <div class="flow-arrow">&#8594;</div>
       <div class="flow-step"><span class="step-agent">team-agent</span> plan</div>
       <div class="flow-arrow">&#8594;</div>
@@ -667,58 +335,66 @@ footer {
       <div class="flow-arrow">&#8594;</div>
       <div class="flow-step"><span class="step-agent">devops-agent</span> deploy</div>
       <div class="flow-arrow">&#8594;</div>
-      <div class="flow-step" style="border-color:var(--success);"><span class="step-agent" style="color:var(--success);">memory-agent</span> learn</div>
+      <div class="flow-step" style="border-color:var(--success)"><span class="step-agent" style="color:var(--success)">memory-agent</span> learn</div>
     </div>
   </div>
 </section>
 
-<section id="demo" style="background:var(--surface);">
+<section id="demo" style="background:var(--surface)" class="reveal">
   <div class="container">
     <div class="demo-toggle">
       <span class="toggle-label">Try before you clone</span>
       <div class="toggle-switch" id="demoToggle" onclick="toggleDemo()"></div>
-      <span class="toggle-label" style="font-weight:600;">Demo Mode</span>
+      <span class="toggle-label" style="font-weight:600">Demo Mode</span>
     </div>
-
     <div class="demo-section" id="demoSection">
       <div class="section-header">
         <span class="demo-badge">Live Demo</span>
         <h2>Try the Agent Team</h2>
         <p>No signup needed. See how the agents work right here.</p>
       </div>
-
       <div class="demo-tabs">
-        <div class="demo-tab active" onclick="switchDemoTab(this, 'contract')">Smart Contract Generator</div>
-        <div class="demo-tab" onclick="switchDemoTab(this, 'chat')">AI Agent Chat</div>
-        <div class="demo-tab" onclick="switchDemoTab(this, 'landing')">Landing Page Builder</div>
+        <button class="demo-tab active" onclick="switchDemoTab(this,'contract')">Smart Contract Generator</button>
+        <button class="demo-tab" onclick="switchDemoTab(this,'chat')">AI Agent Chat</button>
+        <button class="demo-tab" onclick="switchDemoTab(this,'landing')">Landing Page Builder</button>
       </div>
-
       <div class="demo-panel visible" id="demoContract">
         <div class="demo-contract">
           <div class="demo-input-area">
-            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:var(--space-2);">Describe the smart contract you want:</label>
+            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:var(--space-2)">Describe the smart contract you want:</label>
             <textarea id="contractInput" placeholder="e.g. Create an ERC-20 token called MyToken with symbol MTK, initial supply 1,000,000, and mint function for owner only">Create an ERC-20 token called MyToken with symbol MTK, initial supply 1,000,000, and mint function for owner only</textarea>
-            <button class="btn-generate" style="margin-top:var(--space-2);" onclick="generateContract()">Generate Contract</button>
+            <div style="display:flex;gap:var(--space-2);margin-top:var(--space-2);flex-wrap:wrap">
+              <button class="btn-generate" style="margin-bottom:0" onclick="generateContract()">Generate Contract</button>
+              <button class="btn-copy" style="margin-left:0" onclick="copyDemoOutput('demoContractOutput')">Copy Code</button>
+            </div>
           </div>
           <div class="demo-output" id="demoContractOutput"><span class="cm">// Your contract will appear here. Click "Generate Contract" to see the AI in action.</span></div>
         </div>
       </div>
-
       <div class="demo-panel" id="demoLanding">
         <div class="demo-contract">
           <div class="demo-input-area">
-            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:var(--space-2);">Describe your product or project:</label>
-            <textarea id="landingInput" placeholder="e.g. Learnify AI is an AI-powered learning platform that helps students learn skills, build portfolios, create ATS resumes, and get job ready" style="min-height:60px;">Learnify AI is an AI-powered learning platform that helps students learn skills, build portfolios, create ATS resumes, and get job ready</textarea>
-            <button class="btn-generate" style="margin-top:var(--space-2);" onclick="generateLandingPage()">Generate Landing Page Blueprint</button>
+            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:var(--space-2)">Describe your product or project:</label>
+            <textarea id="landingInput" placeholder="e.g. Learnify AI is an AI-powered learning platform that helps students learn skills, build portfolios, create ATS resumes, and get job ready" style="min-height:60px">Learnify AI is an AI-powered learning platform that helps students learn skills, build portfolios, create ATS resumes, and get job ready</textarea>
+            <div style="display:flex;gap:var(--space-2);margin-top:var(--space-2);flex-wrap:wrap">
+              <button class="btn-generate" style="margin-bottom:0" onclick="generateLandingPage()">Generate Blueprint</button>
+              <button class="btn-copy" style="margin-left:0" onclick="copyDemoOutput('demoLandingOutput')">Copy Blueprint</button>
+            </div>
           </div>
           <div class="demo-output" id="demoLandingOutput"><span class="cm">// Enter your product description and click "Generate" to see the 7-question framework in action.</span></div>
         </div>
       </div>
-
       <div class="demo-panel" id="demoChat">
         <div class="demo-chat" id="demoChatBox">
           <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg agent">Hello! I'm the Web3 Agent. Ask me anything about blockchain, crypto, or Web3. Try: "What is the current ETH price?" or "Explain DeFi"</div>
+            <div class="chat-msg agent">Hello! I'm the Web3 Agent. Ask me anything about blockchain, crypto, or Web3.</div>
+          </div>
+          <div class="chat-suggestions" id="chatSuggestions">
+            <span class="chat-suggestion" onclick="quickChat(this)">What is ETH price?</span>
+            <span class="chat-suggestion" onclick="quickChat(this)">Explain DeFi</span>
+            <span class="chat-suggestion" onclick="quickChat(this)">What are gas fees?</span>
+            <span class="chat-suggestion" onclick="quickChat(this)">What is Solana?</span>
+            <span class="chat-suggestion" onclick="quickChat(this)">Web3 vs AI</span>
           </div>
           <div class="chat-input-area">
             <input type="text" id="chatInput" placeholder="Ask the agent anything..." onkeydown="if(event.key==='Enter')sendChat()">
@@ -730,45 +406,29 @@ footer {
   </div>
 </section>
 
-<section id="who-its-for">
+<section id="who-its-for" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Who Is This For?</h2>
       <p>One system works for everyone building with AI.</p>
     </div>
     <div class="persona-grid">
-      <div class="persona-card">
-        <div class="persona-icon">&#128187;</div>
-        <h4>Developers</h4>
-        <p>Ship faster. Let AI handle boilerplate, audits, and deployment while you focus on architecture.</p>
-      </div>
-      <div class="persona-card">
-        <div class="persona-icon">&#128188;</div>
-        <h4>Founders</h4>
-        <p>Validate ideas before building. One prompt activates a CEO, builder, designer, and deploy pipeline.</p>
-      </div>
-      <div class="persona-card">
-        <div class="persona-icon">&#127970;</div>
-        <h4>Agencies</h4>
-        <p>Standardize delivery across clients. The Golden Flow ensures every project hits the same quality bar.</p>
-      </div>
-      <div class="persona-card">
-        <div class="persona-icon">&#127891;</div>
-        <h4>Solo Creators</h4>
-        <p>Do the work of a full team. Research, build, design, deploy, and learn — all from one conversation.</p>
-      </div>
+      <div class="persona-card"><div class="persona-icon">&#128187;</div><h4>Developers</h4><p>Ship faster. Let AI handle boilerplate, audits, and deployment while you focus on architecture.</p></div>
+      <div class="persona-card"><div class="persona-icon">&#128188;</div><h4>Founders</h4><p>Validate ideas before building. One prompt activates a CEO, builder, designer, and deploy pipeline.</p></div>
+      <div class="persona-card"><div class="persona-icon">&#127970;</div><h4>Agencies</h4><p>Standardize delivery across clients. The Golden Flow ensures every project hits the same quality bar.</p></div>
+      <div class="persona-card"><div class="persona-icon">&#127891;</div><h4>Solo Creators</h4><p>Do the work of a full team. Research, build, design, deploy, and learn — all from one conversation.</p></div>
     </div>
   </div>
 </section>
 
-<section id="problem" style="background:var(--surface);">
+<section id="problem" style="background:var(--surface)" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Why It Matters</h2>
       <p>The problem with AI workflows — and how this fixes it.</p>
     </div>
     <div class="problem-solution">
-      <div class="problem-box">
+      <div class="box problem-box">
         <h3>Without Agent Team Skills</h3>
         <ul>
           <li>Every AI session starts from zero memory</li>
@@ -778,7 +438,7 @@ footer {
           <li>No standard flow — quality varies every session</li>
         </ul>
       </div>
-      <div class="solution-box">
+      <div class="box solution-box">
         <h3>With Agent Team Skills</h3>
         <ul>
           <li>Memory persists across every session, forever</li>
@@ -792,7 +452,7 @@ footer {
   </div>
 </section>
 
-<section id="agents">
+<section id="agents" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Your Agent Team</h2>
@@ -802,27 +462,27 @@ footer {
   </div>
 </section>
 
-<section id="design-systems" style="background:var(--surface);">
+<section id="design-systems" style="background:var(--surface)" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Design Systems</h2>
-      <p>20 brand-grade design systems with tokens, CSS variables, and component specs. Ready for any AI to use.</p>
+      <p>20 brand-grade design systems with tokens, CSS variables, and component specs.</p>
     </div>
     <div class="design-system-grid" id="dsGrid"></div>
   </div>
 </section>
 
-<section id="web3-suite" style="background:var(--surface);">
+<section id="web3-suite" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Web3 Product Suite</h2>
-      <p>6 AI-powered Web3 products — smart contracts, NFTs, trading, news, security, and on-chain intelligence. Built by agents, ready to deploy.</p>
+      <p>6 AI-powered Web3 products — smart contracts, NFTs, trading, news, security, and on-chain intelligence.</p>
     </div>
     <div class="web3-product-grid" id="web3Grid"></div>
   </div>
 </section>
 
-<section id="trust" style="background:var(--surface);">
+<section id="trust" style="background:var(--surface)" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Why Trust This System</h2>
@@ -834,7 +494,7 @@ footer {
       <div class="trust-item"><div class="trust-num">4+</div><div class="trust-label">AI Tools Supported</div></div>
       <div class="trust-item"><div class="trust-num">100%</div><div class="trust-label">Open Source</div></div>
       <div class="trust-item"><div class="trust-num">47</div><div class="trust-label">Reference Templates</div></div>
-      <div class="trust-item"><div class="trust-num">1</div><div class="trust-label">Live Showcase Project</div></div>
+      <div class="trust-item"><div class="trust-num">1</div><div class="trust-label">Live Showcase</div></div>
     </div>
     <div class="testimonial-grid">
       <div class="testimonial-card">
@@ -856,7 +516,7 @@ footer {
   </div>
 </section>
 
-<section id="proof">
+<section id="proof" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Real Results</h2>
@@ -867,25 +527,52 @@ footer {
         <div class="proof-before"><div class="proof-value">2 hours</div></div>
         <div class="proof-arrow">&#8595;</div>
         <div class="proof-after"><div class="proof-value">15 minutes</div></div>
-        <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2);">Project setup time</p>
+        <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2)">Project setup time</p>
       </div>
       <div class="proof-card">
-        <div class="proof-before"><div class="proof-value">3+</div> repeat mistakes per project</div>
+        <div class="proof-before"><div class="proof-value">3+</div> repeat mistakes</div>
         <div class="proof-arrow">&#8595;</div>
         <div class="proof-after"><div class="proof-value">0</div> repeat mistakes</div>
-        <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2);">Memory system in place</p>
+        <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2)">Memory system in place</p>
       </div>
       <div class="proof-card">
-        <div class="proof-before"><div class="proof-value">7+</div> AI tool setups per project</div>
+        <div class="proof-before"><div class="proof-value">7+</div> AI tool setups</div>
         <div class="proof-arrow">&#8595;</div>
-        <div class="proof-after"><div class="proof-value">1</div> prompt covers everything</div>
-        <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2);">One CONNECT-PROMPT to rule them all</p>
+        <div class="proof-after"><div class="proof-value">1</div> prompt covers all</div>
+        <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2)">One CONNECT-PROMPT to rule them all</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="prompt-generator">
+<section id="showcase" style="background:var(--surface)" class="reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>Built With Agent Team Skills</h2>
+      <p>Real projects generated by the agent team using the 7-question framework.</p>
+    </div>
+    <div class="showcase-grid">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;align-self:start">
+        <div style="height:6px;background:linear-gradient(90deg,var(--accent),#818cf8)"></div>
+        <div style="padding:var(--space-5)">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--accent);margin-bottom:var(--space-2)">Showcase</div>
+          <h3 style="font-size:18px;font-weight:600;margin-bottom:var(--space-2)">Learnify AI</h3>
+          <p style="font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:var(--space-3)">AI-powered learning platform. Complete landing page built using the 7-question conversion framework. 6 personas, problem/solution comparison, trust metrics, before/after proof.</p>
+          <div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+            <a href="../projects/learnify-ai/index.html" style="display:inline-block;padding:8px 16px;background:var(--accent);color:var(--accent-on);border-radius:var(--radius-sm);font-size:13px;font-weight:600;text-decoration:none;transition:all .2s" target="_blank">Open Full Page &rarr;</a>
+            <span style="display:inline-block;padding:8px 16px;background:var(--surface-2);color:var(--muted);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px">19 agents &middot; 20 design systems &middot; 7Q framework</span>
+          </div>
+        </div>
+      </div>
+      <div class="showcase-iframe-wrap">
+        <iframe src="../projects/learnify-ai/index.html" loading="lazy" title="Learnify AI Live Preview"></iframe>
+        <div class="overlay"><span>&#9670; Learnify AI</span><a href="../projects/learnify-ai/index.html" target="_blank">Open &nearr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prompt-generator" class="reveal">
   <div class="container">
     <div class="section-header">
       <h2>Custom Prompt Generator</h2>
@@ -901,48 +588,17 @@ footer {
   </div>
 </section>
 
-<section id="showcase" style="background:var(--surface);">
-  <div class="container">
-    <div class="section-header">
-      <h2>Built With Agent Team Skills</h2>
-      <p>Real projects generated by the agent team using the 7-question framework.</p>
-    </div>
-    <div class="showcase-grid">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;align-self:start;">
-        <div style="height:8px;background:linear-gradient(90deg,var(--accent),#1a4a9e)"></div>
-        <div style="padding:var(--space-5);">
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--accent);margin-bottom:var(--space-2)">Showcase</div>
-          <h3 style="font-size:18px;font-weight:600;margin-bottom:var(--space-2)">Learnify AI</h3>
-          <p style="font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:var(--space-3)">AI-powered learning platform. Complete landing page built using the 7-question conversion framework. 6 personas, problem/solution comparison, trust metrics, before/after proof.</p>
-          <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
-            <a href="../projects/learnify-ai/index.html" style="display:inline-block;padding:8px 16px;background:var(--accent);color:var(--accent-on);border-radius:var(--radius-sm);font-size:13px;font-weight:500;text-decoration:none" target="_blank">Open Full Page &rarr;</a>
-            <span style="display:inline-block;padding:8px 16px;background:var(--bg);color:var(--muted);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;">19 agents &middot; 20 design systems &middot; 7Q framework</span>
-          </div>
-        </div>
-      </div>
-      <div class="showcase-iframe-wrap">
-        <iframe src="../projects/learnify-ai/index.html" loading="lazy" title="Learnify AI Live Preview"></iframe>
-        <div class="overlay">
-          <span>&#9670; Learnify AI</span>
-          <a href="../projects/learnify-ai/index.html" target="_blank">Open &nearr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="get-started">
+<section id="get-started" class="reveal">
   <div class="container">
     <div class="cta-big">
       <h2>Ready to Ship Faster?</h2>
-      <p>One prompt activates 18 agents. Clone the repo, set up memory, paste the prompt. Your AI team is ready in 5 minutes.</p>
+      <p>One prompt activates 19 agents. Clone the repo, set up memory, paste the prompt. Your AI team is ready in 5 minutes.</p>
       <div class="cta-group">
         <a href="#prompt-generator" class="btn-primary">Generate Your Prompt</a>
-        <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" class="btn-secondary" target="_blank">Clone on GitHub &rarr;</a>
+        <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" class="btn-secondary" target="_blank" style="display:inline-block;padding:var(--space-3) var(--space-6);border-radius:var(--radius-sm);font-weight:600;font-size:15px;text-decoration:none;background:var(--surface);color:var(--fg);border:1px solid var(--border)">Clone on GitHub &rarr;</a>
       </div>
     </div>
-
-    <div class="quick-start" style="margin-top:var(--space-8);">
+    <div class="quick-start" style="margin-top:var(--space-8)">
       <div class="qs-card">
         <div class="qs-num">1</div>
         <h4>Clone the repo</h4>
@@ -951,95 +607,74 @@ footer {
       <div class="qs-card">
         <div class="qs-num">2</div>
         <h4>Set up memory</h4>
-        <p>macOS/Linux: <code>bash memory-sync/sync-memory.sh init</code><br>
-        Windows: <code>.\memory-sync\sync-memory.ps1 init</code></p>
+        <p>macOS/Linux: <code>bash memory-sync/sync-memory.sh init</code><br>Windows: <code>.\memory-sync\sync-memory.ps1 init</code></p>
       </div>
       <div class="qs-card">
         <div class="qs-num">3</div>
         <h4>Start your AI session</h4>
         <p>Paste the generated prompt into Claude Code, claude.ai, Antigravity, or Open Code.</p>
-        <p style="margin-top:var(--space-2);font-size:13px;color:var(--muted);">
-          <strong>Pro tip:</strong> Run <code>sync-memory.ps1 pull</code> at the start and <code>push</code> at the end of every session.
-        </p>
+        <p style="margin-top:var(--space-2);font-size:13px;color:var(--muted)"><strong>Pro tip:</strong> Run <code>sync-memory.ps1 pull</code> at the start and <code>push</code> at the end of every session.</p>
       </div>
     </div>
     <div class="memory-status" id="memoryStatus">
       <div class="status-card">
         <div class="status-dot unchecked"></div>
-        <span id="memoryStatusText">Checking memory status...</span>
+        <span id="memoryStatusText">Click to verify memory status</span>
       </div>
     </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:var(--space-2);">
+    <p style="font-size:13px;color:var(--meta);margin-top:var(--space-2)">
       Windows: <code>.\memory-sync\sync-memory.ps1 init</code> &middot;
       macOS/Linux: <code>bash memory-sync/sync-memory.sh init</code>
     </p>
-
     <div class="featured-on">
-      <span>Works with Claude Code</span>
-      <span>&middot;</span>
-      <span>claude.ai</span>
-      <span>&middot;</span>
-      <span>Antigravity</span>
-      <span>&middot;</span>
-      <span>Open Code</span>
-      <span>&middot;</span>
-      <span>Any AI</span>
+      <span>Claude Code</span><span>&middot;</span><span>claude.ai</span><span>&middot;</span><span>Antigravity</span><span>&middot;</span><span>Open Code</span><span>&middot;</span><span>Any AI</span>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>Agent Team Skills &mdash; Built by Vishwajeet &middot; <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" style="color:var(--accent);text-decoration:none;">GitHub</a></p>
+    <p>Agent Team Skills &mdash; Built by Vishwajeet &middot; <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" style="color:var(--accent);text-decoration:none">GitHub</a></p>
   </div>
 </footer>
 
 <script>
 const agents = [
-  { id: 'ceo-agent', name: 'CEO Agent', role: 'Validation & Direction', desc: 'Validates ideas using the Clarity Framework — proven revenue, real users, recurring model, niche fit. Makes go/hold/kill calls.', icon: '&#9733;' },
-  { id: 'team-agent', name: 'Team Agent', role: 'Project Coordination', desc: 'Task breakdown, status tracking, handoff coordination. Maintains PROJECT_STATE so any session picks up mid-flight.', icon: '&#9776;' },
-  { id: 'saas-builder', name: 'SaaS Builder', role: 'Full-Stack Build', desc: 'The Golden Flow builder: PRD → architecture → security baseline → UI. Handles the entire build pipeline.', icon: '&#9881;' },
-  { id: 'research-resources', name: 'Research Agent', role: 'Market & Tech Research', desc: 'Market analysis, competitor research, technology evaluation. Maintains a directory of free tools and resources.', icon: '&#128269;' },
-  { id: 'design-agent', name: 'Design Agent', role: 'Brand & Creative', desc: 'Brand identity, component design, 3D, motion, video. References 10 design systems and 47 templates.', icon: '&#127912;' },
-  { id: 'ai-agent', name: 'AI Agent', role: 'LLM Integration', desc: 'LLM integration, prompt engineering, AI safety guardrails. Handles API selection and rate limiting.', icon: '&#9889;' },
-  { id: 'ml-agent', name: 'ML Agent', role: 'Machine Learning', desc: 'Classical ML: model selection, data pipelines, evaluation metrics. Feature engineering and experiment tracking.', icon: '&#128200;' },
-  { id: 'test-agent', name: 'Test Agent', role: 'Security & QA', desc: 'Independent security review and QA. Never skipped in the Golden Flow. Checks OWASP, auth, edge cases.', icon: '&#128737;' },
-  { id: 'legal-agent', name: 'Legal Agent', role: 'Compliance', desc: 'Privacy policies, Terms of Service, GDPR/DPDP compliance. Generates standard legal docs for any project.', icon: '&#128214;' },
-  { id: 'seo-agent', name: 'SEO Agent', role: 'Search Optimization', desc: 'Keyword strategy, on-page SEO, technical SEO. Meta tags, structured data, sitemap generation.', icon: '&#128270;' },
-  { id: 'devops-agent', name: 'DevOps Agent', role: 'CI/CD & Deploy', desc: 'CI/CD pipelines, deployment, rollback plans, monitoring setup, incident response runbooks.', icon: '&#128640;' },
-  { id: 'memory-agent', name: 'Memory Agent', role: 'Persistence & Learning', desc: 'Cross-project memory. Logs mistakes, decisions, patterns. Git-backed sync ensures nothing is lost.', icon: '&#128218;' },
-  { id: 'web3-agent', name: 'Web3 Agent', role: 'On-Chain Intelligence', desc: 'Token research, on-chain analysis, live market data, DeFi evaluation, and blockchain intelligence.', icon: '&#9889;' },
-  { id: 'smart-contract-agent', name: 'Smart Contract Agent', role: 'Solidity Gen & Audit', desc: 'Generate, audit, deploy, and gas-optimize Solidity contracts. Catch exploits before they ship.', icon: '&#128220;' },
-  { id: 'nft-agent', name: 'NFT Agent', role: 'Generative Art & Minting', desc: 'AI image generation, on-chain minting, collection deployment across 20+ networks.', icon: '&#127912;' },
-  { id: 'trading-agent', name: 'Trading Agent', role: 'Technical Analysis', desc: 'Chart patterns, indicators, strategy development, backtesting, and market regime detection.', icon: '&#128200;' },
-  { id: 'crypto-news-agent', name: 'Crypto News Agent', role: 'Automated News', desc: 'Trend scanning, short-form article generation, competitive intelligence, daily roundups.', icon: '&#128240;' },
-  { id: 'security-agent', name: 'Security Agent', role: 'Web3 Threat Detection', desc: 'Phishing detection, contract risk scoring, transaction simulation, wallet security assessment.', icon: '&#128737;' },
-  { id: 'landing-page-agent', name: 'Landing Page Agent', role: 'Conversion Framework', desc: 'Designs landing pages using the 7-question framework: hero, audience, problem, trust, services, proof, CTA.', icon: '&#128196;' }
+  {id:'ceo-agent',name:'CEO Agent',role:'Validation & Direction',desc:'Validates ideas using the Clarity Framework — proven revenue, real users, recurring model, niche fit. Makes go/hold/kill calls.',icon:'&#9733;'},
+  {id:'team-agent',name:'Team Agent',role:'Project Coordination',desc:'Task breakdown, status tracking, handoff coordination. Maintains PROJECT_STATE so any session picks up mid-flight.',icon:'&#9776;'},
+  {id:'saas-builder',name:'SaaS Builder',role:'Full-Stack Build',desc:'The Golden Flow builder: PRD → architecture → security baseline → UI. Handles the entire build pipeline.',icon:'&#9881;'},
+  {id:'research-resources',name:'Research Agent',role:'Market & Tech Research',desc:'Market analysis, competitor research, technology evaluation. Maintains a directory of free tools and resources.',icon:'&#128269;'},
+  {id:'design-agent',name:'Design Agent',role:'Brand & Creative',desc:'Brand identity, component design, 3D, motion, video. References 10 design systems and 47 templates.',icon:'&#127912;'},
+  {id:'ai-agent',name:'AI Agent',role:'LLM Integration',desc:'LLM integration, prompt engineering, AI safety guardrails. Handles API selection and rate limiting.',icon:'&#9889;'},
+  {id:'ml-agent',name:'ML Agent',role:'Machine Learning',desc:'Classical ML: model selection, data pipelines, evaluation metrics. Feature engineering and experiment tracking.',icon:'&#128200;'},
+  {id:'test-agent',name:'Test Agent',role:'Security & QA',desc:'Independent security review and QA. Never skipped in the Golden Flow. Checks OWASP, auth, edge cases.',icon:'&#128737;'},
+  {id:'legal-agent',name:'Legal Agent',role:'Compliance',desc:'Privacy policies, Terms of Service, GDPR/DPDP compliance. Generates standard legal docs for any project.',icon:'&#128214;'},
+  {id:'seo-agent',name:'SEO Agent',role:'Search Optimization',desc:'Keyword strategy, on-page SEO, technical SEO. Meta tags, structured data, sitemap generation.',icon:'&#128270;'},
+  {id:'devops-agent',name:'DevOps Agent',role:'CI/CD & Deploy',desc:'CI/CD pipelines, deployment, rollback plans, monitoring setup, incident response runbooks.',icon:'&#128640;'},
+  {id:'memory-agent',name:'Memory Agent',role:'Persistence & Learning',desc:'Cross-project memory. Logs mistakes, decisions, patterns. Git-backed sync ensures nothing is lost.',icon:'&#128218;'},
+  {id:'web3-agent',name:'Web3 Agent',role:'On-Chain Intelligence',desc:'Token research, on-chain analysis, live market data, DeFi evaluation, and blockchain intelligence.',icon:'&#9889;'},
+  {id:'smart-contract-agent',name:'Smart Contract Agent',role:'Solidity Gen & Audit',desc:'Generate, audit, deploy, and gas-optimize Solidity contracts. Catch exploits before they ship.',icon:'&#128220;'},
+  {id:'nft-agent',name:'NFT Agent',role:'Generative Art & Minting',desc:'AI image generation, on-chain minting, collection deployment across 20+ networks.',icon:'&#127912;'},
+  {id:'trading-agent',name:'Trading Agent',role:'Technical Analysis',desc:'Chart patterns, indicators, strategy development, backtesting, and market regime detection.',icon:'&#128200;'},
+  {id:'crypto-news-agent',name:'Crypto News Agent',role:'Automated News',desc:'Trend scanning, short-form article generation, competitive intelligence, daily roundups.',icon:'&#128240;'},
+  {id:'security-agent',name:'Security Agent',role:'Web3 Threat Detection',desc:'Phishing detection, contract risk scoring, transaction simulation, wallet security assessment.',icon:'&#128737;'},
+  {id:'landing-page-agent',name:'Landing Page Agent',role:'Conversion Framework',desc:'Designs landing pages using the 7-question framework: hero, audience, problem, trust, services, proof, CTA.',icon:'&#128196;'}
 ];
 
 const designSystems = [
-  { name: 'Default', desc: 'Neutral modern starter', color: '#fafafa' },
-  { name: 'Linear App', desc: 'Dark-mode productivity', color: '#1a1a2e' },
-  { name: 'Neobrutalism', desc: 'Bold high-contrast', color: '#ffd43b' },
-  { name: 'Glassmorphism', desc: 'Frosted glass', color: 'rgba(255,255,255,0.3)' },
-  { name: 'Minimal', desc: 'Clean & minimal', color: '#ffffff' },
-  { name: 'Stripe', desc: 'Fintech SaaS', color: '#635bff' },
-  { name: 'Vercel', desc: 'Developer tools', color: '#000000' },
-  { name: 'Claude', desc: 'AI-centric', color: '#d97757' },
-  { name: 'Shadcn', desc: 'Component-based', color: '#18181b' },
-  { name: 'Supabase', desc: 'Open-source SaaS', color: '#3ecf8e' },
-  { name: 'Apple', desc: 'Apple design language', color: '#f5f5f7' },
-  { name: 'OpenAI', desc: 'AI brand', color: '#10a37f' },
-  { name: 'GitHub', desc: 'Developer platform', color: '#24292f' },
-  { name: 'Shopify', desc: 'Commerce platform', color: '#95bf47' },
-  { name: 'Spotify', desc: 'Music streaming', color: '#1db954' },
-  { name: 'Notion', desc: 'Productivity tool', color: '#ffffff' },
-  { name: 'Discord', desc: 'Chat platform', color: '#5865f2' },
-  { name: 'Framer', desc: 'Design tool', color: '#0055ff' },
-  { name: 'Cursor', desc: 'AI code editor', color: '#1a1a2e' },
-  { name: 'Figma', desc: 'Design platform', color: '#1e1e1e' }
+  {name:'Default',desc:'Neutral modern starter',color:'#fafafa'},{name:'Linear App',desc:'Dark-mode productivity',color:'#1a1a2e'},
+  {name:'Neobrutalism',desc:'Bold high-contrast',color:'#ffd43b'},{name:'Glassmorphism',desc:'Frosted glass',color:'rgba(255,255,255,0.3)'},
+  {name:'Minimal',desc:'Clean & minimal',color:'#ffffff'},{name:'Stripe',desc:'Fintech SaaS',color:'#635bff'},
+  {name:'Vercel',desc:'Developer tools',color:'#000000'},{name:'Claude',desc:'AI-centric',color:'#d97757'},
+  {name:'Shadcn',desc:'Component-based',color:'#18181b'},{name:'Supabase',desc:'Open-source SaaS',color:'#3ecf8e'},
+  {name:'Apple',desc:'Apple design language',color:'#f5f5f7'},{name:'OpenAI',desc:'AI brand',color:'#10a37f'},
+  {name:'GitHub',desc:'Developer platform',color:'#24292f'},{name:'Shopify',desc:'Commerce platform',color:'#95bf47'},
+  {name:'Spotify',desc:'Music streaming',color:'#1db954'},{name:'Notion',desc:'Productivity tool',color:'#ffffff'},
+  {name:'Discord',desc:'Chat platform',color:'#5865f2'},{name:'Framer',desc:'Design tool',color:'#0055ff'},
+  {name:'Cursor',desc:'AI code editor',color:'#1a1a2e'},{name:'Figma',desc:'Design platform',color:'#1e1e1e'}
 ];
 
+// Render agent cards
 const agentGrid = document.getElementById('agentGrid');
 agents.forEach(a => {
   const card = document.createElement('div');
@@ -1048,40 +683,34 @@ agents.forEach(a => {
   agentGrid.appendChild(card);
 });
 
+// Render design system cards
 const dsGrid = document.getElementById('dsGrid');
 designSystems.forEach(ds => {
   const card = document.createElement('div');
   card.className = 'ds-card';
-  card.innerHTML = `<div class="ds-swatch" style="background:${ds.color};${ds.color === '#ffffff' ? 'border-color:#ddd;' : ''}"></div><h4>${ds.name}</h4><p>${ds.desc}</p>`;
+  card.innerHTML = `<div class="ds-swatch" style="background:${ds.color}${ds.color==='#ffffff'?';border-color:#ddd':''}"></div><h4>${ds.name}</h4><p>${ds.desc}</p>`;
   dsGrid.appendChild(card);
 });
 
+// Web3 products
 const web3Products = [
-  { num: '01', name: 'Web3 AI Chatbot', tag: 'ON-CHAIN INTELLIGENCE', desc: 'Ask any question about blockchain and crypto. Reliable on-chain data, live market analysis, and DeFi research.', features: ['Access to live crypto data', 'On-chain transaction analysis', 'Token and project research', 'Market analysis & trends'], cta: 'Try Web3 Agent', agent: 'web3-agent' },
-  { num: '02', name: 'AI News Auto-Model', tag: 'AUTOMATED CURATION', desc: 'Scans the Web3 ecosystem every 60 minutes. Generates short articles on trending topics — fully automated.', features: ['AI-generated news summaries', 'Trending narrative detection', 'Competitive intelligence', 'Daily roundup emails'], cta: 'Try News Agent', agent: 'crypto-news-agent' },
-  { num: '03', name: 'Smart Contract Generator & Auditor', tag: 'SOLIDITY SECURITY', desc: 'Generate or audit any Solidity contract. Describe what you want or paste code — AI handles the rest.', features: ['AI smart contract generation', 'Solidity security audit', 'Gas optimization', 'Exploit detection'], cta: 'Try Smart Contract Agent', agent: 'smart-contract-agent' },
-  { num: '04', name: 'AI NFT Generator', tag: 'GENERATIVE ART', desc: 'Create NFTs from text prompts. AI generates artwork, deploys on-chain in 30-60 seconds across 20+ networks.', features: ['Text-to-image AI generation', 'On-chain minting', 'Trait matrix generation', 'Cross-chain deployment'], cta: 'Try NFT Agent', agent: 'nft-agent' },
-  { num: '05', name: 'AI Trading Assistant', tag: 'TECHNICAL ANALYSIS', desc: 'Chart pattern detection, technical indicators, price prediction, and strategy development for crypto markets.', features: ['Chart pattern recognition', 'RSI, MACD, Bollinger analysis', 'Strategy backtesting', 'Market regime detection'], cta: 'Try Trading Agent', agent: 'trading-agent' },
-  { num: '06', name: 'CryptoGuard Security', tag: 'WEB3 ANTIVIRUS', desc: 'Elevate Web3 security with AI-powered threat detection. Phishing blocker, contract risk scanner, transaction simulator.', features: ['Phishing site detection', 'Smart contract risk scoring', 'Transaction simulation', 'Wallet security audit'], cta: 'Try Security Agent', agent: 'security-agent' }
+  {num:'01',name:'Web3 AI Chatbot',tag:'ON-CHAIN INTELLIGENCE',desc:'Ask any question about blockchain and crypto. Reliable on-chain data, live market analysis, and DeFi research.',features:['Access to live crypto data','On-chain transaction analysis','Token and project research','Market analysis & trends'],cta:'Try Web3 Agent',agent:'web3-agent'},
+  {num:'02',name:'AI News Auto-Model',tag:'AUTOMATED CURATION',desc:'Scans the Web3 ecosystem every 60 minutes. Generates short articles on trending topics — fully automated.',features:['AI-generated news summaries','Trending narrative detection','Competitive intelligence','Daily roundup emails'],cta:'Try News Agent',agent:'crypto-news-agent'},
+  {num:'03',name:'Smart Contract Generator & Auditor',tag:'SOLIDITY SECURITY',desc:'Generate or audit any Solidity contract. Describe what you want or paste code — AI handles the rest.',features:['AI smart contract generation','Solidity security audit','Gas optimization','Exploit detection'],cta:'Try Smart Contract Agent',agent:'smart-contract-agent'},
+  {num:'04',name:'AI NFT Generator',tag:'GENERATIVE ART',desc:'Create NFTs from text prompts. AI generates artwork, deploys on-chain in 30-60 seconds across 20+ networks.',features:['Text-to-image AI generation','On-chain minting','Trait matrix generation','Cross-chain deployment'],cta:'Try NFT Agent',agent:'nft-agent'},
+  {num:'05',name:'AI Trading Assistant',tag:'TECHNICAL ANALYSIS',desc:'Chart pattern detection, technical indicators, price prediction, and strategy development for crypto markets.',features:['Chart pattern recognition','RSI, MACD, Bollinger analysis','Strategy backtesting','Market regime detection'],cta:'Try Trading Agent',agent:'trading-agent'},
+  {num:'06',name:'CryptoGuard Security',tag:'WEB3 ANTIVIRUS',desc:'Elevate Web3 security with AI-powered threat detection. Phishing blocker, contract risk scanner, transaction simulator.',features:['Phishing site detection','Smart contract risk scoring','Transaction simulation','Wallet security audit'],cta:'Try Security Agent',agent:'security-agent'}
 ];
 
 const web3Grid = document.getElementById('web3Grid');
 web3Products.forEach(p => {
   const card = document.createElement('div');
   card.className = 'web3-product';
-  card.innerHTML = `
-    <div class="product-num">${p.num}</div>
-    <div class="product-tag">${p.tag}</div>
-    <h3>${p.name}</h3>
-    <p>${p.desc}</p>
-    <ul class="feature-list">
-      ${p.features.map(f => `<li>${f}</li>`).join('')}
-    </ul>
-    <a href="#" class="product-cta" onclick="document.getElementById('prompt-generator').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.querySelectorAll('#agentCheckboxes input').forEach(cb => { if(cb.value==='${p.agent}') { cb.checked=true; cb.parentElement.classList.add('selected'); } }); generatePrompt(); }, 100); return false;">${p.cta} &rarr;</a>
-  `;
+  card.innerHTML = `<div class="product-num">${p.num}</div><div class="product-tag">${p.tag}</div><h3>${p.name}</h3><p>${p.desc}</p><ul class="feature-list">${p.features.map(f=>'<li>'+f+'</li>').join('')}</ul><a href="#" class="product-cta" onclick="document.getElementById('prompt-generator').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.querySelectorAll('#agentCheckboxes input').forEach(cb=>{if(cb.value==='${p.agent}'){cb.checked=true;cb.parentElement.classList.add('selected')}});generatePrompt()},100);return false">${p.cta} &rarr;</a>`;
   web3Grid.appendChild(card);
 });
 
+// Agent checkboxes
 const checkboxGrid = document.getElementById('agentCheckboxes');
 agents.forEach(a => {
   const label = document.createElement('label');
@@ -1090,6 +719,7 @@ agents.forEach(a => {
   checkboxGrid.appendChild(label);
 });
 
+// Prompt generator
 const basePrompt = `You are running as Vishwajeet's Agent Team: a skill-based AI system where specialized agents collaborate on one project at a time.
 
 ## Active Agents
@@ -1119,7 +749,6 @@ Every project follows this order:
 Reference the appropriate system before any UI work.
 
 ---
-
 Tell me what you're working on, and start as ceo-agent.`;
 
 function generatePrompt() {
@@ -1129,14 +758,11 @@ function generatePrompt() {
     const a = agents.find(x => x.id === id);
     return `- **${a.name}**: ${a.desc}`;
   }).join('\n');
-  
-  let prompt = basePrompt.replace('__AGENTS__', agentList || '*No agents selected — load skills individually*');
-  
+  let prompt = basePrompt.replace('__AGENTS__', agentList || '*No agents selected*');
   if (selected.length < agents.length) {
     const inactive = agents.filter(a => !selected.includes(a.id)).map(a => a.name).join(', ');
     prompt += `\n\n**Inactive this session:** ${inactive} — can be activated on request.`;
   }
-  
   document.getElementById('promptOutput').value = prompt;
 }
 
@@ -1152,7 +778,7 @@ function copyPrompt() {
 
 generatePrompt();
 
-// Demo mode toggle
+// Demo toggle
 function toggleDemo() {
   const toggle = document.getElementById('demoToggle');
   const section = document.getElementById('demoSection');
@@ -1168,112 +794,124 @@ function switchDemoTab(el, tab) {
   document.getElementById('demo' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('visible');
 }
 
-// Smart contract demo
-const contractTemplates = {
-  erc20: {
-    name: 'MyToken',
-    symbol: 'MTK',
-    supply: '1000000'
-  }
-};
+// Copy demo output
+function copyDemoOutput(id) {
+  const el = document.getElementById(id);
+  const text = el.textContent.replace(/\s+/g, ' ').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
 
+// Smart contract generator
 function generateContract() {
-  const input = document.getElementById('contractInput').value.toLowerCase();
+  const input = document.getElementById('contractInput').value;
   const output = document.getElementById('demoContractOutput');
+  const lower = input.toLowerCase();
+
+  function showLoading(done) {
+    output.innerHTML = `<span class="cm">// Analyzing request... <span class="loading"></span></span>\n`;
+    setTimeout(() => {
+      output.innerHTML += `<span class="cm">// Generating Solidity contract... <span class="loading"></span></span>\n`;
+      setTimeout(() => {
+        output.innerHTML += `<span class="cm">// Running security audit... <span class="loading"></span></span>\n`;
+        setTimeout(() => {
+          output.innerHTML += `<span class="cm">// Gas optimization applied. No vulnerabilities found.</span>\n\n`;
+          done();
+        }, 400);
+      }, 400);
+    }, 300);
+  }
+
   let code = '';
-
-  if (input.includes('erc-20') || input.includes('erc20') || input.includes('token')) {
-    const nameMatch = input.match(/called\s+(\w+)/i);
-    const symbolMatch = input.match(/symbol\s+(\w+)/i);
-    const supplyMatch = input.match(/(\d+[,\d]*(?:\.\d+)?)\s*(?:supply|tokens?)/i);
-    const name = nameMatch ? nameMatch[1] : 'MyToken';
-    const symbol = symbolMatch ? symbolMatch[1] : 'MTK';
-    const supply = supplyMatch ? supplyMatch[1].replace(/,/g, '') : '1000000';
-    const hasMint = input.includes('mint') || input.includes('only owner');
-
+  if (lower.includes('erc-20') || lower.includes('erc20') || lower.includes('token')) {
+    const name = (input.match(/called\s+(\w+)/i)||[])[1]||'MyToken';
+    const sym = (input.match(/symbol\s+(\w+)/i)||[])[1]||'MTK';
+    const supply = ((input.match(/(\d+[,\d]*)\s*(?:supply|tokens?)/i)||[])[1]||'1000000').replace(/,/g,'');
+    const hasMint = lower.includes('mint')||lower.includes('only owner');
+    const mintFn = hasMint ? `\n    function mint(address to, uint256 amount) public onlyOwner {\n        _mint(to, amount);\n    }` : '';
     code = `<span class="cm">// SPDX-License-Identifier: MIT</span>
-<span class="cm">// Generated by Smart Contract Agent</span>
 <span class="kw">pragma</span> solidity <span class="num">^0.8.20</span>;
-
 <span class="kw">import</span> <span class="str">"@openzeppelin/contracts/token/ERC20/ERC20.sol"</span>;
 <span class="kw">import</span> <span class="str">"@openzeppelin/contracts/access/Ownable.sol"</span>;
 
 <span class="kw">contract</span> <span class="ty">${name}</span> <span class="kw">is</span> <span class="ty">ERC20</span>, <span class="ty">Ownable</span> {
-    <span class="kw">constructor</span>() <span class="ty">ERC20</span>(<span class="str">"${name}"</span>, <span class="str">"${symbol}"</span>) {
+    constructor() <span class="ty">ERC20</span>(<span class="str">"${name}"</span>, <span class="str">"${sym}"</span>) {
         _mint(msg.sender, <span class="num">${supply}</span> * <span class="num">10 ** decimals()</span>);
-    }
+    }${mintFn}
 
-    <span class="fn">function</span> <span class="fn">mint</span>(<span class="kw">address</span> to, <span class="kw">uint256</span> amount) <span class="kw">public</span> <span class="kw">onlyOwner</span> {
-        _mint(to, amount);
-    }
-
-    <span class="fn">function</span> <span class="fn">burn</span>(<span class="kw">uint256</span> amount) <span class="kw">public</span> {
+    function burn(uint256 amount) public {
         _burn(msg.sender, amount);
     }
 }`;
-
-    if (hasMint) {
-      // already includes mint
-    } else {
-      // remove mint function if not requested
-      code = code.replace(`\n\n    <span class="fn">function</span> <span class="fn">mint</span>(<span class="kw">address</span> to, <span class="kw">uint256</span> amount) <span class="kw">public</span> <span class="kw">onlyOwner</span> {\n        _mint(to, amount);\n    }`, '');
-    }
-  } else if (input.includes('nft') || input.includes('erc-721') || input.includes('collection')) {
-    const nameMatch = input.match(/called\s+(\w+)/i);
-    const symbolMatch = input.match(/symbol\s+(\w+)/i);
-    const name = nameMatch ? nameMatch[1] : 'MyNFT';
-    const symbol = symbolMatch ? symbolMatch[1] : 'MNFT';
-
+  } else if (lower.includes('nft')||lower.includes('erc-721')||lower.includes('collection')) {
+    const name = (input.match(/called\s+(\w+)/i)||[])[1]||'MyNFT';
+    const sym = (input.match(/symbol\s+(\w+)/i)||[])[1]||'MNFT';
     code = `<span class="cm">// SPDX-License-Identifier: MIT</span>
-<span class="cm">// Generated by Smart Contract Agent</span>
 <span class="kw">pragma</span> solidity <span class="num">^0.8.20</span>;
-
 <span class="kw">import</span> <span class="str">"@openzeppelin/contracts/token/ERC721/ERC721.sol"</span>;
 <span class="kw">import</span> <span class="str">"@openzeppelin/contracts/access/Ownable.sol"</span>;
 
 <span class="kw">contract</span> <span class="ty">${name}</span> <span class="kw">is</span> <span class="ty">ERC721</span>, <span class="ty">Ownable</span> {
-    <span class="kw">uint256</span> <span class="kw">private</span> _nextTokenId;
+    uint256 private _nextTokenId;
 
-    <span class="kw">constructor</span>() <span class="ty">ERC721</span>(<span class="str">"${name}"</span>, <span class="str">"${symbol}"</span>) {}
+    constructor() <span class="ty">ERC721</span>(<span class="str">"${name}"</span>, <span class="str">"${sym}"</span>) {}
 
-    <span class="fn">function</span> <span class="fn">safeMint</span>(<span class="kw">address</span> to) <span class="kw">public</span> <span class="kw">onlyOwner</span> {
-        <span class="kw">uint256</span> tokenId = _nextTokenId++;
+    function safeMint(address to) public onlyOwner {
+        uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
     }
 
-    <span class="fn">function</span> <span class="fn">totalSupply</span>() <span class="kw">public</span> <span class="kw">view</span> <span class="kw">returns</span> (<span class="kw">uint256</span>) {
-        <span class="kw">return</span> _nextTokenId;
+    function totalSupply() public view returns (uint256) {
+        return _nextTokenId;
+    }
+}`;
+  } else if (lower.includes('multi')||lower.includes('1155')) {
+    code = `<span class="cm">// ERC-1155 Multi-Token</span>
+<span class="kw">pragma</span> solidity <span class="num">^0.8.20</span>;
+<span class="kw">import</span> <span class="str">"@openzeppelin/contracts/token/ERC1155/ERC1155.sol"</span>;
+<span class="kw">import</span> <span class="str">"@openzeppelin/contracts/access/AccessControl.sol"</span>;
+
+<span class="kw">contract</span> <span class="ty">MultiCollection</span> <span class="kw">is</span> <span class="ty">ERC1155</span>, <span class="ty">AccessControl</span> {
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+
+    constructor() <span class="ty">ERC1155</span>(<span class="str">"https://api.example/tokens/{id}.json"</span>) {
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(MINTER_ROLE, msg.sender);
+    }
+
+    function mint(address to, uint256 id, uint256 amount) public onlyRole(MINTER_ROLE) {
+        _mint(to, id, amount, "");
+    }
+
+    function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
+        return super.supportsInterface(interfaceId);
     }
 }`;
   } else {
-    code = `<span class="cm">// I need more details to generate this contract.</span>
-<span class="cm">// Please specify:</span>
-<span class="cm">// - Standard (ERC-20, ERC-721, ERC-1155)</span>
-<span class="cm">// - Token name and symbol</span>
-<span class="cm">// - Key functions (mint, burn, pause, etc.)</span>
-<span class="cm">// - Access control (ownable, roles)</span>
-<span class="cm">//</span>
+    code = `<span class="cm">/* I need more details. Specify:</span>
+<span class="cm"> - Standard (ERC-20, ERC-721, ERC-1155)</span>
+<span class="cm"> - Token name and symbol</span>
+<span class="cm"> - Key functions (mint, burn, pause, etc.)</span>
+<span class="cm"> - Access control (ownable, roles)</span>
+<span class="cm">*/</span>
+
 <span class="cm">// Example: "Create an ERC-20 token called MyToken with symbol MTK"</span>`;
   }
 
-  // Simulate loading
-  output.innerHTML = `<span class="cm">// Analyzing your request...</span>\n`;
-  setTimeout(() => {
-    output.innerHTML = `<span class="cm">// Generating Solidity contract...</span>\n`;
-    setTimeout(() => {
-      output.innerHTML = `<span class="cm">// Running security audit...</span>\n<span class="cm">// Gas optimization applied</span>\n<span class="cm">// No vulnerabilities found</span>\n\n` + code;
-    }, 400);
-  }, 400);
+  showLoading(() => { output.innerHTML = code; });
 }
 
-// Landing page builder demo
+// Landing page builder
 function generateLandingPage() {
   const input = document.getElementById('landingInput').value.trim();
   const output = document.getElementById('demoLandingOutput');
-  if (!input) { output.innerHTML = `<span class="cm">// Please describe your product first.</span>`; return; }
+  if (!input) { output.innerHTML = '<span class="cm">// Please describe your product first.</span>'; return; }
 
-  const nameMatch = input.match(/(\w+)\s+is/i);
-  const productName = nameMatch ? nameMatch[1] : 'Your Product';
+  const productName = (input.match(/(\w+)\s+is/i)||[])[1]||'YourProduct';
 
   const features = [];
   if (input.match(/learn|skill|cours|educat|teach|train/i)) features.push('AI Learning Paths');
@@ -1284,93 +922,70 @@ function generateLandingPage() {
   if (input.match(/blockchain|crypto|web3|token|nft|contract|defi/i)) features.push('Web3 Integration');
   if (input.match(/design|ui|ux|creative|brand/i)) features.push('Design System Generator');
   if (input.match(/market|seo|content|social/i)) features.push('SEO & Content Tools');
-  if (features.length === 0) features.push('Core Platform', 'User Dashboard', 'Analytics');
+  if (!features.length) features.push('Core Platform','User Dashboard','Analytics');
 
   const personas = [];
-  if (input.match(/student|learner|educat/i)) personas.push({ icon: '👨‍🎓', name: 'Students', desc: 'Learn skills and build proof of work' });
-  if (input.match(/develop|coder|engineer|programmer|dev/i)) personas.push({ icon: '💻', name: 'Developers', desc: 'Ship faster with AI-powered workflows' });
-  if (input.match(/designer|creative/i)) personas.push({ icon: '🎨', name: 'Designers', desc: 'Generate brand systems in minutes' });
-  if (input.match(/founder|startup|entrepreneur/i)) personas.push({ icon: '🚀', name: 'Founders', desc: 'Validate and build at startup speed' });
-  if (input.match(/agency|freelancer/i)) personas.push({ icon: '🏢', name: 'Agencies', desc: 'Scale delivery across clients' });
-  if (input.match(/career|job|fresher|graduate/i)) personas.push({ icon: '💼', name: 'Job Seekers', desc: 'Get hired faster with AI-optimized applications' });
-  if (personas.length === 0) personas.push(
-    { icon: '👨‍🎓', name: 'Beginners', desc: 'Start from zero knowledge' },
-    { icon: '💼', name: 'Professionals', desc: 'Level up existing skills' },
-    { icon: '🚀', name: 'Teams', desc: 'Collaborate and ship together' }
-  );
-
-  const problems = [
-    'Starting every project from scratch with no shared knowledge',
-    'Spending hours on repetitive setup and configuration',
-    'No standard process — quality and speed vary every time',
-    'Mistakes repeat across projects with no memory system',
-    'Multiple AI tools require different prompts and workflows'
-  ];
-  const solutions = [
-    'One system with persistent memory across all sessions',
-    'AI handles boilerplate so you focus on what matters',
-    'Standard Golden Flow ensures consistent quality',
-    'Mistakes logged once, prevented across every project',
-    'Works across Claude Code, claude.ai, Antigravity, Open Code'
-  ];
+  if (input.match(/student|learner|educat/i)) personas.push({icon:'👨‍🎓',name:'Students',desc:'Learn skills and build proof of work'});
+  if (input.match(/develop|coder|engineer|programmer|dev/i)) personas.push({icon:'💻',name:'Developers',desc:'Ship faster with AI-powered workflows'});
+  if (input.match(/designer|creative/i)) personas.push({icon:'🎨',name:'Designers',desc:'Generate brand systems in minutes'});
+  if (input.match(/founder|startup|entrepreneur/i)) personas.push({icon:'🚀',name:'Founders',desc:'Validate and build at startup speed'});
+  if (input.match(/agency|freelancer/i)) personas.push({icon:'🏢',name:'Agencies',desc:'Scale delivery across clients'});
+  if (input.match(/career|job|fresher|graduate/i)) personas.push({icon:'💼',name:'Job Seekers',desc:'Get hired faster with AI-optimized applications'});
+  if (!personas.length) personas.push({icon:'👨‍🎓',name:'Beginners',desc:'Start from zero'},{icon:'💼',name:'Professionals',desc:'Level up'},{icon:'🚀',name:'Teams',desc:'Collaborate and ship'});
 
   const code = `<span class="cm">// Landing Page Blueprint: ${productName}</span>
-<span class="cm">// Generated by Landing Page Agent using 7-Question Framework</span>
+<span class="cm">// Generated by Landing Page Agent — 7-Question Framework</span>
 
-<span class="cm">// ─── SECTION 1: HERO ───</span>
-<span class="kw">H1:</span> <span class="str">"${input.substring(0, 60)}${input.length > 60 ? '...' : ''}"</span>
-<span class="kw">Sub:</span> <span class="str">"The all-in-one platform that does the heavy lifting so you can focus on what matters"</span>
-<span class="kw">CTA:</span> <span class="str">"Get Started Free"</span>
+<span class="cm">// ─── 1. HERO ───</span>
+H1: <span class="str">"${input.substring(0, 60)}${input.length>60?'...':''}"</span>
+Sub: <span class="str">"The all-in-one platform built for modern teams"</span>
+CTA: <span class="str">"Get Started Free"</span>
 
-<span class="cm">// ─── SECTION 2: AUDIENCE ───</span>
-<span class="kw">Personas:</span>
-${personas.map(p => `  ${p.icon} <span class="ty">${p.name}</span> — ${p.desc}`).join('\n')}
+<span class="cm">// ─── 2. AUDIENCE ───</span>
+${personas.map(p=>`  ${p.icon} ${p.name} — ${p.desc}`).join('\n')}
 
-<span class="cm">// ─── SECTION 3: PROBLEM vs SOLUTION ───</span>
-<span class="kw">Problems:</span>
-${problems.map(p => `  ✗ <span class="fn">${p}</span>`).join('\n')}
-<span class="kw">Solutions:</span>
-${solutions.map(s => `  ✓ <span class="fn">${s}</span>`).join('\n')}
+<span class="cm">// ─── 3. PROBLEM vs SOLUTION ───</span>
+Problem: Starting from scratch, scattered tools, no memory
+Solution: One system, persistent memory, standardized flow
 
-<span class="cm">// ─── SECTION 4: TRUST ───</span>
-<span class="kw">Metrics:</span> <span class="num">10,000+</span> Users · <span class="num">5,000+</span> Projects · <span class="num">99.9%</span> Uptime · Open Source
-<span class="kw">Testimonials:</span> 3 customer stories with measurable results
+<span class="cm">// ─── 4. TRUST ───</span>
+Metrics: <span class="num">10,000+</span> Users · <span class="num">5,000+</span> Projects · Open Source
+Testimonials: 3 customer stories with measurable results
 
-<span class="cm">// ─── SECTION 5: SERVICES ───</span>
-<span class="kw">Features:</span>
-${features.map(f => `  ▶ <span class="fn">${f}</span>`).join('\n')}
+<span class="cm">// ─── 5. FEATURES ───</span>
+${features.map(f=>`  ▶ ${f}`).join('\n')}
 
-<span class="cm">// ─── SECTION 6: PROOF ───</span>
-<span class="kw">Before:</span> Hours of manual work, scattered tools, no memory
-<span class="kw">After:</span> <span class="num">15-min</span> setup, one prompt, persistent learning
+<span class="cm">// ─── 6. PROOF ───</span>
+Before: Hours of manual setup, scattered tools, repeating mistakes
+After: <span class="num">15-min</span> setup, one prompt, persistent learning
 
-<span class="cm">// ─── SECTION 7: CTA ───</span>
-<span class="kw">Primary:</span> <span class="str">"Start Building →"</span>
-<span class="kw">Secondary:</span> <span class="str">"Watch Demo"</span> · <span class="str">"View GitHub"</span>
-<span class="kw">Objection handlers:</span> No credit card · Free to start · 5-min setup`;
+<span class="cm">// ─── 7. CTA ───</span>
+Primary: <span class="str">"Start Building →"</span>
+Secondary: <span class="str">"Watch Demo"</span> · <span class="str">"View GitHub"</span>
+Objection handlers: No credit card · Free to start · 5-min setup`;
 
-  output.innerHTML = `<span class="cm">// Analyzing your product...</span>\n`;
+  output.innerHTML = `<span class="cm">// Analyzing product... <span class="loading"></span></span>\n`;
   setTimeout(() => {
-    output.innerHTML = `<span class="cm">// Applying 7-question conversion framework...</span>\n`;
+    output.innerHTML = `<span class="cm">// Applying 7-question conversion framework... <span class="loading"></span></span>\n`;
     setTimeout(() => {
-      output.innerHTML = `<span class="cm">// Generating personas, problem-solution, and feature set...</span>\n`;
+      output.innerHTML = `<span class="cm">// Generating personas, problem-solution, features... <span class="loading"></span></span>\n`;
       setTimeout(() => {
-        output.innerHTML = `<span class="cm">// Complete. Here's your landing page blueprint:</span>\n\n` + code;
+        output.innerHTML = `<span class="cm">// Complete. Here's your blueprint:</span>\n\n${code}`;
       }, 300);
     }, 300);
   }, 300);
 }
 
-// AI Chat demo
+// AI Chat
 const chatKnowledge = {
-  'eth': 'Ethereum (ETH) is currently trading around $3,420 (simulated). It\'s the leading smart contract platform with a market cap of ~$410B. Recent upgrades (Dencun) have reduced L2 fees significantly.',
-  'btc': 'Bitcoin (BTC) is trading around $67,800 (simulated). Market cap is ~$1.34T. The next halving recently occurred, reducing block rewards to 3.125 BTC.',
-  'sol': 'Solana (SOL) is trading around $168 (simulated). Known for high throughput (~4,000 TPS) and low fees. The ecosystem includes DeFi, NFTs, and DePIN projects.',
-  'defi': 'DeFi (Decentralized Finance) refers to financial services built on blockchain. Total Value Locked across all chains is ~$85B. Major protocols include: Aave (lending), Uniswap (DEX), Lido (staking), and MakerDAO (stablecoins).',
-  'nft': 'NFTs are unique digital assets on blockchain. The market has shifted toward utility NFTs and gaming assets. Top collections by volume include Bored Ape Yacht Club, Pudgy Penguins, and Milady Maker.',
-  'gas': 'Gas fees vary by chain: Ethereum ~$15-50, Arbitrum ~$0.10-0.50, Polygon ~$0.01-0.05, Solana ~$0.0002. Use L2s for cost-effective transactions.',
-  'web3': 'Web3 is the decentralized internet built on blockchain. It includes dApps, DeFi, NFTs, DAOs, and identity systems. Key principles: self-custody, permissionless access, and composability.',
-  'ai': 'AI x Crypto convergence is the biggest narrative in 2026. Key sectors: decentralized compute (Akash, Render), AI agents (Fetch.ai), data markets (Ocean), and ZK-ML for privacy-preserving AI.'
+  eth:'Ethereum (ETH) is around $3,420 (simulated). It\'s the leading smart contract platform with a market cap of ~$410B. Recent Dencun upgrade reduced L2 fees significantly.',
+  btc:'Bitcoin (BTC) is around $67,800 (simulated). Market cap ~$1.34T. The recent halving reduced block rewards to 3.125 BTC.',
+  sol:'Solana (SOL) is around $168 (simulated). Known for high throughput (~4,000 TPS) and low fees. Strong DeFi and NFT ecosystem.',
+  defi:'DeFi (Decentralized Finance) — financial services on blockchain. Total Value Locked ~$85B across all chains. Major protocols: Aave (lending), Uniswap (DEX), Lido (staking), MakerDAO (stablecoins).',
+  nft:'NFTs are unique digital assets on blockchain. Market shifted toward utility NFTs and gaming. Top collections: Bored Ape Yacht Club, Pudgy Penguins, Milady Maker.',
+  gas:'Gas fees: Ethereum ~$15-50, Arbitrum ~$0.10-0.50, Polygon ~$0.01-0.05, Solana ~$0.0002. Use L2s for cost-effective transactions.',
+  web3:'Web3 is the decentralized internet — dApps, DeFi, NFTs, DAOs, identity. Key principles: self-custody, permissionless access, composability.',
+  ai:'AI x Crypto convergence is the biggest narrative in 2026. Key sectors: decentralized compute (Akash, Render), AI agents (Fetch.ai), data markets (Ocean), ZK-ML for privacy-preserving AI.'
 };
 
 function sendChat() {
@@ -1379,21 +994,18 @@ function sendChat() {
   const text = input.value.trim();
   if (!text) return;
 
-  // Add user message
   const userMsg = document.createElement('div');
   userMsg.className = 'chat-msg user';
   userMsg.textContent = text;
   messages.appendChild(userMsg);
   input.value = '';
 
-  // Typing indicator
   const typing = document.createElement('div');
   typing.className = 'chat-msg typing';
   typing.textContent = 'Agent is thinking...';
   messages.appendChild(typing);
   messages.scrollTop = messages.scrollHeight;
 
-  // Simulate response
   setTimeout(() => {
     typing.remove();
     const agentMsg = document.createElement('div');
@@ -1401,7 +1013,7 @@ function sendChat() {
     agentMsg.textContent = getChatResponse(text);
     messages.appendChild(agentMsg);
     messages.scrollTop = messages.scrollHeight;
-  }, 600 + Math.random() * 800);
+  }, 400 + Math.random() * 600);
 }
 
 function getChatResponse(input) {
@@ -1409,16 +1021,41 @@ function getChatResponse(input) {
   for (const [key, value] of Object.entries(chatKnowledge)) {
     if (lower.includes(key)) return value;
   }
-  if (lower.includes('price') || lower.includes('how much')) {
-    return 'I can help with market data! Ask me about ETH, BTC, SOL, or specific tokens. Examples: "What is ETH price?" or "Show me Bitcoin analysis"';
+  if (lower.includes('price')||lower.includes('how much')) {
+    return 'I can help with market data! Ask me about ETH, BTC, SOL, or specific tokens.';
   }
-  if (lower.includes('hello') || lower.includes('hi')) {
-    return 'Hello! I\'m your Web3 Agent. Ask me about blockchain, crypto prices, DeFi, NFTs, gas fees, or anything Web3. Try typing "ETH" or "what is DeFi?"';
+  if (lower.includes('hello')||lower.includes('hi')) {
+    return 'Hello! I\'m your Web3 Agent. Ask me about blockchain, crypto prices, DeFi, NFTs, gas fees, or anything Web3.';
   }
-  return 'That\'s a great question! I can help with: token prices (ETH, BTC, SOL), DeFi protocols, NFT markets, gas fees, on-chain analysis, and Web3 concepts. Could you be more specific?';
+  return 'Great question! I can help with: token prices (ETH, BTC, SOL), DeFi protocols, NFT markets, gas fees, on-chain analysis, and Web3 concepts. Could you be more specific?';
 }
 
-// Memory status click toggle
+function quickChat(el) {
+  document.getElementById('chatInput').value = el.textContent;
+  sendChat();
+}
+
+// Theme toggle
+function toggleTheme() {
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  html.classList.toggle('dark');
+  toggle.classList.toggle('dark');
+  localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+}
+
+// Restore theme
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.classList.add('dark');
+  document.getElementById('themeToggle').classList.add('dark');
+}
+
+// Mobile nav
+function toggleMobileNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// Memory status
 document.getElementById('memoryStatus').onclick = function() {
   const dot = this.querySelector('.status-dot');
   const text = document.getElementById('memoryStatusText');
@@ -1428,7 +1065,17 @@ document.getElementById('memoryStatus').onclick = function() {
     ? '<strong>Memory verified</strong> (click to toggle)'
     : '<strong>Memory unchecked</strong> (click to verify)';
 };
-</script>
 
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
