@@ -73,6 +73,35 @@ This environment already has these connected: **Figma, Canva, Webflow, Netlify, 
 
 Apply free-for.dev as the first-pass reference for any free-tier infra/hosting need in this stack. For every free tool recommended above, pair it with its real limitation (export caps, watermarks on free tier, attribution requirements, rate limits) — a free-tier surprise discovered in production is exactly the kind of mistake this whole system exists to stop repeating.
 
+## Design Systems Reference
+
+10 brand-grade design systems available at `design-systems/<brand>/`:
+- **default** — Neutral modern starter
+- **linear-app** — Dark-mode-first productivity (reference DESIGN.md + tokens.css)
+- **neobrutalism** — Bold, high-contrast
+- **glassmorphism** — Frosted glass modern
+- **minimal** — Clean, minimal
+- **stripe** — Fintech SaaS
+- **vercel** — Developer tools
+- **claude** — AI-centric
+- **shadcn** — Component-based
+- **supabase** — Open-source SaaS
+
+Each system contains: `DESIGN.md` (brand spec), `design-tokens.json` (structured tokens), `tokens.css` (CSS variables), `USAGE.md` (agent instructions). Before building any UI, read the relevant design system and apply its tokens rather than defaulting to personal preferences.
+
+## Reference Projects
+
+47 production landing page templates available at:
+`C:\Users\vishw\Music\Learnify AI\Projects\`
+
+Use as creative inspiration and reference outputs. Notable templates:
+- `acreage-nike/` — Landing page pattern
+- `aurora-signup/` — Signup flow pattern
+- `stellar-ai/` — AI product page pattern
+- `ui-rocket/` — Dashboard UI pattern
+
+Do not copy assets directly — use as structural and visual inspiration only. Log any reusable patterns to `pattern-library.md`.
+
 ## Cross-brand consistency checks
 
 Confirm color/type choices don't collide confusingly across live products a user might see side by side. Confirm accessibility basics on any new palette/component before broad adoption.

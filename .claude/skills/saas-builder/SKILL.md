@@ -37,15 +37,24 @@ Schema design rules:
 
 ## Phase 4 — UI / design system
 
-Pick the system that fits the product's positioning, don't default to one style out of habit:
-- **Neo-Brutalism** — bold, high-contrast, playful edtech (Learnify AI mascot-driven UI)
-- **Glassmorphism** — layered, modern SaaS dashboards
-- **Fintech UI** — AgencyOS-style client/invoicing tools, trust-signaling
-- **Acid Brutalism / Neon Velocity** — youth-facing, high-energy brand moments
-- **Blueprint / DevTools UI** — technical/developer-facing tools
-- **Claymorphism / Cinematic** — softer consumer products, landing pages
+Pick the system that fits the product's positioning from the 10 design systems shipped in `design-systems/<brand>/`. Each includes `DESIGN.md`, `design-tokens.json`, and `tokens.css`:
+
+- **neobrutalism** — bold, high-contrast, playful edtech (Learnify AI mascot-driven UI)
+- **glassmorphism** — layered, modern SaaS dashboards
+- **minimal** — clean, modern product UI
+- **linear-app** — dark-mode-first productivity SaaS
+- **stripe** — fintech SaaS, trust-signaling (AgencyOS-style)
+- **vercel** — developer tools, technical products
+- **claude** — AI-centric product design
+- **shadcn** — component-based modern web
+- **supabase** — open-source SaaS, developer-focused
+- **default** — neutral modern starter
+
+Read the `DESIGN.md` and apply `tokens.css` values before writing any component CSS — this makes every render brand-consistent.
 
 Pull component/animation inspiration from Vapi.ai, Aceternity UI, Magic UI, LottieFiles, Rive (see research-resources skill for the full free-resource list — don't re-derive that list here). Check with **design-agent** first for existing brand tokens/components before building new ones from scratch.
+
+47 reference landing pages available at `C:\Users\vishw\Music\Learnify AI\Projects\` — use for structural inspiration, not asset copying.
 
 ## Phase 5 — Orchestration & deploy
 

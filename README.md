@@ -119,6 +119,21 @@ Paste `CONNECT-PROMPT.md` at the start of your session.
 
 ---
 
+## Design Systems Included
+
+10 brand-grade design systems at `design-systems/<brand>/`:
+`default` · `linear-app` · `neobrutalism` · `glassmorphism` · `minimal` · `stripe` · `vercel` · `claude` · `shadcn` · `supabase`
+
+Each contains `DESIGN.md` (brand spec), `design-tokens.json`, and `tokens.css` (CSS variables). Any AI can use these to maintain brand consistency across renders.
+
+---
+
+## Agent Entry Point
+
+Read `AGENTS.md` first — it's the single source of truth for how this repository works, where everything lives, and how any AI should enter and use this system.
+
+---
+
 ## Setup Details
 
 See [SETUP.md](SETUP.md) for complete instructions, including:
@@ -132,6 +147,12 @@ See [SETUP.md](SETUP.md) for complete instructions, including:
 ## Architecture
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the full system design.
+
+---
+
+## Reference Projects
+
+47 landing page templates available at `C:\Users\vishw\Music\Learnify AI\Projects\` — structural inspiration for the design-agent.
 
 ---
 
