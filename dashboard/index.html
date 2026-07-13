@@ -14,10 +14,19 @@ body{font-family:var(--fb);background:var(--bg);color:var(--fg);line-height:1.5;
 h1,h2,h3,h4,h5,.fd{font-family:var(--fd)}code,.fm{font-family:var(--fm)}a{color:inherit}.c{max-width:var(--c);margin:0 auto;padding:0 var(--s6)}
 
 /* Nav */
-nav{position:sticky;top:0;z-index:100;background:rgba(246,246,247,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}.dark nav{background:rgba(10,10,11,.85)}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,246,247,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .3s}.dark nav{background:rgba(10,10,11,.75)}
+nav::before{content:'';position:absolute;inset:0;border-bottom:1px solid transparent;pointer-events:none;mask:linear-gradient(90deg,transparent,rgba(99,102,241,.12),transparent);-webkit-mask:linear-gradient(90deg,transparent,rgba(99,102,241,.12),transparent)}
 nav .in{display:flex;align-items:center;justify-content:space-between;height:var(--nv);max-width:var(--c);margin:0 auto;padding:0 var(--s6)}
-nav .logo{font-family:var(--fd);font-weight:700;font-size:18px;display:flex;align-items:center;gap:var(--s2);letter-spacing:-.02em}
-nav .logo .la{color:var(--accent)}
+nav .logo{font-family:var(--fd);font-weight:700;font-size:18px;display:flex;align-items:center;gap:var(--s3);letter-spacing:-.02em;text-decoration:none;position:relative}
+nav .logo .lg-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--a2));display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease;box-shadow:0 2px 8px var(--a-glow)}
+nav .logo:hover .lg-icon{transform:scale(1.08) rotate(-8deg);box-shadow:0 4px 16px var(--a-glow)}
+nav .logo .lg-icon svg{width:18px;height:18px;color:#fff;display:block}
+nav .logo .lg-t{display:flex;flex-direction:column;line-height:1.15}
+nav .logo .lg-t .lg-top{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+nav .logo .lg-t .lg-bot{font-size:17px;font-weight:700;letter-spacing:-.03em;color:var(--fg)}
+nav .logo .lg-t .lg-bot span{color:var(--accent)}
+@keyframes lgP{0%,100%{box-shadow:0 2px 8px var(--a-glow)}50%{box-shadow:0 2px 16px var(--a-glow),0 0 24px var(--a-glow)}}
+nav .logo .lg-icon{animation:lgP 3s ease-in-out infinite}
 .nl{display:flex;gap:2px;align-items:center}
 .nl a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:var(--s2) var(--s3);border-radius:var(--r-sm);transition:all .15s}
 .nl a:hover{color:var(--fg);background:var(--a-sub)}.nl .btn-nav{background:var(--accent);color:var(--a-on);padding:var(--s2) var(--s4);font-weight:600}
@@ -282,7 +291,21 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
 <div class="pt"><div class="pp"></div><div class="pp"></div><div class="pp"></div><div class="pp"></div><div class="pp"></div><div class="pp"></div><div class="pp"></div><div class="pp"></div></div>
 
 <nav><div class="in">
-  <div class="logo">&#9670; Agent <span class="la">Team</span></div>
+  <div class="logo">
+    <div class="lg-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="12" r="5.5"/>
+        <circle cx="15" cy="12" r="5.5"/>
+        <line x1="9" y1="12" x2="15" y2="12"/>
+        <path d="M9 8.5a5.5 5.5 0 0 1 6 0"/>
+        <path d="M9 15.5a5.5 5.5 0 0 0 6 0"/>
+      </svg>
+    </div>
+    <div class="lg-t">
+      <span class="lg-top">Agent Skills</span>
+      <span class="lg-bot"><span>Vishwajeet</span>'s Team</span>
+    </div>
+  </div>
   <div class="nl" id="nl">
     <a href="#team">Team</a><a href="#web3">Web3</a><a href="#templates">Templates</a><a href="#showcase">Showcase</a><a href="#prompt-gen">Get Started</a>
     <a href="https://github.com/Vishwajeetsrk/Agent-Team-Skills" class="btn-nav" target="_blank">GitHub &#8599;</a>
@@ -304,7 +327,7 @@ footer{padding:var(--s8) 0;border-top:1px solid var(--border);text-align:center;
     <div class="hst">
       <div class="st"><div class="sn">19</div><div class="sl">Agent Skills</div></div>
       <div class="st"><div class="sn">46</div><div class="sl">Live Templates</div></div>
-      <div class="st"><div class="sn">20</div><div class="sl">Design Systems</div></div>
+      <div class="st"><div class="sn">30</div><div class="sl">Design Systems</div></div>
       <div class="st"><div class="sn">34</div><div class="sl">SVG Assets</div></div>
     </div>
     <div class="fw"><div class="fl"></div>
